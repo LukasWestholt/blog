@@ -41,4 +41,4 @@ jobs:
 
       - name: Deploy via rsync with password
         run: |
-          sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz -e "ssh -p ${{ vars.SERVER_PORT }}" dist/ ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ vars.SERVER_TARGET }}
+          sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${{ vars.SERVER_PORT }}" dist/ ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ vars.SERVER_TARGET }}
