@@ -36,13 +36,19 @@ jobs:
       - name: Build Astro project
         run: pnpm build
 
-      - name: SFTP upload
-        uses: Dylan700/sftp-upload-action@v1.2.3
+      - name: Deploy files via SFTP
+        uses: pressidium/lftp-mirror-action@v1
         with:
-          server: ${{ vars.SERVER_HOST }}
-          username: ${{ vars.SERVER_USER }}
-          password: ${{secrets.SERVER_PASSWORD}}
+          # SFTP credentials
+          host: ${{ vars.SERVER_HOST }}
           port: ${{ vars.SERVER_PORT }}
-          uploads: |
-            ./dist/ => ${{ vars.SERVER_TARGET }}
-          delete: 'true'
+          user: ${{ vars.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASSWORD }}
+          fingerprint: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA2zJZx6VkSJC14SILqvzLiR3v8eS0D7Zs7C7771yDwa90UW8JkhK23dk/G8R74kdcWYEOn3kCSr/2rz+UtYThZeWUa5F6BcT/X5Gwh1RAlw5ESxnRr+hiZhYLI7BivVIo5EzecIs0KEojMRUkXI+ClHIcyXBY6grflQFgjZphFMs='
+          # lftp settings
+          onlyNewer: 'false'
+          restoreMTime: 'false'
+          parallel: '3'
+          # Mirror command options
+          localDir: './dist/'
+          remoteDir: '/' # ${{ vars.SERVER_TARGET }}
