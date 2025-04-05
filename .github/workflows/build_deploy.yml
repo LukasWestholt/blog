@@ -1,0 +1,70 @@
+# .github/workflows/build_deploy.yml
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      run_full_deploy:
+        description: 'Trigger full-deploy manually'
+        required: false
+        default: 'false'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build Astro project
+        run: pnpm build
+
+      - name: Archive build
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: dist/
+
+  deploy:
+    name: Deploy new static files via SFTP
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.event.inputs.run_full_deploy == 'false' }}  # Only run deploy if 'run_full_deploy' input is 'false'
+
+    steps:
+      - name: Deploy
+        uses: .github/workflows/reusable-deploy.yml
+        with:
+          onlyNewer: 'true'
+          options: 'ignore-time verbose=3 delete'
+
+  full-deploy:
+    name: Deploy all static files via SFTP
+    runs-on: ubuntu-latest
+    needs: build
+    if: ${{ github.event.inputs.run_full_deploy == 'true' }}  # Only run full-deploy if 'run_full_deploy' input is 'true'
+
+    steps:
+      - name: Deploy
+        uses: .github/workflows/reusable-deploy.yml
+        with:
+          onlyNewer: 'false'
+          options: 'verbose=3 delete'
