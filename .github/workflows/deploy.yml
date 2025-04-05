@@ -45,3 +45,4 @@ jobs:
           port: ${{ vars.SERVER_PORT }}
           uploads: |
             ./dist/ => ${{ vars.SERVER_TARGET }}
+          delete: 'true'
