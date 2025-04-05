@@ -117,4 +117,3 @@ jobs:
           localDir: './dist/'
           remoteDir: ${{ vars.SERVER_TARGET }}
           options: ${{ env.options }}
-
