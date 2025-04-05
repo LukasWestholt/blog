@@ -1,0 +1,27 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      run_job2:
+        description: 'Trigger job2 manually'
+        required: false
+        default: 'false'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run job1
+        run: echo "Running job1"
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1  # job2 will run after job1 (but only if manually triggered)
+    if: ${{ github.event.inputs.run_job2 == 'true' }}  # Only run job2 if 'run_job2' input is 'true'
+    steps:
+      - name: Run job2
+        run: echo "Running job2"
