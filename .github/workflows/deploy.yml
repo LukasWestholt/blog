@@ -52,3 +52,4 @@ jobs:
           # Mirror command options
           localDir: './dist/'
           remoteDir: '/' # ${{ vars.SERVER_TARGET }}
+          options: 'delete'
