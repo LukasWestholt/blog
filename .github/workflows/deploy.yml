@@ -46,10 +46,10 @@ jobs:
           pass: ${{ secrets.SERVER_PASSWORD }}
           fingerprint: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA2zJZx6VkSJC14SILqvzLiR3v8eS0D7Zs7C7771yDwa90UW8JkhK23dk/G8R74kdcWYEOn3kCSr/2rz+UtYThZeWUa5F6BcT/X5Gwh1RAlw5ESxnRr+hiZhYLI7BivVIo5EzecIs0KEojMRUkXI+ClHIcyXBY6grflQFgjZphFMs='
           # lftp settings
-          onlyNewer: 'false'
+          onlyNewer: 'true'
           restoreMTime: 'false'
           parallel: '3'
           # Mirror command options
           localDir: './dist/'
           remoteDir: '/' # ${{ vars.SERVER_TARGET }}
-          options: 'verbose=3 delete'
+          options: 'ignore-time verbose=3 delete'
