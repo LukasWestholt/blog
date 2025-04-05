@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Deploy
-        uses: .github/workflows/reusable-deploy.yml
+        uses: ./.github/workflows/reusable-deploy.yml
         with:
           onlyNewer: 'true'
           options: 'ignore-time verbose=3 delete'
@@ -64,7 +64,7 @@ jobs:
 
     steps:
       - name: Deploy
-        uses: .github/workflows/reusable-deploy.yml
+        uses: ./.github/workflows/reusable-deploy.yml
         with:
           onlyNewer: 'false'
           options: 'verbose=3 delete'
