@@ -39,9 +39,9 @@ jobs:
       - name: Copy build to server via SCP
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ SERVER_HOST }}
-          username: ${{ SERVER_USER }}
+          host: ${{ vars.SERVER_HOST }}
+          username: ${{ vars.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
-          port: ${{ SERVER_PORT }}
+          port: ${{ vars.SERVER_PORT }}
           source: "dist/*"
-          target: ${{ SERVER_TARGET }}
+          target: ${{ vars.SERVER_TARGET }}
