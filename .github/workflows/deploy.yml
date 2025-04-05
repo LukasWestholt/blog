@@ -36,9 +36,12 @@ jobs:
       - name: Build Astro project
         run: pnpm build
 
-      - name: Install sshpass
-        run: sudo apt-get install -y sshpass
-
-      - name: Deploy via rsync with password
-        run: |
-          sshpass -p "${{ secrets.SERVER_PASSWORD }}" rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p ${{ vars.SERVER_PORT }}" dist/ ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:${{ vars.SERVER_TARGET }}
+      - name: SFTP upload
+        uses: Dylan700/sftp-upload-action@v1.2.3
+        with:
+          server: ${{ vars.SERVER_HOST }}
+          username: ${{ vars.SERVER_USER }}
+          password: ${{secrets.SERVER_PASSWORD}}
+          port: ${{ vars.SERVER_PORT }}
+          uploads: |
+            ./dist/ => ${{ vars.SERVER_TARGET }}
