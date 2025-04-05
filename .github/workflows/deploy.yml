@@ -37,7 +37,7 @@ jobs:
         with:
           name: build-artifact
           path: dist/
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT }}
 
       - name: Deploy static files via SFTP
         uses: pressidium/lftp-mirror-action@v1
