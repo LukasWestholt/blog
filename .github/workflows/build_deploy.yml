@@ -48,7 +48,7 @@ jobs:
     name: Deploy new static files via SFTP
     runs-on: ubuntu-latest
     needs: build
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.inputs.run_full_deploy == 'false' }} # Only run deploy if 'run_full_deploy' input is 'false'
+    if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.run_full_deploy == 'false' }} # Only run deploy if 'run_full_deploy' input is 'false'
 
     steps:
       - name: Checkout repository
