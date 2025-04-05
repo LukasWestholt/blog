@@ -51,6 +51,8 @@ jobs:
     if: ${{ github.event_name == 'workflow_dispatch' || github.event.inputs.run_full_deploy == 'false' }} # Only run deploy if 'run_full_deploy' input is 'false'
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Deploy
         uses: ./.github/actions/reusable-deploy
         with:
@@ -64,6 +66,8 @@ jobs:
     if: ${{ github.event.inputs.run_full_deploy == 'true' }}  # Only run full-deploy if 'run_full_deploy' input is 'true'
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Deploy
         uses: ./.github/actions/reusable-deploy
         with:
