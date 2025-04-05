@@ -1,4 +1,5 @@
-name: deploy
+# .github/workflows/deploy.yml
+name: Deploy
 
 # Set the following GitHub Secrets:
 #    SERVER_HOST – the IP or domain of your server
@@ -8,35 +9,35 @@ name: deploy
 #    SERVER_TARGET – the path on the server where the files should go
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      onlyNewer:
+        description: 'Only transfer files that are newer than the ones on the remote server'
+        required: false
+        default: true
+        type: boolean
+      options:
+        description: 'Any additional mirror command options to configure'
+        required: false
+        default: 'ignore-time verbose=3 delete'
+        type: string
+
+  workflow_run:
+    workflows: [ "Build" ]
+    types:
+      - completed
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
         with:
-          node-version: 18
+          name: build-artifact
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build Astro project
-        run: pnpm build
-
-      - name: Deploy files via SFTP
+      - name: Deploy static files via SFTP
         uses: pressidium/lftp-mirror-action@v1
         with:
           # SFTP credentials
@@ -46,10 +47,10 @@ jobs:
           pass: ${{ secrets.SERVER_PASSWORD }}
           fingerprint: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA2zJZx6VkSJC14SILqvzLiR3v8eS0D7Zs7C7771yDwa90UW8JkhK23dk/G8R74kdcWYEOn3kCSr/2rz+UtYThZeWUa5F6BcT/X5Gwh1RAlw5ESxnRr+hiZhYLI7BivVIo5EzecIs0KEojMRUkXI+ClHIcyXBY6grflQFgjZphFMs='
           # lftp settings
-          onlyNewer: 'true'
+          onlyNewer: ${{ inputs.onlyNewer }}
           restoreMTime: 'false'
           parallel: '3'
           # Mirror command options
           localDir: './dist/'
-          remoteDir: '/' # ${{ vars.SERVER_TARGET }}
-          options: 'ignore-time verbose=3 delete'
+          remoteDir: ${{ vars.SERVER_TARGET }}
+          options: ${{ inputs.options }}

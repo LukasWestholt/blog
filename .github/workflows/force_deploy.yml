@@ -1,0 +1,13 @@
+# .github/workflows/force_deploy.yml
+name: Force Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  full-deploy:
+    name: Deploy all static files via SFTP
+    uses: ./.github/workflows/deploy.yml
+    with:
+      onlyNewer: false
+      options: 'verbose=3 delete'
