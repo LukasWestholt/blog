@@ -10,7 +10,8 @@ on:
       run_full_deploy:
         description: 'Trigger full-deploy manually'
         required: false
-        default: 'false'
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -51,7 +52,7 @@ jobs:
 
     steps:
       - name: Deploy
-        uses: ./.github/workflows/reusable-deploy.yml
+        uses: ./.github/actions/reusable-deploy
         with:
           onlyNewer: 'true'
           options: 'ignore-time verbose=3 delete'
@@ -64,7 +65,7 @@ jobs:
 
     steps:
       - name: Deploy
-        uses: ./.github/workflows/reusable-deploy.yml
+        uses: ./.github/actions/reusable-deploy
         with:
           onlyNewer: 'false'
           options: 'verbose=3 delete'
