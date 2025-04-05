@@ -38,6 +38,8 @@ jobs:
           name: build-artifact
           path: dist/
           github-token: ${{ secrets.GH_PAT }}
+          repository: LukasWestholt/blog/
+          run-id: ${{ github.event.workflow_run.id }}
 
       - name: Deploy static files via SFTP
         uses: pressidium/lftp-mirror-action@v1
