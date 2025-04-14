@@ -10,10 +10,11 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-	site: 'https://blog-template-gray.vercel.app/', // Write here your website url
+	site: 'http://blog.lukaswestholt.de/', // Write here your website url
 	author: 'Lukas Westholt and Lukas Ruminski', // Site author
-	title: 'Lukas^2', // Site title.
-	description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', // Description to display in the meta tags
+	title: '2Lukas', // Site title.
+	description:
+		'2Lukas is a laid-back tech blog where two computer scientists named Lukas share tutorials, insights, and witty takes on technology, coding, and the digital world around us.',
 	lang: 'en-GB',
 	ogLocale: 'en_GB',
 	shareMessage: 'Share this post', // Message to share a post on social media
