@@ -16,11 +16,14 @@ Installing a face pack is straightforward if you follow these steps:
 1. Download the face pack – Find a reliable source and download the zip file containing the face pack.
 2. Backup Old Files – Before making changes, consider backing up your existing face pack files in case you want to revert later.
 3. Extract the Files – Unzip the downloaded file and move its contents to your graphics folder. The default location on Windows is:
-   C:\Documents\Sports Interactive\Football Manager 2024\graphics
+
+   _C:\Documents\Sports Interactive\Football Manager 2024\graphics_
+   ![Screenshot](../../assets/images/fm24guide/fpguide2.jpg)
    If the folder doesn’t exist, create it manually. Make sure you actually have only one folder containing a face pack.
    If the downloaded face pack doesn’t come with a folder, you need to create one. Name it "facepack," for example, and extract the PNGs and the config.xml into it. Ensure this folder is inside the graphics folder.
-   Don’t load multiple face packs at the same time. If you wish to combine them, there is a guide further below.
-4. Managing Existing Face Packs – If you already have a different face pack installed, you may need to overwrite the existing PNG files. However, do not overwrite the config.xml file unless necessary.
+   I don’t recommend loading multiple face packs at the same time. If you wish to combine them, there is a guide further below. ![Screenshot](../../assets/images/fm24guide/fpguide1.png)
+
+4. Managing Existing face packs – If you already have a different face pack installed, you may need to overwrite the existing PNG files. However, do not overwrite the config.xml file unless necessary.
 5. Reload the Skin in FM – Open Football Manager, go to Preferences > Interface, and reload the skin. Make sure caching is disabled and "Reload skin when confirming changes" is enabled. ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
 6. Ensure All Content is There – The folder you have created should only contain PNGs and a config.xml. Nothing else.
 
