@@ -3,7 +3,7 @@ title: 'Von Füchsen und Familien: Wenn Bejagungsdruck zu Babyboom führt'
 description: 'Ein vergleichender Blick auf Fortpflanzungsstrategien von Füchsen und Menschen – zwischen Jagddruck, Unsicherheit und Babyboom.'
 pubDate: 'Apr 11 2025'
 heroImage: '../../assets/images/fox.png'
-category: 'Category 3'
+category: 'Thoughts'
 tags: ['Random']
 ---
 
@@ -23,10 +23,10 @@ Nicht wegen Bejagung, klar. Aber vielleicht wegen eines anderen Drucks: steigend
 
 ## Ein Systemvergleich aus informatischer Sicht:
 
-| System          | Auslöser                | Reaktion                     |
-|-----------------|-------------------------|------------------------------|
-| **Füchse (biologisch)** | Bejagungsdruck          | Erhöhte Fruchtbarkeit         |
-| **Menschen (sozial)**   | Zukunftsunsicherheit     | Plötzlicher Kinderwunsch      |
+| System                  | Auslöser             | Reaktion                 |
+| ----------------------- | -------------------- | ------------------------ |
+| **Füchse (biologisch)** | Bejagungsdruck       | Erhöhte Fruchtbarkeit    |
+| **Menschen (sozial)**   | Zukunftsunsicherheit | Plötzlicher Kinderwunsch |
 
 Beide Systeme zeigen: Unter Druck kann die Reproduktionsrate steigen – als eine Art biologische oder kulturelle Fehlertoleranz. Wenn die Welt unsicher wird, multipliziert man das, was zählt: Nachwuchs, Zukunft, Hoffnung.
 
@@ -40,7 +40,7 @@ Allein im Zweiten Weltkrieg starben über 7 Millionen Deutsche, davon viele jung
 
 Jetzt stellt sich natürlich die Frage, ob dieser Zusammenhang auch in der anderen Richtung gilt.
 
-Die Umkehrung des Musters sagt aus, dass in Zeiten des relativen Friedens, wie wir sie in weiten Teilen Europas heute erleben, die Geburtenzahlen niedrig sind. Man könnte fast sagen: Je sicherer und planbarer das Leben wird, desto seltener entscheidet man sich für Kinder. Kein unmittelbarer Druck, kein existenzieller Zwang – dafür Karriereplanung, Lebensstiloptimierung, Klimaangst und Wohnungsknappheit. 
+Die Umkehrung des Musters sagt aus, dass in Zeiten des relativen Friedens, wie wir sie in weiten Teilen Europas heute erleben, die Geburtenzahlen niedrig sind. Man könnte fast sagen: Je sicherer und planbarer das Leben wird, desto seltener entscheidet man sich für Kinder. Kein unmittelbarer Druck, kein existenzieller Zwang – dafür Karriereplanung, Lebensstiloptimierung, Klimaangst und Wohnungsknappheit.
 
 Das evolutionäre „Jetzt oder nie“ verwandelt sich in ein „Vielleicht später – oder gar nicht“.
 
