@@ -21,8 +21,8 @@ Installing a face pack is straightforward if you follow these steps:
    If the downloaded face pack doesn’t come with a folder, you need to create one. Name it "facepack," for example, and extract the PNGs and the config.xml into it. Ensure this folder is inside the graphics folder.
    Don’t load multiple face packs at the same time. If you wish to combine them, there is a guide further below.
 4. Managing Existing Face Packs – If you already have a different face pack installed, you may need to overwrite the existing PNG files. However, do not overwrite the config.xml file unless necessary.
-5. Reload the Skin in FM – Open Football Manager, go to Preferences > Interface, and reload the skin. Make sure caching is disabled and "Reload skin when confirming changes" is enabled.
-6. Ensure All Content is There – The folder you have created should only contain PNGs and a config.xml. Nothing else
+5. Reload the Skin in FM – Open Football Manager, go to Preferences > Interface, and reload the skin. Make sure caching is disabled and "Reload skin when confirming changes" is enabled. ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+6. Ensure All Content is There – The folder you have created should only contain PNGs and a config.xml. Nothing else.
 
 ## Common Issues and How to Fix Them
 
@@ -31,7 +31,7 @@ Installing a face pack is straightforward if you follow these steps:
 - Image size Issues - Ensure that the PNG files are 250x250 pixels for the best display quality.
 - Missing PNGs - Some face packs may not include every player, leading to blank spots.
 - Check Player IDs – Every player has a unique ID in the game. To verify the correct ID:
-- - Enable ID display in the game settings.
+- - Enable ID display in the game settings. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
 - - Click on a player and note the ID in the corner.
 - - Compare it to the PNG file name in your graphics folder.
 - Rename PNG Files – If the IDs don’t match, rename the PNG files to match the player’s ID and update config.xml accordingly.
