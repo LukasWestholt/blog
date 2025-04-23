@@ -7,7 +7,7 @@ category: 'Achievements'
 tags: ['FM24', 'Interview']
 ---
 
-Als Teil des administrativen Teams von _FM Match Lab_ ehemals _FM Tweak_ wurde ich von der Zeitschrift Kicker interviewt.
+Als Teil des administrativen Teams von _FM Match Lab_ ehemals _FM Tweak_, wurde ich von der Zeitschrift Kicker interviewt.
 [Hier geht es zum Artikel](https://www.kicker.de/immersiver-spannender-besser-so-will-fm-tweak-den-fm24-veraendern-1109356/artikel)
 
 Wir sprachen unter anderem über die Zukunft und Grenzen von Match Engines, wie das Modding Projekt begonnen wurde und welche Ziele wir mit _FM Match Lab_ haben.
