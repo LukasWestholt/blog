@@ -63,12 +63,15 @@ Open the file and copy this code in there.
     <boolean id="preload" value="false"/>
     <boolean id="amap" value="false"/>
     <list id="maps">
-        <record from="UNIQUE ID" to="graphics/pictures/stadium/UNIQUE ID/stadium"/>  
+        <record from="UNIQUE ID" to="graphics/pictures/stadium/UNIQUE ID/stadium"/> 
+        <record from="UNIQUE ID2" to="graphics/pictures/stadium/UNIQUE ID2/stadium"/>   
     </list>
 </record>
 ```
 
-Replace **UNIQUE ID** with the correct ID and you should be good to go!
+Replace **UNIQUE ID** with the correct ID. You can add multiple stadiums at the same time. Delete the 2nd record, if you only want to add a singular stadium. If you have want to add more than 2, just add more lines with the same pattern.
+
+![Screenshot](../../assets/images/fm24stadiumguide/stadiumguide12.png)
 
 ## Step 4. – Reload Skin
 
