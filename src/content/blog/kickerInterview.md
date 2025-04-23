@@ -11,4 +11,4 @@ Als Teil des administrativen Teams von _FM Match Lab_ ehemals _FM Tweak_, wurde 
 [Hier geht es zum Artikel](https://www.kicker.de/immersiver-spannender-besser-so-will-fm-tweak-den-fm24-veraendern-1109356/artikel)
 
 Wir sprachen unter anderem über die Zukunft und Grenzen von Match Engines, wie das Modding Projekt begonnen wurde und welche Ziele wir mit _FM Match Lab_ haben.
-Vielen Dank Sven für die diese einzigartige Möglichkeit!
+Vielen Dank Sven für diese einzigartige Möglichkeit!
