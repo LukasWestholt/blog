@@ -50,7 +50,6 @@ Either the Pre Game Editor, as I have shown before, or in game , if you enabled 
 
 Okay, let’s start.
 Go to your graphics folder, if you don’t have one, you need to create it. It’s most likely located in:
-
 **C:\Documents\Sports Interactive\Football Manager 2024\graphics**
 
 Create a folder. You can call it whatever you want. I would recommend to call it something simple stadiums. ![Screenshot](../../assets/images/fm24stadiumguide/stadiumguide9.png)

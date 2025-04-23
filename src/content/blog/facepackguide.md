@@ -9,7 +9,7 @@ tags: ['FM24', 'Guide']
 
 Face packs are a great way to enhance your Football Manager 2024 experience by adding real-life images of players, staff, and other in-game characters. However, installing them can sometimes be a bit tricky. If you're having trouble getting your face pack to work, this guide will walk you through the installation process and help troubleshoot common issues.
 
-# How to Install a face pack
+## How to Install a face pack
 
 Installing a face pack is straightforward if you follow these steps:
 
@@ -26,7 +26,7 @@ Installing a face pack is straightforward if you follow these steps:
 
 ## Common Issues and How to Fix Them
 
-1. My players have no face
+### My players have no face
 
 - Image size Issues - Ensure that the PNG files are 250x250 pixels for the best display quality.
 - Missing PNGs - Some face packs may not include every player, leading to blank spots.
@@ -36,7 +36,7 @@ Installing a face pack is straightforward if you follow these steps:
 - - Compare it to the PNG file name in your graphics folder.
 - Rename PNG Files – If the IDs don’t match, rename the PNG files to match the player’s ID and update config.xml accordingly.
 
-2. Conflict with Another Dataset
+### Conflict with Another Dataset
 
 A custom dataset will create IDs for the players it adds. If you are using multiple datasets, they may assign different IDs to players, than originally intented by the creator. In this case, you may need to prioritize which dataset you want to use by renaming files or adjusting the config.xml file. If you really want to put in the work, follow these steps to combine them. Please read everything here first before actually starting, especially the Tip section.
 
