@@ -81,8 +81,7 @@ If you have a custom stadium or a custom team, make sure, to enable the Dataset 
 
 ## Problems
 
-The 3D Model of the stadium looks bad: Unfortunately, that is kind of annoying or at least unsatisfying to fix. You can't really choose what stadium you want and how it looks like.
-
+Unfortunately, the 3D Model of the stadium might look not as good as expected, if you create a new stadium. You can't really choose what stadium you want and how it looks like.
 If your stadium has gaps, it means you can upgrade it. So for example:
 My stadium has 100000 seats. I can upgrade it to 200000. That means, that half of your stadium is not build and it will create gaps. Maybe some other setting could also influence this.
 
