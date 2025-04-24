@@ -1,6 +1,6 @@
 ---
 title: 'Football Manager 24 - Custom Stadium Guide'
-description: 'Explains how to get custom stadium pictures for FM24'
+description: 'How to get custom stadium pictures and create your own stadium for Football Manager 24 / FM24'
 pubDate: 'Apr 23 2025'
 heroImage: '../../assets/images/fm24banner.png'
 category: 'Football Manager'
