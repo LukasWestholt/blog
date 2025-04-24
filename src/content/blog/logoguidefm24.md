@@ -34,7 +34,7 @@ If it doesn't work, we might have to do some fine-tuning. That is either, becaus
 5. Load up your game and check if the IDs of the teams. I will use Blue Lock from my custom dataset as an example. To do so, Enable Show screen ID in Title Bar. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
 6. Load up a save and click on the Blue Lock Team. You should now see the ID in the left corner. ![Screenshot](../../assets/images/fm24guide/logoguide1.jpg)
 7. Open up your graphics folder and compare the IDs of my files with this ID.
-   As you can see, in my case that is correct. The ID in game is the same as the PNG. ![Screenshot](../../assets/images/fm24guide/logoguide2.jpg
+   As you can see, in my case that is correct. The ID in game is the same as the PNG. ![Screenshot](../../assets/images/fm24guide/logoguide2.jpg)
 8. If that isn't correct, you have to rename the PNG image, to the ID in game.
 
 <a id="step-9"></a>
