@@ -67,7 +67,7 @@ example config for small
 
 ![Screenshot](../../assets/images/fm24guide/logoguide3.jpg)
 
-10. You also need to that for both folders. For normal and small. **Make sure to use the correct picture size.**
+10. You also need to do that for both folders. For normal and small. **Make sure to use the correct picture size.**
 11. Now we need to load our files:
     Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
 
