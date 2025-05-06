@@ -4,6 +4,7 @@ import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import { remarkReadingTime } from './src/utils/readTime.ts'
 import { siteConfig } from './src/data/site.config'
+import astroI18next from "astro-i18next";
 
 // https://astro.build/config
 export default defineConfig({
@@ -29,6 +30,7 @@ export default defineConfig({
 			drafts: true
 		}),
 		sitemap(),
-		tailwind()
+		tailwind(),
+		astroI18next()
 	]
 })
