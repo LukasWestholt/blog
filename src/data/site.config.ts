@@ -10,7 +10,7 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-	site: 'http://blog.lukaswestholt.de/', // Write here your website url
+	site: 'https://2lukas.de/', // Write here your website url
 	author: 'Lukas Westholt and Lukas Ruminski', // Site author
 	title: '2Lukas', // Site title.
 	description:
