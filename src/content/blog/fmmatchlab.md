@@ -1,6 +1,6 @@
 ---
 title: 'FM Match Lab'
-description: 'Was ist FM Match Lab und wie helfe ich aus'
+description: 'Was ist FM Match Lab und meine Rolle im Projekt'
 pubDate: 'Apr 28 2025'
 heroImage: '../../assets/images/fm24guide/fmml.png'
 category: 'Projects'

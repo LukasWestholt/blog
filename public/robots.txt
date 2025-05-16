@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://blog.lukaswestholt.de/sitemap-index.xml
+Sitemap: https://2lukas.de/sitemap-index.xml
