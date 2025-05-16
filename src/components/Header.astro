@@ -4,6 +4,7 @@ import MenuIcon from './icons/MenuIcon.astro'
 import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
+import LocaleSwitcher from './LocaleSwitcher.astro'
 import { SOCIALNETWORKS } from '@/data/links'
 ---
 
@@ -24,6 +25,8 @@ import { SOCIALNETWORKS } from '@/data/links'
 					<TagIcon /> Tags
 				</HeaderLink>
 			</div>
+
+			<LocaleSwitcher />
 
 			<div class='flex justify-center items-center md:justify-end gap-3 md:p-0'>
 				{

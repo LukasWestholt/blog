@@ -4,14 +4,13 @@ import sitemap from '@astrojs/sitemap'
 import tailwind from '@astrojs/tailwind'
 import { remarkReadingTime } from './src/utils/readTime.ts'
 import { siteConfig } from './src/data/site.config'
-import astroI18next from "astro-i18next";
+type Locale = (typeof siteConfig.locales)[number]
 
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site,
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
-		drafts: true,
 		shikiConfig: {
 			theme: 'material-theme-palenight',
 			wrap: true
@@ -23,14 +22,24 @@ export default defineConfig({
 			shikiConfig: {
 				experimentalThemes: {
 					light: 'vitesse-light',
-					dark: 'material-theme-palenight',
-				  },
+					dark: 'material-theme-palenight'
+				},
 				wrap: true
-			},
-			drafts: true
+			}
 		}),
 		sitemap(),
-		tailwind(),
-		astroI18next()
-	]
+		tailwind()
+	],
+	i18n: {
+		locales: [...siteConfig.locales],
+		defaultLocale: siteConfig.defaultLocale,
+		fallback: Object.fromEntries(
+			siteConfig.locales
+				.filter(
+					(locale: Locale): locale is Exclude<Locale, typeof siteConfig.defaultLocale> =>
+						locale !== siteConfig.defaultLocale
+				)
+				.map((locale) => [locale, siteConfig.defaultLocale])
+		)
+	}
 })

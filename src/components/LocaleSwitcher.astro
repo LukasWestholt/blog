@@ -1,0 +1,26 @@
+---
+// src/components/LocaleSwitcher.astro
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { siteConfig } from '../data/site.config'
+const { locales } = siteConfig
+
+const currentLocale = Astro.currentLocale || siteConfig.defaultLocale
+const currentPath = Astro.url.pathname.replace(`/${currentLocale}`, '') || '/'
+---
+
+<nav>
+	<ul>
+		{
+			locales.map((locale) => (
+				<li>
+					<a
+						href={getRelativeLocaleUrl(locale, currentPath)}
+						aria-current={locale === currentLocale ? 'page' : undefined}
+					>
+						{locale.toUpperCase()}
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</nav>

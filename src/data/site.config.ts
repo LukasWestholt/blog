@@ -1,3 +1,5 @@
+const locales = ['de', 'en'] as const
+type Locale = (typeof locales)[number]
 interface SiteConfig {
 	site: string
 	author: string
@@ -7,6 +9,9 @@ interface SiteConfig {
 	ogLocale: string
 	shareMessage: string
 	paginationSize: number
+	locales: typeof locales
+	defaultLocale: Locale
+	localeNames: Record<Locale, string>
 }
 
 export const siteConfig: SiteConfig = {
@@ -18,5 +23,11 @@ export const siteConfig: SiteConfig = {
 	lang: 'en-GB',
 	ogLocale: 'en_GB',
 	shareMessage: 'Share this post', // Message to share a post on social media
-	paginationSize: 6 // Number of posts per page
+	paginationSize: 6, // Number of posts per page
+	locales: locales,
+	defaultLocale: 'de',
+	localeNames: {
+		en: 'English',
+		de: 'Deutsch'
+	}
 }
