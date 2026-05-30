@@ -1,62 +1,62 @@
 ---
-title: 'Football Manager 24 - Custom Stadium Guide'
-description: 'How to get custom stadium pictures and create your own stadium for Football Manager 24 / FM24'
+title: 'Football Manager 24 - Eigene Stadien Guide'
+description: 'Wie man eigene Stadionbilder bekommt und ein eigenes Stadion für Football Manager 24 / FM24 erstellt'
 pubDate: 'Apr 23 2025'
 heroImage: '../../assets/images/fm24banner.png'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
 ---
 
-Have you ever wondered: How you can get your own Stadium Picture in FM24 for your team or even a custom Team? Well, you don’t have to look further. I am here to show you how it’s done! I will use Team Rejects from my Blue Lock Dataset as an example, but it will work for every team.
-Here is an example of how it could look like.
+Hast du dich jemals gefragt, wie du im FM24 ein eigenes Stadionbild für dein Team oder sogar ein komplett selbsterstelltes Team bekommen kannst? Dann musst du nicht weiter suchen. Ich bin hier, um dir zu zeigen, wie das geht! Ich werde das Team "Rejects" aus meinem Blue Lock Datensatz als Beispiel verwenden, aber das funktioniert für jedes Team.
+Hier ist ein Beispiel, wie es aussehen könnte:
 ![Screenshot](../../assets/images/fm24guide/stadiumguide1.png)
 
-## Step 1. - Preparation
+## Schritt 1. - Vorbereitung
 
-What do we need:
+Was wir benötigen:
 
-- Pre Game Editor, if you want to create a complete new Stadium.
-- A .jpg of the Stadium, the size shouldn’t be above 800 x 480 pixels.
-- A skin, that is able to show the stadium. I’m using Sas.
+- Pre Game Editor, falls du ein komplett neues Stadion erstellen möchtest.
+- Ein .jpg des Stadions, die Größe sollte 800 x 480 Pixel nicht überschreiten.
+- Einen Skin, der das Stadion anzeigen kann. Ich benutze Sas.
 
-Well, that is basically everything.
+Nun, das ist im Grunde alles.
 
-## Step 2. – Create a stadium
+## Schritt 2. – Ein Stadion erstellen
 
-This step is only important, if you want to create a new stadium. If you just want to replace the picture of an existing stadium, you can skip this.
+Dieser Schritt ist nur wichtig, wenn du ein neues Stadion erstellen willst. Wenn du einfach das Bild eines existierenden Stadions ersetzen möchtest, kannst du dies überspringen.
 
-Start the Pre Game Editor. Load up the dataset you want to edit and go to “Stadiums”. Either you can copy a stadium from here, or you can create a new one. ![Screenshot](../../assets/images/fm24guide/stadiumguide2.png)
-Here you can change everything you want about your stadium. Feel free to experiment. The important part in that window is the unique ID. You have to write that down. ![Screenshot](../../assets/images/fm24guide/stadiumguide3.png)
+Starte den Pre Game Editor. Lade den Datensatz, den du bearbeiten möchtest, und gehe zu „Stadien“. Du kannst entweder ein Stadion von hier kopieren oder ein neues erstellen. ![Screenshot](../../assets/images/fm24guide/stadiumguide2.png)
+Hier kannst du alles an deinem Stadion ändern, was du möchtest. Fühle dich frei, zu experimentieren. Der wichtige Teil in diesem Fenster ist die eindeutige ID (Unique ID). Diese musst du dir notieren. ![Screenshot](../../assets/images/fm24guide/stadiumguide3.png)
 
-In my case it is 2000342656.
+In meinem Fall ist das die 2000342656.
 
-We also have to choose this stadium for the club you want to use.
-So, go to “Clubs” and look for the team. In my case, it is “Rejects”. ![Screenshot ](../../assets/images/fm24guide/stadiumguide4.png)
-Press Edit and go to Stadium. ![Screenshot](../../assets/images/fm24guide/stadiumguide5.png) There you have to change the stadium to the one you just created. In my case, it’s Rejects Arena.
-Save the dataset.
+Wir müssen nun auch dieses Stadion für den gewünschten Verein auswählen.
+Gehe also zu „Vereine“ und suche nach deinem Team. In meinem Fall ist es „Rejects“. ![Screenshot ](../../assets/images/fm24guide/stadiumguide4.png)
+Klicke auf Bearbeiten und gehe zu Stadion. ![Screenshot](../../assets/images/fm24guide/stadiumguide5.png) Dort musst du das Stadion auf das ändern, welches du gerade erstellt hast. In meinem Fall ist es die Rejects Arena.
+Speichere den Datensatz.
 ![Screenshot](../../assets/images/fm24guide/stadiumguide6.png)
 
-## Step 3. -  File Structure
+## Schritt 3. - Dateistruktur
 
-So, now let’s do the slightly complicated part. Putting the files in the right folder and do the config.xml.
+Lass uns nun zum etwas komplizierteren Teil kommen. Die Dateien in den richtigen Ordner packen und die config.xml erstellen.
 
-What do we need?
+Was wir brauchen:
 
-- the .jpg 800 x 480 pixels or tinier
-- the unique ID for the stadium.
+- das .jpg in 800 x 480 Pixeln oder kleiner
+- die einzigartige ID (Unique ID) des Stadions.
 
-Where do we get the unique ID from?
-Either the Pre Game Editor, as I have shown before, or in game , if you enabled “Show unique IDs in header”. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png) ![Screenshot](../../assets/images/fm24guide/stadiumguide8.png)
+Woher bekommen wir die Unique ID?
+Entweder aus dem Pre Game Editor, wie ich es vorhin gezeigt habe, oder im Spiel, wenn du "Zeige Screen-IDs in der Titelleiste zur Fehlerbehebung" aktiviert hast. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png) ![Screenshot](../../assets/images/fm24guide/stadiumguide8.png)
 
-Okay, let’s start.
-Go to your graphics folder, if you don’t have one, you need to create it. It’s most likely located in:
-**C:\Documents\Sports Interactive\Football Manager 2024\graphics**
+Okay, fangen wir an.
+Gehe zu deinem graphics-Ordner. Wenn du keinen hast, musst du ihn erstellen. Er befindet sich meistens unter:
+**C:\Dokumente\Sports Interactive\Football Manager 2024\graphics**
 
-Create a folder. You can call it whatever you want. I would recommend to call it something simple stadiums. ![Screenshot](../../assets/images/fm24guide/stadiumguide9.png)
-Open the folder and move the .jpg to it. Rename the .jpg to the unique ID.  In my case it is 2000342656. Your folder should now look similar to this. ![Screenshot](../../assets/images/fm24guide/stadiumguide10.png)
+Erstelle einen Ordner. Du kannst ihn nennen, wie du willst. Ich würde empfehlen, ihn ganz einfach stadiums zu nennen. ![Screenshot](../../assets/images/fm24guide/stadiumguide9.png)
+Öffne den Ordner und verschiebe das .jpg dorthin. Benenne das .jpg in die Unique ID um. In meinem Fall ist das 2000342656. Dein Ordner sollte nun ungefähr so aussehen: ![Screenshot](../../assets/images/fm24guide/stadiumguide10.png)
 
-Now create a file and call it _config.xml_.
-Open the file and copy this code in there.
+Erstelle nun eine Datei und nenne sie _config.xml_.
+Öffne die Datei und kopiere diesen Code hinein:
 
 ```xml
 <record>

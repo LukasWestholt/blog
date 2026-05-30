@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content'
+
+const { currentSlug } = Astro.props
+
+// Prüfen, ob wir uns gerade auf einem englischen Artikel befinden
+const isEnglish = currentSlug.startsWith('en/')
+
+// Den Slug (URL-Pfad) für die andere Sprache generieren
+const targetSlug = isEnglish ? currentSlug.replace('en/', '') : `en/${currentSlug}`
+
+// Prüfen, ob das Gegenstück auch wirklich existiert
+const allPosts = await getCollection('blog')
+const hasTranslation = allPosts.some((post) => post.slug === targetSlug)
+---
+
+{
+	hasTranslation && (
+		<div class='my-6'>
+			<a
+				href={`/post/${targetSlug}/`}
+				class='inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors'
+			>
+				{isEnglish ? '🇩🇪 Auf Deutsch lesen' : '🇬🇧 Read in English'}
+			</a>
+		</div>
+	)
+}

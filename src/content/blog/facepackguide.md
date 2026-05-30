@@ -1,64 +1,64 @@
 ---
-title: 'Football Manager 24 - Face Pack Guide'
-description: 'How to install and fix problems with face packs for Football Manager 24'
+title: 'Football Manager 24 - Facepack Guide'
+description: 'Wie man Facepacks für den Football Manager 24 installiert und Probleme behebt'
 pubDate: 'Apr 02 2025'
 heroImage: '../../assets/images/fm24banner.png'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
 ---
 
-Face packs are a great way to enhance your Football Manager 2024 experience by adding real-life images of players, staff, and other in-game characters. However, installing them can sometimes be a bit tricky. If you're having trouble getting your face pack to work, this guide will walk you through the installation process and help troubleshoot common issues.
+Facepacks sind eine großartige Möglichkeit, dein Football Manager 2024 Erlebnis zu verbessern, indem sie echte Bilder von Spielern, Mitarbeitern und anderen Charakteren im Spiel hinzufügen. Die Installation kann jedoch manchmal etwas knifflig sein. Wenn du Probleme hast, dein Facepack zum Laufen zu bringen, wird dich dieser Guide durch den Installationsprozess führen und bei der Behebung häufiger Probleme helfen.
 
-## How to install a face pack
+## Wie man ein Facepack installiert
 
-Installing a face pack is straightforward if you follow these steps:
+Die Installation eines Facepacks ist unkompliziert, wenn du diese Schritte befolgst:
 
-1. Download the face pack – Find a reliable source and download the zip file containing the face pack.
-2. Backup old files – Before making changes, consider backing up your existing face pack files in case you want to revert later.
-3. Extract the files – Unzip the downloaded file and move its contents to your graphics folder. The default location on Windows is:
+1. Lade das Facepack herunter – Suche eine zuverlässige Quelle und lade die Zip-Datei mit dem Facepack herunter.
+2. Sichere alte Dateien – Bevor du Änderungen vornimmst, solltest du deine bestehenden Facepack-Dateien sichern, falls du später wieder zurückwechseln möchtest.
+3. Entpacke die Dateien – Entpacke die heruntergeladene Datei und verschiebe den Inhalt in deinen graphics-Ordner. Der Standardpfad unter Windows ist:
 
-   _C:\Documents\Sports Interactive\Football Manager 2024\graphics_
+   _C:\Dokumente\Sports Interactive\Football Manager 2024\graphics_
    ![Screenshot](../../assets/images/fm24guide/fpguide2.jpg)
-   If the folder doesn’t exist, create it manually. Make sure you actually have only one folder containing a face pack.
-   If the downloaded face pack doesn’t come with a folder, you need to create one. Name it "facepack," for example, and extract the PNGs and the config.xml into it. Ensure this folder is inside the graphics folder.
-   I don’t recommend loading multiple face packs at the same time. If you wish to combine them, there is a guide further below. ![Screenshot](../../assets/images/fm24guide/fpguide1.png)
+   Wenn der Ordner nicht existiert, erstelle ihn manuell. Achte darauf, dass du tatsächlich nur einen Ordner hast, der ein Facepack enthält.
+   Wenn das heruntergeladene Facepack keinen Ordner enthält, musst du einen erstellen. Nenne ihn zum Beispiel "facepack" und entpacke die PNGs sowie die config.xml dort hinein. Stelle sicher, dass sich dieser Ordner innerhalb des graphics-Ordners befindet.
+   Ich empfehle nicht, mehrere Facepacks gleichzeitig zu laden. Wenn du sie kombinieren möchtest, gibt es weiter unten einen Guide dafür. ![Screenshot](../../assets/images/fm24guide/fpguide1.png)
 
-4. Managing existing face packs – If you already have a different face pack installed, you may need to overwrite the existing PNG files. However, do not overwrite the config.xml file unless necessary.
-5. Reload the skin in FM – Open Football Manager, go to Preferences > Interface, and reload the skin. Make sure caching is disabled and "Reload skin when confirming changes" is enabled. ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
-6. Ensure all content is there – The folder you have created should only contain PNGs and a config.xml. Nothing else.
+4. Umgang mit bestehenden Facepacks – Wenn du bereits ein anderes Facepack installiert hast, musst du möglicherweise die vorhandenen PNG-Dateien überschreiben. Überschreibe jedoch nicht die config.xml, es sei denn, es ist notwendig.
+5. Lade den Skin im FM neu – Öffne den Football Manager, gehe zu Einstellungen > Interface und lade den Skin neu. Stelle sicher, dass der Cache deaktiviert ist und "Skin neu laden, wenn Änderungen bestätigt werden" aktiviert ist. ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+6. Stelle sicher, dass alles vorhanden ist – Der Ordner, den du erstellt hast, sollte nur PNGs und eine config.xml enthalten. Nichts anderes.
 
-## Common issues and how to fix them
+## Häufige Probleme und deren Lösungen
 
-### My players have no face
+### Meine Spieler haben kein Gesicht
 
-- Image size issues - Ensure that the PNG files are 250x250 pixels for the best display quality.
-- Missing PNGs - Some face packs may not include every player, leading to blank spots.
-- Check player IDs – Every player has a unique ID in the game. To verify the correct ID:
-- - Enable ID display in the game settings. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
-- - Click on a player and note the ID in the corner.
-- - Compare it to the PNG file name in your graphics folder.
-- Rename PNG files – If the IDs don’t match, rename the PNG files to match the player’s ID and update config.xml accordingly.
+- Probleme mit der Bildgröße - Stelle sicher, dass die PNG-Dateien 250x250 Pixel groß sind, um die beste Anzeigequalität zu gewährleisten.
+- Fehlende PNGs - Einige Facepacks enthalten möglicherweise nicht jeden Spieler, was zu leeren Stellen führt.
+- Überprüfe die Spieler-IDs – Jeder Spieler hat eine einzigartige ID im Spiel. Um die richtige ID zu überprüfen:
+- - Aktiviere die ID-Anzeige in den Spieleinstellungen. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
+- - Klicke auf einen Spieler und notiere die ID in der Ecke.
+- - Vergleiche sie mit dem Dateinamen des PNGs in deinem graphics-Ordner.
+- PNG-Dateien umbenennen – Wenn die IDs nicht übereinstimmen, benenne die PNG-Dateien so um, dass sie der Spieler-ID entsprechen, und aktualisiere die config.xml entsprechend.
 
-### conflict with another dataset
+### Konflikte mit einem anderen Datensatz
 
-A custom dataset will create IDs for the players it adds. If you are using multiple datasets, they may assign different IDs to players, than originally intented by the creator. In this case, you may need to prioritize which dataset you want to use by renaming files or adjusting the config.xml file. If you really want to put in the work, follow these steps to combine them. Please read everything here first before actually starting, especially the Tip section.
+Ein benutzerdefinierter Datensatz erstellt IDs für die Spieler, die er hinzufügt. Wenn du mehrere Datensätze verwendest, können diese den Spielern andere IDs zuweisen, als vom Ersteller ursprünglich vorgesehen. In diesem Fall musst du möglicherweise priorisieren, welchen Datensatz du verwenden möchtest, indem du Dateien umbenennst oder die config.xml anpasst. Wenn du dir wirklich die Arbeit machen möchtest, befolge diese Schritte, um sie zu kombinieren. Bitte lies zuerst alles hier durch, bevor du anfängst, insbesondere den Abschnitt "Tipps".
 
-- Create a folder for every dataset – Extract the PNGs for each dataset into separate folders.
-- Start a new game – Select the datasets you want to use and start a new game.
-- Check the player IDs in-game – You have to manually figure out their loaded IDs.
-- Rename the PNGs – Rename them to their correct IDs.
-- Edit the config.xml – You have to edit the config.xml and add the correct IDs accordingly. You only need one config.xml, multiple are possible, if you have multiple face packs in multiple folders. Make sure they don't overwrite each other.
-- Combine the face packs – Merge the PNGs of all folders into one. Ensure they have no overlapping IDs. If they do, you will have to delete the PNG you might want to keep along with the associated player. You don't have to do this, but it's the fastest way to find conflicts.
+- Erstelle einen Ordner für jeden Datensatz – Entpacke die PNGs für jeden Datensatz in separate Ordner.
+- Starte ein neues Spiel – Wähle die Datensätze aus, die du verwenden möchtest, und starte ein neues Spiel.
+- Überprüfe die Spieler-IDs im Spiel – Du musst ihre geladenen IDs manuell herausfinden.
+- Benenne die PNGs um – Benenne sie in ihre korrekten IDs um.
+- Bearbeite die config.xml – Du musst die config.xml bearbeiten und die richtigen IDs entsprechend hinzufügen. Du benötigst nur eine config.xml. Mehrere sind möglich, wenn du mehrere Facepacks in mehreren Ordnern hast. Stelle nur sicher, dass sie sich nicht gegenseitig überschreiben.
+- Kombiniere die Facepacks – Führe die PNGs aller Ordner zu einem zusammen. Stelle sicher, dass es keine überschneidenden IDs gibt. Wenn doch, musst du das PNG, das du behalten möchtest, zusammen mit dem zugehörigen Spieler löschen. Du musst das nicht tun, aber es ist der schnellste Weg, um Konflikte zu finden.
 
-## Tips for combining face packs
+## Tipps zum Kombinieren von Facepacks
 
-Here are some helpful tips, to make the whole process more efficient.
+Hier sind einige hilfreiche Tipps, um den gesamten Prozess effizienter zu gestalten:
 
-- Prioritize the dataset - The datasets load in a specific order, from top to bottom. That means, that the first loaded dataset, will claim the unique IDs for its players. To ensure a dataset loads first, you can rename the .fmf file with a (1) for example at the beginning, but you need to use the **pre-game-editor** for this. **Do not rename the file in the folder** This will have no effect. Some creators might offer you a different dataset file, if you are playing a custom dataset, with a different name fort this particular problem. This makes sense, if you want to combine a bigger and a tinier dataset which each other, so you can make sure, the tinier dataset will be loaded after. That means, you have to rename less players.
-- The IDs will keep their position and have a pattern – For example, if you have 2 datasets. The first one adds 50 players and their IDs are 1-50 and the second dataset includes 10 players with their ID 1-10. You would have 10 conflicts. But because you know which dataset is loaded first, you can assume, the IDs for the second dataset is now 51-60. Make sure, that there are no missing PNGs in either of the face packs and also check at least the first and last unique ID for the both datasets, so you can apply the pattern.
-- Use fmXML for creating a new config. It’s really straight forward. Just make sure, your PNGs have the correct names.
+- Priorisiere den Datensatz - Die Datensätze laden in einer bestimmten Reihenfolge, von oben nach unten. Das bedeutet, dass der zuerst geladene Datensatz die eindeutigen IDs für seine Spieler beansprucht. Um sicherzustellen, dass ein Datensatz zuerst lädt, kannst du die .fmf-Datei umbenennen (z. B. mit einer (1) am Anfang). Dafür musst du jedoch den **Pre-Game Editor** verwenden. **Benenne die Datei nicht einfach im Ordner um**, das hat keinen Effekt. Einige Ersteller bieten dir vielleicht eine alternative Datensatz-Datei mit einem anderen Namen an, speziell für dieses Problem. Dies ist sinnvoll, wenn du einen größeren und einen kleineren Datensatz miteinander kombinieren möchtest, sodass du sicherstellen kannst, dass der kleinere Datensatz danach geladen wird. Das bedeutet, dass du weniger Spieler umbenennen musst.
+- Die IDs behalten ihre Position und haben ein Muster – Zum Beispiel: Wenn du 2 Datensätze hast. Der erste fügt 50 Spieler hinzu und ihre IDs sind 1-50. Der zweite Datensatz enthält 10 Spieler mit den IDs 1-10. Du hättest 10 Konflikte. Aber da du weißt, welcher Datensatz zuerst geladen wird, kannst du davon ausgehen, dass die IDs für den zweiten Datensatz jetzt 51-60 sind. Stelle sicher, dass in keinem der Facepacks PNGs fehlen, und überprüfe zumindest die erste und letzte eindeutige ID für beide Datensätze, damit du das Muster anwenden kannst.
+- Nutze fmXML, um eine neue config zu erstellen. Es ist wirklich unkompliziert. Stelle nur sicher, dass deine PNGs die richtigen Namen haben.
 
-## Final thoughts
+## Abschließende Gedanken
 
-Face packs can add a new level of immersion to your Football Manager experience, but setting them up correctly requires attention to detail. By following these steps and troubleshooting common issues, you can enjoy a fully customized game with the faces of your favorite players.
-Happy managing!
+Facepacks können deinem Football Manager-Erlebnis eine neue Stufe der Immersion verleihen, aber ihre korrekte Einrichtung erfordert etwas Liebe zum Detail. Wenn du diese Schritte befolgst und häufige Probleme behebst, kannst du ein vollständig angepasstes Spiel mit den Gesichtern deiner Lieblingsspieler genießen.
+Viel Spaß beim Managen!
