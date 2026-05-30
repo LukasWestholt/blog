@@ -1,0 +1,41 @@
+---
+import { getCollection } from 'astro:content'
+import BlogPost from '@/layouts/BlogPost'
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog')
+
+	return posts.map((post) => {
+		// Sprache erkennen und das "en/" aus dem Dateinamen (Slug) entfernen
+		const isEnglish = post.id.startsWith('en/')
+		const lang = isEnglish ? 'en' : undefined
+		const baseSlug = isEnglish ? post.slug.replace(/^en\//, '') : post.slug
+
+		return {
+			// Baut die Pfade: "/en/post/calanyze" und "/post/fuechse-und-baby-boom"
+			params: { lang, slug: baseSlug },
+			props: { post, currentLang: isEnglish ? 'en' : 'de' }
+		}
+	})
+}
+
+const { post, currentLang } = Astro.props
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
+
+// Lesezeit berechnen und perfekt formatieren
+function formatReadingTime(minutes: string | number | undefined, lang: string) {
+	if (!minutes) return ''
+	const parsed = typeof minutes === 'string' ? parseFloat(minutes) : minutes
+	if (isNaN(parsed)) return String(minutes)
+
+	const minutesRounded = Math.ceil(parsed)
+	if (lang === 'en') return `${minutesRounded} min read`
+	return `${minutesRounded} min Lesezeit`
+}
+
+const readTime = formatReadingTime(remarkPluginFrontmatter?.minutesRead, currentLang)
+---
+
+<BlogPost id={post.id} data={post.data} headings={headings} readTime={readTime}>
+	<Content />
+</BlogPost>
