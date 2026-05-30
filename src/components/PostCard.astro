@@ -70,7 +70,8 @@ const {
 
 	const images = document.querySelectorAll('img')
 
-	document.addEventListener('DOMContentLoaded', function () {
+	// WICHTIG: 'astro:page-load' statt 'DOMContentLoaded' wegen View Transitions!
+	document.addEventListener('astro:page-load', function () {
 		const showAnimations = localStorage.getItem('animations') === 'true'
 
 		if (showAnimations) {
