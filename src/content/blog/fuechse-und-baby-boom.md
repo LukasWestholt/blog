@@ -8,8 +8,6 @@ category: 'Thoughts'
 tags: ['Random']
 ---
 
-# Von Füchsen und Familien: Wenn Bejagungsdruck zu Babyboom führt
-
 In Leipzig leben überraschend viele Füchse – mitten in der Stadt, auf Industriebrachen, in Parkanlagen, unter Gartenlauben. Als Informatiker beobachte ich gern Muster und Systeme. Und das Verhalten dieser Stadtfüchse erinnert mich frappierend an ein ganz anderes Thema: den demografischen Wandel – und den Babyboom in der menschlichen Bevölkerung nach dem 2. Weltkrieg.
 
 Was haben Füchse mit Babys zu tun? Eine Menge, wenn man sich die Zahlen ansieht.
@@ -50,6 +48,6 @@ Das evolutionäre „Jetzt oder nie“ verwandelt sich in ein „Vielleicht spä
 **Fazit:**  
 Füchse in der Stadt erinnern uns daran, wie Leben auf Unsicherheit reagiert - und dass auch der Mensch manchmal instinktiver handelt, als er denkt.
 
-[1] Sabrina, S., Jean-Michel, G., Carole, T., Serge, B., & Eric, B. (2009). Pulsed resources and climate-induced variation in the reproductive traits of wild boar under high hunting pressure. The Journal of animal ecology, 78(6), 1278–1290. https://doi.org/10.1111/j.1365-2656.2009.01579.x
+[1] [Sabrina, S. et al. (2009). Pulsed resources and climate-induced variation in the reproductive traits of wild boar under high hunting pressure.](https://doi.org/10.1111/j.1365-2656.2009.01579.x)
 
-[2] https://www.leipzig.de/freizeit-kultur-und-tourismus/parks-waelder-und-friedhoefe/stadtwald-und-auenwald/wildtiere-in-der-stadt
+[2] [Stadt Leipzig: Wildtiere in der Stadt](https://www.leipzig.de/freizeit-kultur-und-tourismus/parks-waelder-und-friedhoefe/stadtwald-und-auenwald/wildtiere-in-der-stadt)
