@@ -7,6 +7,16 @@ const currentPath = Astro.url.pathname
 // Prüfen, ob wir auf der englischen Seite sind
 const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
 
+// Übersetzung der Kategorien
+const categoryTranslations: Record<string, string> = {
+	'View All': isEnglish ? 'View All' : 'Alle anzeigen',
+	'Football Manager': 'Football Manager',
+	Achievements: isEnglish ? 'Achievements' : 'Erfolge',
+	Projects: isEnglish ? 'Projects' : 'Projekte',
+	Thoughts: isEnglish ? 'Thoughts' : 'Gedanken'
+}
+const displayName = categoryTranslations[name] || name
+
 // Kategorie-Slug erstellen (aus "Football Manager" wird "football-manager")
 const categorySlug = name.toLowerCase().replace(/\s+/g, '-')
 
@@ -34,5 +44,5 @@ const href =
 			`border-black border-b-2 text-black z-10  dark:border-white dark:text-white dark:border-opacity-100 border-opacity-100`
 	)}
 >
-	{name}
+	{displayName}
 </a>
