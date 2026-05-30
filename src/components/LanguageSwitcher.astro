@@ -25,7 +25,8 @@ if (currentSlug && currentPath.startsWith('/post/')) {
 
 	targetUrl = hasTranslation ? `/post/${targetSlug}/` : '#'
 } else {
-	// Wir sind auf einer generischen Seite (z.B. Startseite, Tags-Seite)
+	// Für alle anderen Seiten (Kategorien, Tags, Startseite) erlauben wir den Wechsel,
+	// da deine Post-Utils bei fehlenden Inhalten automatisch Fallbacks liefern!
 	if (isEnglish) {
 		targetUrl = currentPath.replace(/^\/en/, '') || '/'
 	} else {
