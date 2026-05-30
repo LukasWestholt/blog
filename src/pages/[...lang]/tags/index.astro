@@ -25,7 +25,7 @@ const tags = await getTags(currentLang as 'de' | 'en' | 'all')
 				const tagSlug = tag.toLowerCase().replace(/\s+/g, '-')
 				return (
 					<li>
-						<a href={`/${lang === 'en' ? 'en/' : ''}tags/${tagSlug}/1`} class='underline'>
+						<a href={`/${lang === 'en' ? 'en/' : ''}tags/${tagSlug}/`} class='underline'>
 							{tag}
 						</a>
 					</li>
