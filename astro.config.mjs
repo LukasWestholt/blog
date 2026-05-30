@@ -15,11 +15,6 @@ export default defineConfig({
 			prefixDefaultLocale: false
 		}
 	},
-	build: {
-		// Benennt den Standard-Ordner "_astro" in "assets" um. 
-		// Das verhindert, dass FTP-Programme oder Server den CSS-Ordner verstecken/blockieren!
-		assets: 'site-assets'
-	},
 	markdown: {
 		remarkPlugins: [remarkReadingTime],
 		drafts: true,
