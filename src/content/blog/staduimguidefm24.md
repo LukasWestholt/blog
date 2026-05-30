@@ -3,6 +3,7 @@ title: 'Football Manager 24 - Eigene Stadien Guide'
 description: 'Wie man eigene Stadionbilder bekommt und ein eigenes Stadion für Football Manager 24 / FM24 erstellt'
 pubDate: 'Apr 23 2025'
 heroImage: '../../assets/images/fm24banner.png'
+author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
 ---

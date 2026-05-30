@@ -3,6 +3,7 @@ title: 'Interview mit dem Kicker'
 description: 'Ich habe Fragen des Kickers zu FM Tweak und FM24 Match Engines beantwortet'
 pubDate: 'Apr 23 2025'
 heroImage: '../../assets/images/fm24banner.png'
+author: 'Lukas Ruminski'
 category: 'Achievements'
 tags: ['FM24', 'Interview']
 ---
