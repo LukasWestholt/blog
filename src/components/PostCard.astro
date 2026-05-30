@@ -74,16 +74,20 @@ const {
 		const showAnimations = localStorage.getItem('animations') === 'true'
 
 		if (showAnimations) {
-			const elements = document.querySelectorAll('.effect')
-			if (elements.length > 0) {
-				animate(
-					elements,
-					{
-						opacity: [0, 1],
-						clipPath: ['circle(0% at 0% 0%)', 'circle(100% at 50% 50%)']
-					},
-					{ duration: 2, easing: 'ease' }
-				)
+			try {
+				const elements = document.querySelectorAll('.effect')
+				if (elements.length > 0) {
+					animate(
+						elements,
+						{
+							opacity: [0, 1],
+							clipPath: ['circle(0% at 0% 0%)', 'circle(100% at 50% 50%)']
+						},
+						{ duration: 2, easing: 'ease' }
+					)
+				}
+			} catch (e) {
+				// Verhindert ein Blockieren der Animation
 			}
 		} else {
 			images.forEach((img) => {

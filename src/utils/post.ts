@@ -44,16 +44,19 @@ export const getPosts = async (max?: number, lang: 'de' | 'en' | 'all' = 'de') =
 
 export const getTags = async (lang: 'de' | 'en' | 'all' = 'de') => {
 	const posts = await getPosts(undefined, lang)
-	const tags = new Set<string>()
+	// Map nutzen, um die Original-Schreibweise zu behalten, aber Duplikate auszufiltern
+	const tagsMap = new Map<string, string>()
 	posts.forEach((post) => {
 		post.data.tags.forEach((tag) => {
 			if (tag != '') {
-				tags.add(tag.toLowerCase())
+				if (!tagsMap.has(tag.toLowerCase())) {
+					tagsMap.set(tag.toLowerCase(), tag)
+				}
 			}
 		})
 	})
 
-	return Array.from(tags)
+	return Array.from(tagsMap.values())
 }
 
 export const getPostByTag = async (tag: string, lang: 'de' | 'en' | 'all' = 'de') => {
