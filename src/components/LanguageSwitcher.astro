@@ -2,28 +2,33 @@
 import { getCollection } from 'astro:content'
 
 const currentPath = Astro.url.pathname
-let currentSlug = Astro.params.slug
 
-if (!currentSlug && currentPath.startsWith('/post/')) {
-	currentSlug = currentPath.replace(/^\/post\//, '').replace(/\/$/, '')
-}
-
-// Prüfen, ob wir uns auf einer englischen Seite befinden
-const isEnglish = currentPath.startsWith('/en/') || currentPath.startsWith('/post/en/')
+const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
 
 let targetUrl = '/'
 let showSwitcher = true
 let hasTranslation = true
 
-if (currentSlug && currentPath.startsWith('/post/')) {
+const isPostPage = currentPath.match(/^\/(en\/)?post\//)
+
+if (isPostPage) {
 	// Wir sind auf einer Blogpost-Seite
-	const targetSlug = isEnglish ? currentSlug.replace(/^en\//, '') : `en/${currentSlug}`
+	// Basis-Slug extrahieren (z.B. "calanyze" aus "/en/post/calanyze/")
+	const baseSlug = currentPath.replace(/^\/(en\/)?post\//, '').replace(/\/$/, '')
+
+	// Den Slug für die Datenbank-Abfrage zusammenbauen
+	const targetCollectionSlug = isEnglish ? baseSlug : `en/${baseSlug}`
 
 	// Prüfen, ob das Gegenstück auch wirklich existiert
 	const allPosts = await getCollection('blog')
-	hasTranslation = allPosts.some((post) => post.slug === targetSlug)
+	hasTranslation = allPosts.some((post) => post.slug === targetCollectionSlug)
 
-	targetUrl = hasTranslation ? `/post/${targetSlug}/` : '#'
+	// Neue URL bauen
+	if (hasTranslation) {
+		targetUrl = isEnglish ? `/post/${baseSlug}/` : `/en/post/${baseSlug}/`
+	} else {
+		targetUrl = '#'
+	}
 } else {
 	// Für alle anderen Seiten (Kategorien, Tags, Startseite) erlauben wir den Wechsel,
 	// da deine Post-Utils bei fehlenden Inhalten automatisch Fallbacks liefern!
