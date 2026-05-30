@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import TitlePage from '@/components/TitlePage'
+import { getCategories, filterPostsByCategory } from '@/utils'
+
+export async function getStaticPaths({ paginate }) {
+	const allCategories = await getCategories('all')
+	const paths = []
+
+	for (const category of allCategories) {
+		// Erstellt einen URL-freundlichen Slug: "Football Manager" -> "football-manager"
+		const categorySlug = category.toLowerCase().replace(/\s+/g, '-')
+
+		const dePosts = await filterPostsByCategory(category.toLowerCase(), 'de')
+		if (dePosts.length > 0) {
+			paths.push(
+				...paginate(dePosts, {
+					params: { lang: undefined, category: categorySlug },
+					props: { categoryName: category },
+					pageSize: 5
+				})
+			)
+		}
+
+		const enPosts = await filterPostsByCategory(category.toLowerCase(), 'en')
+		if (enPosts.length > 0) {
+			paths.push(
+				...paginate(enPosts, {
+					params: { lang: 'en', category: categorySlug },
+					props: { categoryName: category },
+					pageSize: 5
+				})
+			)
+		}
+	}
+
+	return paths
+}
+
+const { page, categoryName } = Astro.props
+---
+
+<BaseLayout title={`Kategorie: ${categoryName}`}>
+	<TitlePage title={`Kategorie: ${categoryName}`} />
+	<ListPosts posts={page.data} />
+</BaseLayout>

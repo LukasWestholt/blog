@@ -1,0 +1,51 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import TitlePage from '@/components/TitlePage'
+import { getTags, getPostByTag } from '@/utils'
+
+export async function getStaticPaths({ paginate }) {
+	// 1. Hole alle Tags (Sprachunabhängig)
+	const allTags = await getTags('all')
+	const paths = []
+
+	for (const tag of allTags) {
+		const lowerTag = tag.toLowerCase()
+		// Erstellt einen URL-freundlichen Slug für Tags mit Leerzeichen: "fm match lab" -> "fm-match-lab"
+		const tagSlug = lowerTag.replace(/\s+/g, '-')
+
+		// 2. Deutsche Pfade
+		const dePosts = await getPostByTag(lowerTag, 'de')
+		if (dePosts.length > 0) {
+			paths.push(
+				...paginate(dePosts, {
+					params: { lang: undefined, tag: tagSlug },
+					props: { tagName: tag },
+					pageSize: 5
+				})
+			)
+		}
+
+		// 3. Englische Pfade
+		const enPosts = await getPostByTag(lowerTag, 'en')
+		if (enPosts.length > 0) {
+			paths.push(
+				...paginate(enPosts, {
+					params: { lang: 'en', tag: tagSlug },
+					props: { tagName: tag },
+					pageSize: 5
+				})
+			)
+		}
+	}
+
+	return paths
+}
+
+const { page, tagName } = Astro.props
+---
+
+<BaseLayout title={`Tag: ${tagName}`}>
+	<TitlePage title={`Tag: ${tagName}`} />
+	<ListPosts posts={page.data} />
+</BaseLayout>
