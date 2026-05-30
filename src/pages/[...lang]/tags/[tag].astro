@@ -34,9 +34,13 @@ export async function getStaticPaths() {
 
 const { posts, tagName, currentLang } = Astro.props
 
-function formatReadingTime(minutes: number | undefined, lang: string) {
+function formatReadingTime(minutes: string | number | undefined, lang: string) {
 	if (!minutes) return ''
-	const minutesRounded = Math.ceil(minutes)
+	// Falls minutes ein String wie "5 min read" ist, extrahieren wir die Zahl
+	const parsed = typeof minutes === 'string' ? parseFloat(minutes) : minutes
+	if (isNaN(parsed)) return String(minutes) // Fallback, falls keine Zahl gefunden wird
+
+	const minutesRounded = Math.ceil(parsed)
 	if (lang === 'en') return `${minutesRounded} min read`
 	return `${minutesRounded} min Lesezeit`
 }
@@ -54,11 +58,9 @@ function formatReadingTime(minutes: number | undefined, lang: string) {
 
 		<section class='grid grid-cols-1 md:grid-cols-2 gap-8'>
 			{
-				posts.map((post) => {
-					const readTime = formatReadingTime(
-						post.data.remarkPluginFrontmatter?.minutesRead,
-						currentLang
-					)
+				posts.map(async (post) => {
+					const { remarkPluginFrontmatter } = await post.render()
+					const readTime = formatReadingTime(remarkPluginFrontmatter?.minutesRead, currentLang)
 					return <PostCard {...post} {readTime} />
 				})
 			}
