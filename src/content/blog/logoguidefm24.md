@@ -2,7 +2,7 @@
 title: 'Football Manager 24 - Eigene Logos Guide'
 description: 'Wie man Logos und eigene Logos für den Football Manager 24 installiert'
 pubDate: 'Apr 24 2025'
-heroImage: '../../assets/images/fm24banner.png'
+heroImage: '../../assets/images/FootballManager/fm24banner.png'
 author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
@@ -17,12 +17,12 @@ Dieser Guide wird dir helfen, Logos für den Football Manager 24 zu installieren
 
 _C:\Dokumente\Sports Interactive\Football Manager 2024\graphics_
 
-Es sollte ungefähr so aussehen: ![Screenshot](../../assets/images/fm24guide/fpguide2.jpg)
+Es sollte ungefähr so aussehen: ![Screenshot](../../assets/images/FootballManager/fpguide2.jpg)
 Wenn du keinen graphics-Ordner hast, musst du ihn erstellen.
 
 3. Entpacke die Zip-Datei. Möglicherweise benötigst du dafür 7-Zip (ein kostenloses Programm). Öffne einfach die Zip-Datei und verschiebe den gesamten Inhalt in den graphics-Ordner.
 4. Nun müssen wir unsere Dateien laden:
-   Gehe im Spiel auf Einstellungen -> Interface -> stelle sicher, dass der Cache deaktiviert ist -> Skin neu laden ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+   Gehe im Spiel auf Einstellungen -> Interface -> stelle sicher, dass der Cache deaktiviert ist -> Skin neu laden ![Screenshot](../../assets/images/FootballManager/stadiumguide11.png)
 
 Lade einen Spielstand und schau, ob es funktioniert. Wenn ja, viel Spaß!
 
@@ -32,10 +32,10 @@ Wenn es nicht funktioniert, müssen wir vielleicht etwas Feintuning betreiben. D
 
 <a id="schritt-5"></a>
 
-5. Lade dein Spiel und überprüfe die IDs der Teams. Ich werde Blue Lock aus meinem eigenen Datensatz als Beispiel verwenden. Aktiviere dafür "Zeige Screen-IDs in der Titelleiste" in den Einstellungen. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
-6. Lade einen Spielstand und klicke auf das Blue Lock Team. Du solltest nun die ID in der oberen Ecke sehen. ![Screenshot](../../assets/images/fm24guide/logoguide1.jpg)
+5. Lade dein Spiel und überprüfe die IDs der Teams. Ich werde Blue Lock aus meinem eigenen Datensatz als Beispiel verwenden. Aktiviere dafür "Zeige Screen-IDs in der Titelleiste" in den Einstellungen. ![Screenshot](../../assets/images/FootballManager/stadiumguide7.png)
+6. Lade einen Spielstand und klicke auf das Blue Lock Team. Du solltest nun die ID in der oberen Ecke sehen. ![Screenshot](../../assets/images/FootballManager/logoguide1.jpg)
 7. Öffne deinen graphics-Ordner und vergleiche die IDs meiner Dateien mit dieser ID.
-   Wie du sehen kannst, ist sie in meinem Fall korrekt. Die ID im Spiel ist dieselbe wie auf dem PNG. ![Screenshot](../../assets/images/fm24guide/logoguide2.jpg)
+   Wie du sehen kannst, ist sie in meinem Fall korrekt. Die ID im Spiel ist dieselbe wie auf dem PNG. ![Screenshot](../../assets/images/FootballManager/logoguide2.jpg)
 8. Wenn sie nicht übereinstimmen, musst du das PNG-Bild in die ID umbenennen, die im Spiel angezeigt wird.
 
 <a id="schritt-9"></a>
@@ -66,16 +66,16 @@ Beispiel-Config für Small:
 </record>
 ```
 
-![Screenshot](../../assets/images/fm24guide/logoguide3.jpg)
+![Screenshot](../../assets/images/FootballManager/logoguide3.jpg)
 
 10. Du musst das für beide Ordner tun. Für "normal" und "small". **Achte darauf, die richtige Bildgröße zu verwenden.**
 11. Nun müssen wir unsere Dateien neu laden:
-    Gehe im Spiel auf Einstellungen -> Interface -> stelle sicher, dass der Cache deaktiviert ist -> Skin neu laden ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+    Gehe im Spiel auf Einstellungen -> Interface -> stelle sicher, dass der Cache deaktiviert ist -> Skin neu laden ![Screenshot](../../assets/images/FootballManager/stadiumguide11.png)
 
 <a id="schritt-12"></a>
 
 12. Wenn es immer noch nicht funktioniert, könnte es an anderen Logos liegen, die du installiert hast.
-    Öffne den Ordner, in dem sich die anderen Logos befinden. Wenn er eine andere Dateistruktur hat als meiner, suche nach dem "clubs"-Ordner. ![Screenshot](../../assets/images/fm24guide/logoguide4.jpg)
+    Öffne den Ordner, in dem sich die anderen Logos befinden. Wenn er eine andere Dateistruktur hat als meiner, suche nach dem "clubs"-Ordner. ![Screenshot](../../assets/images/FootballManager/logoguide4.jpg)
 13. In diesem Ordner solltest du die Unterordner "small" und "normal" finden. Öffne nacheinander beide Ordner und platziere dort nur die PNGs für die Logos und Icons, die du ersetzen möchtest. Nicht die config.xml! Wiederhole nun [Schritt 5](#schritt-5) bis Schritt 8. Möglicherweise musst du bestimmte PNGs ersetzen, wenn sie dieselbe ID verwenden. Stelle sicher, dass du die ID im Spiel überprüfst ([Schritt 5](#schritt-5)), bevor du etwas ersetzt. Außerdem solltest du Kopien von Dateien anlegen, die du nicht verlieren möchtest.
 14. Du solltest nun einen Ordner voller PNGs mit den richtigen IDs und einer alten config haben. Kopiere die config.xml zur Sicherheit auf deinen Desktop, falls du etwas kaputt machst. Nun musst du nur noch die alte config.xml bearbeiten. Öffne sie und ändere die ID, (wie in [Schritt 9](#schritt-9) beschrieben) zu der ID im Spiel und füge sie in die Liste ein.
 

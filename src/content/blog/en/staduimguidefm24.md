@@ -2,7 +2,7 @@
 title: 'Football Manager 24 - Custom Stadium Guide'
 description: 'How to get custom stadium pictures and create your own stadium for Football Manager 24 / FM24'
 pubDate: 'Apr 23 2025'
-heroImage: '../../../assets/images/fm24banner.png'
+heroImage: '../../../assets/images/FootballManager/fm24banner.png'
 author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
@@ -10,7 +10,7 @@ tags: ['FM24', 'Guide']
 
 Have you ever wondered: How you can get your own Stadium Picture in FM24 for your team or even a custom Team? Well, you don’t have to look further. I am here to show you how it’s done! I will use Team Rejects from my Blue Lock Dataset as an example, but it will work for every team.
 Here is an example of how it could look like.
-![Screenshot](../../../assets/images/fm24guide/stadiumguide1.png)
+![Screenshot](../../../assets/images/FootballManager/stadiumguide1.png)
 
 ## Step 1. - Preparation
 
@@ -32,10 +32,10 @@ Here you can change everything you want about your stadium. Feel free to experim
 In my case it is 2000342656.
 
 We also have to choose this stadium for the club you want to use.
-So, go to “Clubs” and look for the team. In my case, it is “Rejects”. ![Screenshot ](../../../assets/images/fm24guide/stadiumguide4.png)
-Press Edit and go to Stadium. ![Screenshot](../../../assets/images/fm24guide/stadiumguide5.png) There you have to change the stadium to the one you just created. In my case, it’s Rejects Arena.
+So, go to “Clubs” and look for the team. In my case, it is “Rejects”. ![Screenshot ](../../../assets/images/FootballManager/stadiumguide4.png)
+Press Edit and go to Stadium. ![Screenshot](../../../assets/images/FootballManager/stadiumguide5.png) There you have to change the stadium to the one you just created. In my case, it’s Rejects Arena.
 Save the dataset.
-![Screenshot](../../../assets/images/fm24guide/stadiumguide6.png)
+![Screenshot](../../../assets/images/FootballManager/stadiumguide6.png)
 
 ## Step 3. -  File Structure
 
@@ -72,14 +72,14 @@ Open the file and copy this code in there.
 
 Replace **UNIQUE ID** with the correct ID. You can add multiple stadiums at the same time. Delete the 2nd record, if you only want to add a singular stadium. If you have want to add more than 2, just add more lines with the same pattern.
 
-![Screenshot](../../../assets/images/fm24guide/stadiumguide12.png)
+![Screenshot](../../../assets/images/FootballManager/stadiumguide12.png)
 
 ## Step 4. – Reload Skin
 
 Now you need to load your files in game:
 
 Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload
-![Screenshot](../../../assets/images/fm24guide/stadiumguide11.png)
+![Screenshot](../../../assets/images/FootballManager/stadiumguide11.png)
 
 If you have a custom stadium or a custom team, make sure, to enable the Dataset when you start a new career.  
 

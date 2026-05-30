@@ -2,7 +2,7 @@
 title: 'Football Manager 24 - Custom Logo Guide'
 description: 'How to install logos and custom logos for Football Manager 24'
 pubDate: 'Apr 24 2025'
-heroImage: '../../../assets/images/fm24banner.png'
+heroImage: '../../../assets/images/FootballManager/fm24banner.png'
 author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
@@ -17,12 +17,12 @@ This guide will help you, to install logos for Football Manager 24. Not every lo
 
 _C:\Documents\Sports Interactive\Football Manager 2024\graphics_
 
-It should look similar to this. ![Screenshot](../../../assets/images/fm24guide/fpguide2.jpg)
+It should look similar to this. ![Screenshot](../../../assets/images/FootballManager/fpguide2.jpg)
 If you don't have any graphics folder, you need to create it.
 
 3. Unzip the Zip file. You might need 7 Zip for it. It's a free program. Just open the Zip file and move all the content in the graphics folder.
 4. Now we need to load our files:
-   Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../../assets/images/fm24guide/stadiumguide11.png)
+   Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../../assets/images/FootballManager/stadiumguide11.png)
 
 Load up a save and see if it works. If it does, have fun!
 
@@ -32,10 +32,10 @@ If it doesn't work, we might have to do some fine-tuning. That is either, becaus
 
 <a id="step-5"></a>
 
-5. Load up your game and check if the IDs of the teams. I will use Blue Lock from my custom dataset as an example. To do so, Enable Show screen ID in Title Bar. ![Screenshot](../../../assets/images/fm24guide/stadiumguide7.png)
-6. Load up a save and click on the Blue Lock Team. You should now see the ID in the left corner. ![Screenshot](../../../assets/images/fm24guide/logoguide1.jpg)
+5. Load up your game and check if the IDs of the teams. I will use Blue Lock from my custom dataset as an example. To do so, Enable Show screen ID in Title Bar. ![Screenshot](../../../assets/images/FootballManager/stadiumguide7.png)
+6. Load up a save and click on the Blue Lock Team. You should now see the ID in the left corner. ![Screenshot](../../../assets/images/FootballManager/logoguide1.jpg)
 7. Open up your graphics folder and compare the IDs of my files with this ID.
-   As you can see, in my case that is correct. The ID in game is the same as the PNG. ![Screenshot](../../../assets/images/fm24guide/logoguide2.jpg)
+   As you can see, in my case that is correct. The ID in game is the same as the PNG. ![Screenshot](../../../assets/images/FootballManager/logoguide2.jpg)
 8. If that isn't correct, you have to rename the PNG image, to the ID in game.
 
 <a id="step-9"></a>

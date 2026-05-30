@@ -2,7 +2,7 @@
 title: 'Football Manager 24 - Facepack Guide'
 description: 'Wie man Facepacks für den Football Manager 24 installiert und Probleme behebt'
 pubDate: 'Apr 02 2025'
-heroImage: '../../assets/images/fm24banner.png'
+heroImage: '../../assets/images/FootballManager/fm24banner.png'
 author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
@@ -19,13 +19,13 @@ Die Installation eines Facepacks ist unkompliziert, wenn du diese Schritte befol
 3. Entpacke die Dateien – Entpacke die heruntergeladene Datei und verschiebe den Inhalt in deinen graphics-Ordner. Der Standardpfad unter Windows ist:
 
    _C:\Dokumente\Sports Interactive\Football Manager 2024\graphics_
-   ![Screenshot](../../assets/images/fm24guide/fpguide2.jpg)
+   ![Screenshot](../../assets/images/FootballManager/fpguide2.jpg)
    Wenn der Ordner nicht existiert, erstelle ihn manuell. Achte darauf, dass du tatsächlich nur einen Ordner hast, der ein Facepack enthält.
    Wenn das heruntergeladene Facepack keinen Ordner enthält, musst du einen erstellen. Nenne ihn zum Beispiel "facepack" und entpacke die PNGs sowie die config.xml dort hinein. Stelle sicher, dass sich dieser Ordner innerhalb des graphics-Ordners befindet.
-   Ich empfehle nicht, mehrere Facepacks gleichzeitig zu laden. Wenn du sie kombinieren möchtest, gibt es weiter unten einen Guide dafür. ![Screenshot](../../assets/images/fm24guide/fpguide1.png)
+   Ich empfehle nicht, mehrere Facepacks gleichzeitig zu laden. Wenn du sie kombinieren möchtest, gibt es weiter unten einen Guide dafür. ![Screenshot](../../assets/images/FootballManager/fpguide1.png)
 
 4. Umgang mit bestehenden Facepacks – Wenn du bereits ein anderes Facepack installiert hast, musst du möglicherweise die vorhandenen PNG-Dateien überschreiben. Überschreibe jedoch nicht die config.xml, es sei denn, es ist notwendig.
-5. Lade den Skin im FM neu – Öffne den Football Manager, gehe zu Einstellungen > Interface und lade den Skin neu. Stelle sicher, dass der Cache deaktiviert ist und "Skin neu laden, wenn Änderungen bestätigt werden" aktiviert ist. ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+5. Lade den Skin im FM neu – Öffne den Football Manager, gehe zu Einstellungen > Interface und lade den Skin neu. Stelle sicher, dass der Cache deaktiviert ist und "Skin neu laden, wenn Änderungen bestätigt werden" aktiviert ist. ![Screenshot](../../assets/images/FootballManager/stadiumguide11.png)
 6. Stelle sicher, dass alles vorhanden ist – Der Ordner, den du erstellt hast, sollte nur PNGs und eine config.xml enthalten. Nichts anderes.
 
 ## Häufige Probleme und deren Lösungen
@@ -35,7 +35,7 @@ Die Installation eines Facepacks ist unkompliziert, wenn du diese Schritte befol
 - Probleme mit der Bildgröße - Stelle sicher, dass die PNG-Dateien 250x250 Pixel groß sind, um die beste Anzeigequalität zu gewährleisten.
 - Fehlende PNGs - Einige Facepacks enthalten möglicherweise nicht jeden Spieler, was zu leeren Stellen führt.
 - Überprüfe die Spieler-IDs – Jeder Spieler hat eine einzigartige ID im Spiel. Um die richtige ID zu überprüfen:
-- - Aktiviere die ID-Anzeige in den Spieleinstellungen. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
+- - Aktiviere die ID-Anzeige in den Spieleinstellungen. ![Screenshot](../../assets/images/FootballManager/stadiumguide7.png)
 - - Klicke auf einen Spieler und notiere die ID in der Ecke.
 - - Vergleiche sie mit dem Dateinamen des PNGs in deinem graphics-Ordner.
 - PNG-Dateien umbenennen – Wenn die IDs nicht übereinstimmen, benenne die PNG-Dateien so um, dass sie der Spieler-ID entsprechen, und aktualisiere die config.xml entsprechend.
