@@ -2,6 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
+import ListCategories from '@/components/ListCategories'
 import { getCategories, filterPostsByCategory } from '@/utils'
 
 export async function getStaticPaths({ paginate }) {
@@ -39,9 +40,11 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page, categoryName } = Astro.props
+const { category } = Astro.params
 ---
 
 <BaseLayout title={`Kategorie: ${categoryName}`}>
 	<TitlePage title={`Kategorie: ${categoryName}`} />
+	<ListCategories activeCategory={category} />
 	<ListPosts posts={page.data} />
 </BaseLayout>

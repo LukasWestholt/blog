@@ -1,17 +1,33 @@
 ---
-import { cn, sluglify } from '@/utils'
+import { cn } from '@/utils'
 
 const { name = 'View All', activeCategory } = Astro.props
 const currentPath = Astro.url.pathname
-const unsluglifyNameCategory = sluglify(name.toLowerCase())
+
+// Prüfen, ob wir auf der englischen Seite sind
+const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
+
+// Kategorie-Slug erstellen (aus "Football Manager" wird "football-manager")
+const categorySlug = name.toLowerCase().replace(/\s+/g, '-')
 
 const isActive =
-	activeCategory?.toLocaleLowerCase() === unsluglifyNameCategory ||
-	(currentPath === '/' && name === 'View All')
+	activeCategory?.toLocaleLowerCase() === categorySlug ||
+	(currentPath === '/' && name === 'View All') ||
+	(currentPath === '/en/' && name === 'View All')
+
+// Die korrekte URL aufbauen (mit oder ohne /en)
+const href =
+	name === 'View All'
+		? isEnglish
+			? '/en/'
+			: '/'
+		: isEnglish
+			? `/en/category/${categorySlug}/1`
+			: `/category/${categorySlug}/1`
 ---
 
 <a
-	href={name === 'View All' ? '/' : sluglify(`/category/${unsluglifyNameCategory}/1`)}
+	href={href}
 	class={cn(
 		`text-gray-600 dark:text-gray-300  pb-2.5 first-letter:uppercase font-medium hover:text-gray-800 border-b-2 border-opacity-0 dark:border-opacity-0 border-black dark:border-white dark:hover:border-white hover:border-opacity-100 transition-colors duration-150 ease-linear  `,
 		isActive &&
