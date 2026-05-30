@@ -2,7 +2,7 @@
 title: 'Football Manager 24 - Face Pack Guide'
 description: 'How to install and fix problems with face packs for Football Manager 24'
 pubDate: 'Apr 02 2025'
-heroImage: '../../../assets/images/fm24banner.png'
+heroImage: '../../../assets/images/FootballManager/fm24banner.png'
 author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
@@ -19,13 +19,13 @@ Installing a face pack is straightforward if you follow these steps:
 3. Extract the files – Unzip the downloaded file and move its contents to your graphics folder. The default location on Windows is:
 
    _C:\Documents\Sports Interactive\Football Manager 2024\graphics_
-   ![Screenshot](../../../assets/images/fm24guide/fpguide2.jpg)
+   ![Screenshot](../../../assets/images/FootballManager/fpguide2.jpg)
    If the folder doesn’t exist, create it manually. Make sure you actually have only one folder containing a face pack.
    If the downloaded face pack doesn’t come with a folder, you need to create one. Name it "facepack," for example, and extract the PNGs and the config.xml into it. Ensure this folder is inside the graphics folder.
-   I don’t recommend loading multiple face packs at the same time. If you wish to combine them, there is a guide further below. ![Screenshot](../../../assets/images/fm24guide/fpguide1.png)
+   I don’t recommend loading multiple face packs at the same time. If you wish to combine them, there is a guide further below. ![Screenshot](../../../assets/images/FootballManager/fpguide1.png)
 
 4. Managing existing face packs – If you already have a different face pack installed, you may need to overwrite the existing PNG files. However, do not overwrite the config.xml file unless necessary.
-5. Reload the skin in FM – Open Football Manager, go to Preferences > Interface, and reload the skin. Make sure caching is disabled and "Reload skin when confirming changes" is enabled. ![Screenshot](../../../assets/images/fm24guide/stadiumguide11.png)
+5. Reload the skin in FM – Open Football Manager, go to Preferences > Interface, and reload the skin. Make sure caching is disabled and "Reload skin when confirming changes" is enabled. ![Screenshot](../../../assets/images/FootballManager/stadiumguide11.png)
 6. Ensure all content is there – The folder you have created should only contain PNGs and a config.xml. Nothing else.
 
 ## Common issues and how to fix them
@@ -35,7 +35,7 @@ Installing a face pack is straightforward if you follow these steps:
 - Image size issues - Ensure that the PNG files are 250x250 pixels for the best display quality.
 - Missing PNGs - Some face packs may not include every player, leading to blank spots.
 - Check player IDs – Every player has a unique ID in the game. To verify the correct ID:
-- - Enable ID display in the game settings. ![Screenshot](../../../assets/images/fm24guide/stadiumguide7.png)
+- - Enable ID display in the game settings. ![Screenshot](../../../assets/images/FootballManager/stadiumguide7.png)
 - - Click on a player and note the ID in the corner.
 - - Compare it to the PNG file name in your graphics folder.
 - Rename PNG files – If the IDs don’t match, rename the PNG files to match the player’s ID and update config.xml accordingly.

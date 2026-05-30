@@ -1,20 +1,20 @@
 ---
-title: 'Football Manager 24 - Projekt Blue Lock'
+title: 'Football Manager 26 - Projekt Blue Lock'
 description: 'Was ist Projekt Blue Lock'
-pubDate: 'May 06 2025'
-heroImage: '../../assets/images/egoist.jpg'
+pubDate: 'May 30 2026'
+heroImage: '../../assets/images/FootballManager/bl-fm26_banner.jpg'
 author: 'Lukas Ruminski'
 category: 'Projects'
-tags: ['FM24', 'Blue Lock', 'Projects']
+tags: ['FM26', 'Blue Lock', 'Projects']
 ---
 
 ## Was ist Projekt Blue Lock?
 
-_Blue Lock_ ist eine von mir erstellte Datenbankmodifikation für _Football Manager 24_. Dabei habe ich die Charaktere aus dem beliebten Manga Blue Lock in die Welt des _FM24_ übertragen. Jeder Spieler, der im Manga eine Rolle spielt, wurde mit individuellen Attributen, Persönlichkeitsprofilen und potenziellen Karrieren ins Spiel integriert.
+_Blue Lock_ ist eine von mir erstellte Datenbankmodifikation für _Football Manager 26_ und die Fortsetzung meiner Datenbank von _Football Manager 24_ Dabei habe ich die Charaktere aus dem beliebten Manga Blue Lock in die Welt des _FM26_ übertragen. Jeder Spieler, der im Manga eine Rolle spielt, wurde mit individuellen Attributen, Persönlichkeitsprofilen und potenziellen Karrieren ins Spiel integriert.
 
 ### War es ein Erfolg?
 
-Meine Spieldateien wurden inzwischen über 5000 Mal heruntergeladen. Rund um die Mod hat sich bereits eine kleine Community gebildet, die meine Arbeit aufgreift, weiterentwickelt und an eigene Vorstellungen anpasst. Wenn du auch ein Teil dieser Community sein möchtest, tritt doch meinem [Discord](https://discord.gg/G8hRPd47JS) bei.
+Meine Spieldateien wurden inzwischen über 1500 Mal heruntergeladen. Rund um die Mod hat sich bereits eine kleine Community gebildet, die meine Arbeit aufgreift, weiterentwickelt und an eigene Vorstellungen anpasst. Wenn du auch ein Teil dieser Community sein möchtest, tritt doch meinem [Discord](https://discord.gg/G8hRPd47JS) bei.
 Natürlich ist es eine Herausforderung, fiktive Manga-Charaktere glaubwürdig in eine realistische Fußballsimulation wie _Football Manager_ zu übertragen. Dennoch bin ich mit dem bisherigen Ergebnis sehr zufrieden – unter den gegebenen Umständen würde ich sagen: Ja, es war ein Erfolg.
 
 ### Wo kann man die Datei herunterladen?
@@ -26,7 +26,7 @@ Sobald ich mit dem Testen meiner Datein fertig bin, werden diese auf
 
 ### Wie hast du die Modifikationen erstellt?
 
-Zur Erstellung der Mod habe ich den offiziellen _Pre-Game Editor_ für _Football Manager 2024_ verwendet. Mit diesem Tool lassen sich Spieler, Vereine, Wettbewerbe und viele andere Elemente der Datenbank gezielt bearbeiten oder neu erstellen.
+Zur Erstellung der Mod habe ich den offiziellen _Pre-Game Editor_ für _Football Manager 2026_ verwendet. Mit diesem Tool lassen sich Spieler, Vereine, Wettbewerbe und viele andere Elemente der Datenbank gezielt bearbeiten oder neu erstellen.
 Ich habe für jeden Blue Lock-Charakter eigene Spielerprofile angelegt – inklusive realistischer Attribute, Persönlichkeitswerte, Herkunft und Potenzial.
 Der gesamte Prozess war zeitintensiv, besonders die Balance zwischen Manga-Fiktion und FM-Realismus zu finden. Aber genau das macht den Reiz dieses Projekts aus.
 
