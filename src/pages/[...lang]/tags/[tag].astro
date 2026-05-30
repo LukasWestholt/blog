@@ -1,5 +1,6 @@
 ---
 import { getTags, getPostByTag } from '@/utils'
+import PostCard from '@/components/PostCard'
 
 import BaseLayout from '@/layouts/BaseLayout'
 
@@ -32,6 +33,13 @@ export async function getStaticPaths() {
 }
 
 const { posts, tagName, currentLang } = Astro.props
+
+function formatReadingTime(minutes: number | undefined, lang: string) {
+	if (!minutes) return ''
+	const minutesRounded = Math.ceil(minutes)
+	if (lang === 'en') return `${minutesRounded} min read`
+	return `${minutesRounded} min Lesezeit`
+}
 ---
 
 <BaseLayout
@@ -44,17 +52,16 @@ const { posts, tagName, currentLang } = Astro.props
 			<span class='text-blue-500 capitalize'>#{tagName}</span>
 		</h1>
 
-		<ul class='grid gap-6'>
+		<section class='grid grid-cols-1 md:grid-cols-2 gap-8'>
 			{
-				posts.map((post) => (
-					<li class='border-b border-gray-200 dark:border-gray-800 pb-4'>
-						<a href={`/post/${post.slug}/`} class='text-xl font-semibold hover:underline'>
-							{post.data.title}
-						</a>
-						<p class='mt-2 text-sm opacity-75'>{post.data.description}</p>
-					</li>
-				))
+				posts.map((post) => {
+					const readTime = formatReadingTime(
+						post.data.remarkPluginFrontmatter?.minutesRead,
+						currentLang
+					)
+					return <PostCard {...post} {readTime} />
+				})
 			}
-		</ul>
+		</section>
 	</div>
 </BaseLayout>
