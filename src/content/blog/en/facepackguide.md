@@ -3,6 +3,7 @@ title: 'Football Manager 24 - Face Pack Guide'
 description: 'How to install and fix problems with face packs for Football Manager 24'
 pubDate: 'Apr 02 2025'
 heroImage: '../../../assets/images/fm24banner.png'
+author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
 ---

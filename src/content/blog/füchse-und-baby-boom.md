@@ -3,6 +3,7 @@ title: 'Von Füchsen und Familien: Wenn Bejagungsdruck zu Babyboom führt'
 description: 'Ein vergleichender Blick auf Fortpflanzungsstrategien von Füchsen und Menschen – zwischen Jagddruck, Unsicherheit und Babyboom.'
 pubDate: 'Apr 11 2025'
 heroImage: '../../assets/images/fox.png'
+author: 'Lukas Westholt'
 category: 'Thoughts'
 tags: ['Random']
 ---

@@ -3,6 +3,7 @@ title: 'Football Manager 24 - Eigene Logos Guide'
 description: 'Wie man Logos und eigene Logos für den Football Manager 24 installiert'
 pubDate: 'Apr 24 2025'
 heroImage: '../../assets/images/fm24banner.png'
+author: 'Lukas Ruminski'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
 ---

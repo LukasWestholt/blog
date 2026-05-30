@@ -3,6 +3,7 @@ title: 'Football Manager 24 - Projekt Blue Lock'
 description: 'Was ist Projekt Blue Lock'
 pubDate: 'May 06 2025'
 heroImage: '../../assets/images/egoist.jpg'
+author: 'Lukas Ruminski'
 category: 'Projects'
 tags: ['FM24', 'Blue Lock', 'Projects']
 ---
