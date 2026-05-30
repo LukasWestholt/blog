@@ -1,0 +1,60 @@
+---
+import { getTags, getPostByTag } from '@/utils'
+
+import BaseLayout from '@/layouts/BaseLayout'
+
+export async function getStaticPaths() {
+	const paths = []
+
+	// Deine Hauptsprache (Deutsch) liegt auf dem Root-Pfad (lang: undefined)
+	// Englisch liegt unter /en/ (lang: 'en')
+	const locales = [
+		{ paramLang: undefined, funcLang: 'de' },
+		{ paramLang: 'en', funcLang: 'en' }
+	] as const
+
+	for (const locale of locales) {
+		// Nutze deine bestehende Funktion aus src/utils/post.ts für die jeweilige Sprache
+		const tags = await getTags(locale.funcLang)
+
+		for (const tag of tags) {
+			const posts = await getPostByTag(tag, locale.funcLang)
+			const tagSlug = tag.toLowerCase().replace(/\s+/g, '-')
+
+			paths.push({
+				params: { lang: locale.paramLang, tag: tagSlug },
+				props: { posts, tagName: tag, currentLang: locale.funcLang }
+			})
+		}
+	}
+
+	return paths
+}
+
+const { posts, tagName, currentLang } = Astro.props
+---
+
+<BaseLayout
+	title={`Artikel zum Thema: ${tagName}`}
+	description={`Alle Blogposts mit dem Tag ${tagName}`}
+>
+	<div class='py-8 max-w-3xl mx-auto px-4'>
+		<h1 class='text-3xl font-bold mb-8'>
+			{currentLang === 'en' ? 'All articles for the tag:' : 'Alle Artikel für das Tag:'}
+			<span class='text-blue-500 capitalize'>#{tagName}</span>
+		</h1>
+
+		<ul class='grid gap-6'>
+			{
+				posts.map((post) => (
+					<li class='border-b border-gray-200 dark:border-gray-800 pb-4'>
+						<a href={`/post/${post.slug}/`} class='text-xl font-semibold hover:underline'>
+							{post.data.title}
+						</a>
+						<p class='mt-2 text-sm opacity-75'>{post.data.description}</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</BaseLayout>
