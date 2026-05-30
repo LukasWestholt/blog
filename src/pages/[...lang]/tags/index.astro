@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import TitlePage from '@/components/TitlePage'
+import { getTags } from '@/utils'
+
+export async function getStaticPaths() {
+	return [
+		// Deutsche Übersichtsseite (URL: /tags)
+		{ params: { lang: undefined } },
+		// Englische Übersichtsseite (URL: /en/tags)
+		{ params: { lang: 'en' } }
+	]
+}
+
+const { lang } = Astro.params
+const currentLang = lang || 'de'
+const tags = await getTags(currentLang as 'de' | 'en' | 'all')
+---
+
+<BaseLayout title='Alle Tags'>
+	<TitlePage title='Alle Tags' />
+	<ul class='flex flex-wrap gap-4'>
+		{
+			tags.map((tag) => {
+				const tagSlug = tag.toLowerCase().replace(/\s+/g, '-')
+				return (
+					<li>
+						<a href={`/${lang === 'en' ? 'en/' : ''}tags/${tagSlug}/1`} class='underline'>
+							{tag}
+						</a>
+					</li>
+				)
+			})
+		}
+	</ul>
+</BaseLayout>

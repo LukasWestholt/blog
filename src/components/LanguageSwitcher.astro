@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content'
+
+const currentPath = Astro.url.pathname
+let currentSlug = Astro.params.slug
+
+if (!currentSlug && currentPath.startsWith('/post/')) {
+	currentSlug = currentPath.replace(/^\/post\//, '').replace(/\/$/, '')
+}
+
+// Prüfen, ob wir uns auf einer englischen Seite befinden
+const isEnglish = currentPath.startsWith('/en/') || currentPath.startsWith('/post/en/')
+
+let targetUrl = '/'
+let showSwitcher = true
+let hasTranslation = true
+
+if (currentSlug && currentPath.startsWith('/post/')) {
+	// Wir sind auf einer Blogpost-Seite
+	const targetSlug = isEnglish ? currentSlug.replace(/^en\//, '') : `en/${currentSlug}`
+
+	// Prüfen, ob das Gegenstück auch wirklich existiert
+	const allPosts = await getCollection('blog')
+	hasTranslation = allPosts.some((post) => post.slug === targetSlug)
+
+	targetUrl = hasTranslation ? `/post/${targetSlug}/` : '#'
+} else {
+	// Wir sind auf einer generischen Seite (z.B. Startseite, Tags-Seite)
+	if (isEnglish) {
+		targetUrl = currentPath.replace(/^\/en/, '') || '/'
+	} else {
+		targetUrl = currentPath === '/' ? '/en/' : `/en${currentPath}`
+	}
+}
+---
+
+{
+	showSwitcher && (
+		<div class='flex justify-end w-full'>
+			{hasTranslation ? (
+				<a
+					href={targetUrl}
+					class='inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors'
+				>
+					{isEnglish ? '🇩🇪 Auf Deutsch lesen' : '🇬🇧 Read in English'}
+				</a>
+			) : (
+				<span class='inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-400 dark:text-neutral-500 cursor-not-allowed select-none'>
+					🚫 Nicht übersetzt
+				</span>
+			)}
+		</div>
+	)
+}

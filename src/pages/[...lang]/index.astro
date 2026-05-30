@@ -6,8 +6,19 @@ import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
 import { siteConfig } from '@/site-config'
 
-const MAX_POSTS = 5 // max number of posts to show on the home page
-const posts = await getPosts(MAX_POSTS)
+export async function getStaticPaths() {
+	return [
+		{ params: { lang: undefined } }, // Generiert die Startseite /
+		{ params: { lang: 'en' } } // Generiert /en/
+	]
+}
+
+const { lang } = Astro.params
+const currentLang = lang || 'de'
+
+const MAX_POSTS = 5
+const allPosts = await getPosts(undefined, currentLang as 'de' | 'en')
+const posts = allPosts.slice(0, MAX_POSTS)
 ---
 
 <BaseLayout title='Home'>
@@ -15,7 +26,9 @@ const posts = await getPosts(MAX_POSTS)
 	<ListCategories />
 
 	<div>
-		<h2 class='text-lg font-medium tracking-wide text-end'>Latest Posts</h2>
+		<h2 class='text-lg font-medium tracking-wide text-end'>
+			{currentLang === 'en' ? 'Latest Posts' : 'Neueste Beiträge'}
+		</h2>
 		<ListPosts FirstBig={true} posts={posts} />
 	</div>
 </BaseLayout>
@@ -31,7 +44,6 @@ const posts = await getPosts(MAX_POSTS)
 			{
 				duration: 2.5,
 				opacity: { duration: 3 },
-
 				offset: [0, 0.55, 0.75]
 			}
 		)

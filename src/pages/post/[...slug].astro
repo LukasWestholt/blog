@@ -12,7 +12,7 @@ import { disqusConfig } from '@/data/disqus.config'
 
 const posts = await getCollection('blog')
 export async function getStaticPaths() {
-	const posts = await getPosts()
+	const posts = await getPosts(undefined, 'all') // Zwingend notwendig, damit englische Artikel generiert werden
 
 	return posts.map((post) => ({
 		params: { slug: post.slug },
@@ -24,9 +24,13 @@ type Props = CollectionEntry<'blog'>
 const post = Astro.props
 const MAX_POSTS = 3
 const getRelatedPosts = (post: Props) => {
+	const isEnglish = post.id.startsWith('en/')
 	const lowercaseTags = post.data.tags.map((tag) => tag.toLowerCase())
 	const relatedPosts = posts.filter(
-		(p) => p.slug !== post.slug && p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase()))
+		(p) =>
+			p.slug !== post.slug &&
+			p.id.startsWith('en/') === isEnglish && // Sprache muss übereinstimmen
+			p.data.tags.some((t) => lowercaseTags.includes(t.toLowerCase()))
 	)
 	return relatedPosts.slice(0, MAX_POSTS)
 }

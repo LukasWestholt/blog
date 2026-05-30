@@ -1,0 +1,22 @@
+---
+import { getTags, getPostByTag } from '@/utils'
+
+export async function getStaticPaths() {
+	// 1. Hole alle vorhandenen Tags (aus allen Sprachen, wie in deiner Utils definiert)
+	const tags = await getTags('all')
+
+	// 2. Erstelle für jeden Tag eine Route
+	return tags.map((tag) => ({
+		// WICHTIG: Der Schlüssel "tag" muss dem Dateinamen [tag].astro entsprechen.
+		// Wir wandeln es in Kleinbuchstaben um, da deine `getPostByTag`-Funktion damit arbeitet.
+		params: { tag: tag.toLowerCase() }
+	}))
+}
+
+// 3. Empfange den aktuellen Tag und lade die zugehörigen Posts
+const { tag } = Astro.params
+const posts = await getPostByTag(tag, 'all')
+---
+
+<!-- Hier kommt dein Layout / HTML für die Tag-Seite -->
+<h1>Posts mit dem Tag: {tag}</h1>

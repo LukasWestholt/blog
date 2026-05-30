@@ -1,47 +1,47 @@
 ---
-title: 'Football Manager 24 - Custom Logo Guide'
-description: 'How to install logos and custom logos for Football Manager 24'
+title: 'Football Manager 24 - Eigene Logos Guide'
+description: 'Wie man Logos und eigene Logos für den Football Manager 24 installiert'
 pubDate: 'Apr 24 2025'
 heroImage: '../../assets/images/fm24banner.png'
 category: 'Football Manager'
 tags: ['FM24', 'Guide']
 ---
 
-This guide will help you, to install logos for Football Manager 24. Not every logo is licensed in FM24 and this guide will help you to bring more immersion into your game. I will also explain, how to change the config.xml and fixes for problems I have encountered.
+Dieser Guide wird dir helfen, Logos für den Football Manager 24 zu installieren. Nicht jedes Logo ist im FM24 lizenziert und dieser Guide wird dir dabei helfen, mehr Immersion in dein Spiel zu bringen. Ich werde auch erklären, wie man die config.xml ändert und Lösungen für Probleme aufzeigen, auf die ich gestoßen bin.
 
-## How to install
+## Wie man installiert
 
-1. Download the logos.zip you want to use
-2. You should locate your graphics folder. In Windows it is most likely located in:
+1. Lade die logos.zip herunter, die du verwenden möchtest.
+2. Finde deinen graphics-Ordner. Unter Windows befindet er sich meistens hier:
 
-_C:\Documents\Sports Interactive\Football Manager 2024\graphics_
+_C:\Dokumente\Sports Interactive\Football Manager 2024\graphics_
 
-It should look similar to this. ![Screenshot](../../assets/images/fm24guide/fpguide2.jpg)
-If you don't have any graphics folder, you need to create it.
+Es sollte ungefähr so aussehen: ![Screenshot](../../assets/images/fm24guide/fpguide2.jpg)
+Wenn du keinen graphics-Ordner hast, musst du ihn erstellen.
 
-3. Unzip the Zip file. You might need 7 Zip for it. It's a free program. Just open the Zip file and move all the content in the graphics folder.
-4. Now we need to load our files:
-   Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+3. Entpacke die Zip-Datei. Möglicherweise benötigst du dafür 7-Zip (ein kostenloses Programm). Öffne einfach die Zip-Datei und verschiebe den gesamten Inhalt in den graphics-Ordner.
+4. Nun müssen wir unsere Dateien laden:
+   Gehe im Spiel auf Einstellungen -> Interface -> stelle sicher, dass der Cache deaktiviert ist -> Skin neu laden ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
 
-Load up a save and see if it works. If it does, have fun! :)
+Lade einen Spielstand und schau, ob es funktioniert. Wenn ja, viel Spaß!
 
-## How to fix problems
+## Wie man Probleme behebt
 
-If it doesn't work, we might have to do some fine-tuning. That is either, because you have other logos installed, or, because you have other teams loaded, that claim the "unique" ID. If you have other logos installed, you might want to start with [Step 12](#step-12).
+Wenn es nicht funktioniert, müssen wir vielleicht etwas Feintuning betreiben. Das liegt entweder daran, dass du andere Logos installiert hast, oder dass andere Teams geladen sind, die diese "einzigartige" ID beanspruchen. Wenn du bereits andere Logos installiert hast, solltest du vielleicht mit [Schritt 12](#schritt-12) beginnen.
 
-<a id="step-5"></a>
+<a id="schritt-5"></a>
 
-5. Load up your game and check if the IDs of the teams. I will use Blue Lock from my custom dataset as an example. To do so, Enable Show screen ID in Title Bar. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
-6. Load up a save and click on the Blue Lock Team. You should now see the ID in the left corner. ![Screenshot](../../assets/images/fm24guide/logoguide1.jpg)
-7. Open up your graphics folder and compare the IDs of my files with this ID.
-   As you can see, in my case that is correct. The ID in game is the same as the PNG. ![Screenshot](../../assets/images/fm24guide/logoguide2.jpg)
-8. If that isn't correct, you have to rename the PNG image, to the ID in game.
+5. Lade dein Spiel und überprüfe die IDs der Teams. Ich werde Blue Lock aus meinem eigenen Datensatz als Beispiel verwenden. Aktiviere dafür "Zeige Screen-IDs in der Titelleiste" in den Einstellungen. ![Screenshot](../../assets/images/fm24guide/stadiumguide7.png)
+6. Lade einen Spielstand und klicke auf das Blue Lock Team. Du solltest nun die ID in der oberen Ecke sehen. ![Screenshot](../../assets/images/fm24guide/logoguide1.jpg)
+7. Öffne deinen graphics-Ordner und vergleiche die IDs meiner Dateien mit dieser ID.
+   Wie du sehen kannst, ist sie in meinem Fall korrekt. Die ID im Spiel ist dieselbe wie auf dem PNG. ![Screenshot](../../assets/images/fm24guide/logoguide2.jpg)
+8. Wenn sie nicht übereinstimmen, musst du das PNG-Bild in die ID umbenennen, die im Spiel angezeigt wird.
 
-<a id="step-9"></a>
+<a id="schritt-9"></a>
 
-9. You also have to open up the config.xml and change the ID name. It is important, to rename the ID twice. I marked both numbers, you have to change in the config.
+9. Du musst auch die config.xml öffnen und die ID ändern. Es ist wichtig, die ID zweimal umzubenennen. Ich habe beide Zahlen markiert, die du in der config ändern musst.
 
-example config for normal:
+Beispiel-Config für Normal:
 
 ```xml
 <record>
@@ -53,7 +53,7 @@ example config for normal:
 </record>
 ```
 
-example config for small
+Beispiel-Config für Small:
 
 ```xml
 <record>
@@ -67,33 +67,33 @@ example config for small
 
 ![Screenshot](../../assets/images/fm24guide/logoguide3.jpg)
 
-10. You also need to do that for both folders. For normal and small. **Make sure to use the correct picture size.**
-11. Now we need to load our files:
-    Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+10. Du musst das für beide Ordner tun. Für "normal" und "small". **Achte darauf, die richtige Bildgröße zu verwenden.**
+11. Nun müssen wir unsere Dateien neu laden:
+    Gehe im Spiel auf Einstellungen -> Interface -> stelle sicher, dass der Cache deaktiviert ist -> Skin neu laden ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
 
-<a id="step-12"></a>
+<a id="schritt-12"></a>
 
-12. If it still doesn't work, it might be because of other logos you have installed.
-    Open up the folder, where the other logos are located. If it has a different file structure than mine, try to look for the "clubs" folder. ![Screenshot](../../assets/images/fm24guide/logoguide4.jpg)
-13. In that folder, you should find the folders small and normal. Open up either of them and place only the PNGs for themy logos and icons in there that you want to replace. Not the config.xml! Repeat now [Step 5](#step-5) to Step 8. You might need to replace certain PNGs, if they share the same ID. Make sure to check the in game ID [Step 5](#step-5) before you replace anything. Also, you should make copies of things, you don't want to lose.
-14. You should now have a folder full of PNGs, with the right IDs and an old config. Copy the config.xml to your desktop, in case you break something. Now you just need to edit the old config.xml. Open it up and change the ID, I have described that in [Step 9](#step-9), to the in game ID and paste it in the list.
+12. Wenn es immer noch nicht funktioniert, könnte es an anderen Logos liegen, die du installiert hast.
+    Öffne den Ordner, in dem sich die anderen Logos befinden. Wenn er eine andere Dateistruktur hat als meiner, suche nach dem "clubs"-Ordner. ![Screenshot](../../assets/images/fm24guide/logoguide4.jpg)
+13. In diesem Ordner solltest du die Unterordner "small" und "normal" finden. Öffne nacheinander beide Ordner und platziere dort nur die PNGs für die Logos und Icons, die du ersetzen möchtest. Nicht die config.xml! Wiederhole nun [Schritt 5](#schritt-5) bis Schritt 8. Möglicherweise musst du bestimmte PNGs ersetzen, wenn sie dieselbe ID verwenden. Stelle sicher, dass du die ID im Spiel überprüfst ([Schritt 5](#schritt-5)), bevor du etwas ersetzt. Außerdem solltest du Kopien von Dateien anlegen, die du nicht verlieren möchtest.
+14. Du solltest nun einen Ordner voller PNGs mit den richtigen IDs und einer alten config haben. Kopiere die config.xml zur Sicherheit auf deinen Desktop, falls du etwas kaputt machst. Nun musst du nur noch die alte config.xml bearbeiten. Öffne sie und ändere die ID, (wie in [Schritt 9](#schritt-9) beschrieben) zu der ID im Spiel und füge sie in die Liste ein.
 
-In normal folder:
+Im "normal"-Ordner:
 
 ```xml
 <record from="2000339408" to="graphics/pictures/club/2000339408/logo"/>
 ```
 
-In small folder:
+Im "small"-Ordner:
 
 ```xml
 <record from="2000339408" to="graphics/pictures/club/2000339408/icon"/>
 ```
 
-Copy this line and change the numbers to the Unique ID of your files. Place it in list.
-Your config.xml will be a lot bigger. But you can put it anywhere in that list. I would recommend putting it on top or bottom of your list, in case you have to change or delete them.
+Kopiere diese Zeile und ändere die Zahlen zur Unique ID deiner Dateien. Platziere sie in der Liste (`<list id="maps">`).
+Deine config.xml wird dadurch sehr viel größer sein. Du kannst den Eintrag jedoch überall in diese Liste setzen. Ich empfehle, ihn ganz oben oder unten in der Liste zu platzieren, falls du ihn noch einmal ändern oder löschen musst.
 
-example config for normal:
+Beispiel-Config für Normal:
 
 ```xml
 <record>
@@ -105,10 +105,10 @@ example config for normal:
 </record>
 ```
 
-15. You have to do the same process for the small and normal folder. However, it should be fine, to just copy the new lines in your config.xml and change the word logo to icon, or the other way around. Then you just need to place the PNGs and rename them.
-16. Now we need to load our files for the last time:
-    Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../assets/images/fm24guide/stadiumguide11.png)
+15. Diesen Prozess musst du sowohl für den "small"- als auch für den "normal"-Ordner durchführen. Es reicht jedoch in der Regel aus, die neuen Zeilen in deine config.xml zu kopieren und das Wort "logo" in "icon" umzuwandeln (oder umgekehrt). Dann musst du nur noch die PNGs platzieren und umbenennen.
+16. Jetzt laden wir unsere Dateien ein letztes Mal neu:
+    Gehe im Spiel auf Einstellungen -> Interface -> stelle sicher, dass der Cache deaktiviert ist -> Skin neu laden !Screenshot
 
-## Final thoughts
+## Abschließende Gedanken
 
-That should cover everything. Config.xml managing can be tedious. Make sure not to always use the right IDs and file sizes.
+Das sollte alles abdecken. Das Verwalten der config.xml kann etwas mühsam sein. Achte einfach darauf, immer die richtigen IDs und Dateigrößen zu verwenden.
