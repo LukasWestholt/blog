@@ -15,10 +15,12 @@ export async function getStaticPaths() {
 const { lang } = Astro.params
 const currentLang = lang || 'de'
 const tags = await getTags(currentLang as 'de' | 'en' | 'all')
+
+const titleText = currentLang === 'en' ? 'All Tags' : 'Alle Tags'
 ---
 
-<BaseLayout title='Alle Tags'>
-	<TitlePage title='Alle Tags' />
+<BaseLayout title={titleText}>
+	<TitlePage title={titleText} />
 	<ul class='flex flex-wrap gap-4'>
 		{
 			tags.map((tag) => {
