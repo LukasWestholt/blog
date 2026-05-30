@@ -9,13 +9,13 @@ const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
 
 // Übersetzung der Kategorien
 const categoryTranslations: Record<string, string> = {
-	'View All': isEnglish ? 'View All' : 'Alle anzeigen',
-	'Football Manager': 'Football Manager',
-	Achievements: isEnglish ? 'Achievements' : 'Erfolge',
-	Projects: isEnglish ? 'Projects' : 'Projekte',
-	Thoughts: isEnglish ? 'Thoughts' : 'Gedanken'
+	'view all': isEnglish ? 'View All' : 'Alle anzeigen',
+	'football manager': 'Football Manager',
+	achievements: isEnglish ? 'Achievements' : 'Erfolge',
+	projects: isEnglish ? 'Projects' : 'Projekte',
+	thoughts: isEnglish ? 'Thoughts' : 'Gedanken'
 }
-const displayName = categoryTranslations[name] || name
+const displayName = categoryTranslations[name.toLowerCase()] || name
 
 // Kategorie-Slug erstellen (aus "Football Manager" wird "football-manager")
 const categorySlug = name.toLowerCase().replace(/\s+/g, '-')
