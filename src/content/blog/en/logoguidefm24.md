@@ -66,16 +66,16 @@ example config for small
 </record>
 ```
 
-![Screenshot](../../../assets/images/fm24guide/logoguide3.jpg)
+![Screenshot](../../../assets/images/FootballManager/logoguide3.jpg)
 
 10. You also need to do that for both folders. For normal and small. **Make sure to use the correct picture size.**
 11. Now we need to load our files:
-    Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../../assets/images/fm24guide/stadiumguide11.png)
+    Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../../assets/images/FootballManager/stadiumguide11.png)
 
 <a id="step-12"></a>
 
 12. If it still doesn't work, it might be because of other logos you have installed.
-    Open up the folder, where the other logos are located. If it has a different file structure than mine, try to look for the "clubs" folder. ![Screenshot](../../../assets/images/fm24guide/logoguide4.jpg)
+    Open up the folder, where the other logos are located. If it has a different file structure than mine, try to look for the "clubs" folder. ![Screenshot](../../../assets/images/FootballManager/logoguide4.jpg)
 13. In that folder, you should find the folders small and normal. Open up either of them and place only the PNGs for themy logos and icons in there that you want to replace. Not the config.xml! Repeat now [Step 5](#step-5) to Step 8. You might need to replace certain PNGs, if they share the same ID. Make sure to check the in game ID [Step 5](#step-5) before you replace anything. Also, you should make copies of things, you don't want to lose.
 14. You should now have a folder full of PNGs, with the right IDs and an old config. Copy the config.xml to your desktop, in case you break something. Now you just need to edit the old config.xml. Open it up and change the ID, I have described that in [Step 9](#step-9), to the in game ID and paste it in the list.
 
@@ -108,7 +108,7 @@ example config for normal:
 
 15. You have to do the same process for the small and normal folder. However, it should be fine, to just copy the new lines in your config.xml and change the word logo to icon, or the other way around. Then you just need to place the PNGs and rename them.
 16. Now we need to load our files for the last time:
-    Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../../assets/images/fm24guide/stadiumguide11.png)
+    Go in game -> open Preferences -> Interface -> make sure use caching is disabled -> reload ![Screenshot](../../../assets/images/FootballManager/stadiumguide11.png)
 
 ## Final thoughts
 
