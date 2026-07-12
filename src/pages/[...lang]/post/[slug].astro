@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content'
 import BlogPost from '@/layouts/BlogPost'
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog')
+	const posts = (await getCollection('blog')).filter((post) => !post.data.draft)
 
 	return posts.map((post) => {
 		// Sprache erkennen und das "en/" aus dem Dateinamen (Slug) entfernen
