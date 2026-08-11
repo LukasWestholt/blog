@@ -3,8 +3,9 @@ import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import { getTags, getPostByTag } from '@/utils'
+import type { PaginateFunction } from 'astro'
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: { paginate: PaginateFunction }) {
 	// 1. Hole alle Tags (Sprachunabhängig)
 	const allTags = await getTags('all')
 	const paths = []

@@ -19,18 +19,20 @@ const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}
 
 <article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>
 	<a class='relative overflow-hidden' href={postUrl}>
-		{heroImage ? (
-			<Image
-				src={heroImage}
-				width={600}
-				height={300}
-				format='webp'
-				class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
-				alt={`img of ${title}`}
-			/>
-		) : (
-			<div class='h-full min-w-full bg-neutral-200 dark:bg-neutral-800 rounded-[2px]' />
-		)}
+		{
+			heroImage ? (
+				<Image
+					src={heroImage}
+					width={600}
+					height={300}
+					format='webp'
+					class='h-full min-w-full object-cover hover:scale-[101%] transition-all duration-200 rounded-[2px]'
+					alt={`img of ${title}`}
+				/>
+			) : (
+				<div class='h-full min-w-full bg-neutral-200 dark:bg-neutral-800 rounded-[2px]' />
+			)
+		}
 
 		<div class='z-30 absolute bottom-0 w-full h-20'>
 			<div class='-z-10 absolute bottom-0 glass w-full min-h-full'></div>
@@ -96,7 +98,7 @@ const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}
 						{ duration: 2, easing: 'ease' }
 					)
 				}
-			} catch (e) {
+			} catch {
 				// Verhindert ein Blockieren der Animation
 			}
 		} else {

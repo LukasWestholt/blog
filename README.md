@@ -42,7 +42,7 @@ https://github.com/danielcgilibert/blog-template/assets/44746462/56b8399e-cc5b-4
     <img width="510" alt="openblog Lighthouse Score" src="public/openblog-lighthouse-score.svg">
   <a>
 </p>
-    
+
 - ✅ Minimal styling
 - ✅ Mobile responsive
 - ✅ 100/100 Lighthouse performance

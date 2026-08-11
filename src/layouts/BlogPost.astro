@@ -15,7 +15,7 @@ type Props = {
 	relatedPosts: CollectionEntry<'blog'>[]
 }
 
-const { data, readTime, headings, id, relatedPosts } = Astro.props
+const { data, readTime, id, relatedPosts } = Astro.props
 
 const isEnglish = id.startsWith('en/')
 const githubBranch = import.meta.env.GITHUB_BRANCH || 'main'
@@ -94,22 +94,21 @@ const articleDate = pubDate.toISOString()
 				{editLabel} ↗
 			</a>
 
-			{relatedPosts.length > 0 && (
-				<div>
-					<h2 class='text-2xl font-semibold mb-6'>{relatedLabel}</h2>
-					<ListRelatedPosts posts={relatedPosts} />
-				</div>
-			)}
+			{
+				relatedPosts.length > 0 && (
+					<div>
+						<h2 class='text-2xl font-semibold mb-6'>{relatedLabel}</h2>
+						<ListRelatedPosts posts={relatedPosts} />
+					</div>
+				)
+			}
 		</footer>
 	</article>
 </BaseLayout>
 
 <script>
 	const fnObserver = () => {
-		function handleIntersection(
-			entries: IntersectionObserverEntry[],
-			observer: IntersectionObserver
-		) {
+		function handleIntersection(entries: IntersectionObserverEntry[]) {
 			entries.forEach((entry) => {
 				try {
 					// CSS.escape verhindert Abstürze bei Umlauten oder Zahlen am Anfang der ID
@@ -136,7 +135,7 @@ const articleDate = pubDate.toISOString()
 							'duration-200'
 						)
 					}
-				} catch (e) {
+				} catch {
 					// Fehler still abfangen, damit die View Transition nicht einfriert
 				}
 			})
