@@ -5,14 +5,15 @@ import Search from '@/components/Search'
 import TagIcon from './icons/TagIcon.astro'
 import ToggleTheme from './ToggleTheme.astro'
 import { SOCIALNETWORKS } from '@/data/links'
+import { url, stripBase } from '@/utils'
 
-const currentPath = Astro.url.pathname
+const currentPath = stripBase(Astro.url.pathname)
 const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
-const tagsLink = isEnglish ? '/en/tags/' : '/tags/'
+const tagsLink = url(isEnglish ? '/en/tags/' : '/tags/')
 ---
 
 <header class='relative flex items-center h-12 font-semibold'>
-	<a class='text-lg mr-auto' href={isEnglish ? '/en/' : '/'}>Home</a>
+	<a class='text-lg mr-auto' href={url(isEnglish ? '/en/' : '/')}>Home</a>
 
 	<div
 		id='astro-header-drawer'

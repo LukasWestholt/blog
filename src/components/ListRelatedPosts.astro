@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content'
 
-import { cn } from '@/utils'
+import { cn, url } from '@/utils'
 import { Image } from 'astro:assets'
 
 type Props = {
@@ -15,20 +15,27 @@ const { posts } = Astro.props
 	{
 		posts.length > 0 ? (
 			posts.map((post) => {
+				const isEnglish = post.id.startsWith('en/')
+				const baseSlug = isEnglish ? post.slug.replace(/^en\//, '') : post.slug
+				const postUrl = url(isEnglish ? `/en/post/${baseSlug}/` : `/post/${baseSlug}/`)
 				return (
 					<div class='flex flex-wrap gap-2'>
 						<div class='min-h-full'>
+							{post.data.heroImage ? (
 							<Image
 								src={post.data.heroImage}
 								width={200}
 								height={200}
 								format='webp'
-								class='w-16 h-16 object-cover rounded-full  '
+								class='w-16 h-16 object-cover rounded-full'
 								alt={`img of ${post.data.title}`}
 							/>
+						) : (
+							<div class='w-16 h-16 rounded-full bg-neutral-200 dark:bg-neutral-800' />
+						)}
 						</div>
 						<header class='flex justify-center items-center'>
-							<a class='font-medium  hover:underline' href={`/post/${post.slug}/`}>
+							<a class='font-medium hover:underline' href={postUrl}>
 								{post.data.title}
 							</a>
 						</header>

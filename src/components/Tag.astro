@@ -2,12 +2,13 @@
 export interface Props {
 	tag: string
 }
-const { tag } = Astro.props
+import { url, stripBase } from '@/utils'
 
-const currentPath = Astro.url.pathname
+const { tag } = Astro.props
+const currentPath = stripBase(Astro.url.pathname)
 const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
 const tagSlug = tag.toLowerCase().replace(/\s+/g, '-')
-const href = isEnglish ? `/en/tags/${tagSlug}/` : `/tags/${tagSlug}/`
+const href = url(isEnglish ? `/en/tags/${tagSlug}/` : `/tags/${tagSlug}/`)
 ---
 
 <a href={href} aria-label={tag}>

@@ -1,3 +1,4 @@
+import type { CollectionEntry } from 'astro:content'
 import { getCollection } from 'astro:content'
 import { CATEGORIES } from '@/data/categories'
 
@@ -70,4 +71,24 @@ export const getPostByTag = async (tag: string, lang: 'de' | 'en' | 'all' = 'de'
 export const filterPostsByCategory = async (category: string, lang: 'de' | 'en' | 'all' = 'de') => {
 	const posts = await getPosts(undefined, lang)
 	return posts.filter((post) => post.data.category.toLowerCase() === category)
+}
+
+export const getRelatedPosts = async (
+	currentPost: CollectionEntry<'blog'>,
+	lang: 'de' | 'en' | 'all' = 'de',
+	max = 3
+) => {
+	const posts = await getPosts(undefined, lang)
+	const byCategory = posts.filter(
+		(p) => p.id !== currentPost.id && p.data.category === currentPost.data.category
+	)
+	if (byCategory.length >= max) return byCategory.slice(0, max)
+	const tagSet = new Set(currentPost.data.tags.map((t) => t.toLowerCase()))
+	const byTag = posts.filter(
+		(p) =>
+			p.id !== currentPost.id &&
+			!byCategory.includes(p) &&
+			p.data.tags.some((t) => tagSet.has(t.toLowerCase()))
+	)
+	return [...byCategory, ...byTag].slice(0, max)
 }

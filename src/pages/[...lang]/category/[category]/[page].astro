@@ -4,6 +4,7 @@ import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import ListCategories from '@/components/ListCategories'
 import { getCategories, filterPostsByCategory } from '@/utils'
+import { getCategoryTranslation } from '@/data/categories'
 
 export async function getStaticPaths({ paginate }) {
 	const allCategories = await getCategories('all')
@@ -40,11 +41,14 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page, categoryName } = Astro.props
-const { category } = Astro.params
+const { category, lang } = Astro.params
+const isEnglish = lang === 'en'
+const translatedCategoryName = getCategoryTranslation(categoryName, isEnglish ? 'en' : 'de')
+const categoryLabel = isEnglish ? `Category: ${translatedCategoryName}` : `Kategorie: ${translatedCategoryName}`
 ---
 
-<BaseLayout title={`Kategorie: ${categoryName}`}>
-	<TitlePage title={`Kategorie: ${categoryName}`} />
+<BaseLayout title={categoryLabel}>
+	<TitlePage title={categoryLabel} />
 	<ListCategories activeCategory={category} />
 	<ListPosts posts={page.data} />
 </BaseLayout>

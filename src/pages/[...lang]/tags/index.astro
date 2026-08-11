@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout'
 import TitlePage from '@/components/TitlePage'
-import { getTags } from '@/utils'
+import { getTags, url } from '@/utils'
 
 export async function getStaticPaths() {
 	return [
@@ -27,7 +27,7 @@ const titleText = currentLang === 'en' ? 'All Tags' : 'Alle Tags'
 				const tagSlug = tag.toLowerCase().replace(/\s+/g, '-')
 				return (
 					<li>
-						<a href={`/${lang === 'en' ? 'en/' : ''}tags/${tagSlug}/`} class='underline'>
+						<a href={url(`/${lang === 'en' ? 'en/' : ''}tags/${tagSlug}/`)} class='underline'>
 							{tag}
 						</a>
 					</li>

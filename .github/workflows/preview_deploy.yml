@@ -1,0 +1,125 @@
+# .github/workflows/preview_deploy.yml
+#
+# Deploys any non-main branch to https://2lukas.de/preview/<branch-name>/
+#
+# Required GitHub Secrets:
+#   SERVER_PASSWORD    – SFTP password (same as in build_deploy.yml)
+#   PREVIEW_PASSWORD   – HTTP Basic Auth password for the preview (username: preview)
+#
+# Required GitHub Variables (same as build_deploy.yml):
+#   SERVER_HOST, SERVER_PORT, SERVER_USER, SERVER_TARGET
+#
+# Additional variable needed:
+#   SERVER_FS_ROOT – absolute filesystem path on the server (e.g. /www/htdocs/w00000000/)
+#                    Apache needs this to resolve AuthUserFile correctly.
+
+name: Preview Deploy
+
+on:
+  push:
+    branches-ignore:
+      - main
+
+env:
+  server_fingerprint: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA2zJZx6VkSJC14SILqvzLiR3v8eS0D7Zs7C7771yDwa90UW8JkhK23dk/G8R74kdcWYEOn3kCSr/2rz+UtYThZeWUa5F6BcT/X5Gwh1RAlw5ESxnRr+hiZhYLI7BivVIo5EzecIs0KEojMRUkXI+ClHIcyXBY6grflQFgjZphFMs='
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Sanitize branch name
+        id: branch
+        run: |
+          SAFE=$(echo '${{ github.ref_name }}' | tr '/' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
+          echo "name=$SAFE" >> $GITHUB_OUTPUT
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build (no Pagefind, no Sitemap)
+        run: pnpm build:preview
+        env:
+          ASTRO_BASE: /preview/${{ steps.branch.outputs.name }}/
+          GITHUB_BRANCH: ${{ github.ref_name }}
+
+      - name: Validate required variables
+        run: |
+          if [ -z "${{ vars.SERVER_FS_ROOT }}" ]; then
+            echo "::error::SERVER_FS_ROOT variable is not set. Add it under Settings → Secrets and variables → Actions → Variables."
+            exit 1
+          fi
+          if [ -z "${{ secrets.PREVIEW_PASSWORD }}" ]; then
+            echo "::error::PREVIEW_PASSWORD secret is not set. Add it under Settings → Secrets and variables → Actions → Secrets."
+            exit 1
+          fi
+
+      - name: Generate .htaccess (password + noindex)
+        env:
+          PREVIEW_PASSWORD: ${{ secrets.PREVIEW_PASSWORD }}
+          HTPASSWD_PATH: ${{ vars.SERVER_FS_ROOT }}/preview/${{ steps.branch.outputs.name }}/.htpasswd
+        run: |
+          HASH=$(openssl passwd -apr1 "$PREVIEW_PASSWORD")
+          cat >> dist/.htaccess << EOF
+
+          AuthType Basic
+          AuthName "Preview"
+          AuthUserFile $HTPASSWD_PATH
+          Require valid-user
+
+          Options -Indexes
+          Header set X-Robots-Tag "noindex, nofollow"
+          EOF
+          echo "preview:$HASH" > dist/.htpasswd
+
+      - name: Deploy to preview path via SFTP
+        uses: pressidium/lftp-mirror-action@v1
+        with:
+          host: ${{ vars.SERVER_HOST }}
+          port: ${{ vars.SERVER_PORT }}
+          user: ${{ vars.SERVER_USER }}
+          pass: ${{ secrets.SERVER_PASSWORD }}
+          fingerprint: ${{ env.server_fingerprint }}
+          onlyNewer: 'false'
+          restoreMTime: 'false'
+          parallel: '3'
+          localDir: './dist/'
+          remoteDir: ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/
+          options: 'verbose=3 delete'
+
+      - name: Post preview URL as PR comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ steps.branch.outputs.name }}
+          REF: ${{ github.ref_name }}
+        run: |
+          PR_NUMBER=$(gh pr list --head "$REF" --json number --jq '.[0].number' 2>/dev/null)
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "No open PR found for branch $REF, skipping comment."
+            exit 0
+          fi
+          PREVIEW_URL="https://2lukas.de/preview/$BRANCH/"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          MARKER="<!-- preview-deploy-bot -->"
+          BODY="$MARKER"$'\n'"🚀 **Preview deployed!**"$'\n\n'"→ $PREVIEW_URL"$'\n\n'"_Updated on $(date -u '+%Y-%m-%d %H:%M') UTC · [View run]($RUN_URL)_"
+          EXISTING=$(gh api "/repos/${{ github.repository }}/issues/$PR_NUMBER/comments" \
+            --jq ".[] | select(.body | startswith(\"$MARKER\")) | .id" 2>/dev/null | head -1)
+          if [ -n "$EXISTING" ]; then
+            gh api --method PATCH "/repos/${{ github.repository }}/issues/comments/$EXISTING" -f body="$BODY"
+          else
+            gh pr comment "$PR_NUMBER" --body "$BODY"
+          fi
