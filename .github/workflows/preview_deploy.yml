@@ -43,14 +43,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          DEPLOYMENT_ID=$(gh api "/repos/${{ github.repository }}/deployments" \
-            --method POST \
-            -f ref="${{ github.event.pull_request.head.sha }}" \
-            -f environment="preview/${{ steps.branch.outputs.name }}" \
-            -f description="Preview for PR #${{ github.event.pull_request.number }}" \
-            -F auto_merge=false \
-            -f required_contexts='[]' \
-            --jq '.id')
+          DEPLOYMENT_ID=$(jq -n \
+            --arg ref "${{ github.event.pull_request.head.sha }}" \
+            --arg env "preview/${{ steps.branch.outputs.name }}" \
+            --arg desc "Preview for PR #${{ github.event.pull_request.number }}" \
+            '{"ref":$ref,"environment":$env,"description":$desc,"auto_merge":false,"required_contexts":[]}' \
+          | gh api "/repos/${{ github.repository }}/deployments" --method POST --input - --jq '.id')
           echo "id=$DEPLOYMENT_ID" >> $GITHUB_OUTPUT
           gh api "/repos/${{ github.repository }}/deployments/$DEPLOYMENT_ID/statuses" \
             --method POST \
@@ -133,7 +131,7 @@ jobs:
             -f log_url="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
 
       - name: Set deployment status failure
-        if: failure()
+        if: failure() && steps.deployment.outputs.id != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
