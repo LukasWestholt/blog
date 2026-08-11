@@ -100,3 +100,33 @@ jobs:
           localDir: './dist/'
           remoteDir: ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/
           options: 'verbose=3 delete'
+
+      - name: Post preview URL as PR comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ steps.branch.outputs.name }}
+          REF: ${{ github.ref_name }}
+        run: |
+          PR_NUMBER=$(gh pr list --head "$REF" --json number --jq '.[0].number' 2>/dev/null)
+          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
+            echo "No open PR found for branch $REF, skipping comment."
+            exit 0
+          fi
+          PREVIEW_URL="https://2lukas.de/preview/$BRANCH/"
+          MARKER="<!-- preview-deploy-bot -->"
+          BODY=$(cat <<EOF
+$MARKER
+🚀 **Preview deployed!**
+
+→ $PREVIEW_URL
+
+_Updated on $(date -u '+%Y-%m-%d %H:%M') UTC · [View run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})_
+EOF
+)
+          EXISTING=$(gh api "/repos/${{ github.repository }}/issues/$PR_NUMBER/comments" \
+            --jq ".[] | select(.body | startswith(\"$MARKER\")) | .id" 2>/dev/null | head -1)
+          if [ -n "$EXISTING" ]; then
+            gh api --method PATCH "/repos/${{ github.repository }}/issues/comments/$EXISTING" -f body="$BODY"
+          else
+            gh pr comment "$PR_NUMBER" --body "$BODY"
+          fi
