@@ -79,9 +79,6 @@ jobs:
           AuthName "Preview"
           AuthUserFile $HTPASSWD_PATH
           Require valid-user
-
-          Options -Indexes
-          Header set X-Robots-Tag "noindex, nofollow"
           EOF
           echo "preview:$HASH" > dist/.htpasswd
 
