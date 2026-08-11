@@ -18,7 +18,8 @@ type Props = {
 const { data, readTime, headings, id, relatedPosts } = Astro.props
 
 const isEnglish = id.startsWith('en/')
-const githubEditUrl = `https://github.com/LukasWestholt/blog/edit/main/src/content/blog/${id}`
+const githubBranch = import.meta.env.GITHUB_BRANCH || 'main'
+const githubEditUrl = `https://github.com/LukasWestholt/blog/edit/${githubBranch}/src/content/blog/${id}`
 const editLabel = isEnglish ? 'Edit this article on GitHub' : 'Artikel auf GitHub bearbeiten'
 const relatedLabel = isEnglish ? 'Related Posts' : 'Ähnliche Beiträge'
 const { title, description, pubDate, heroImage, tags, author } = data

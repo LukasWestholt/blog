@@ -55,6 +55,7 @@ jobs:
         run: pnpm build:preview
         env:
           ASTRO_BASE: /preview/${{ steps.branch.outputs.name }}/
+          GITHUB_BRANCH: ${{ github.ref_name }}
 
       - name: Validate required variables
         run: |
