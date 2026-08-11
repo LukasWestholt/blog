@@ -30,3 +30,14 @@ jobs:
           ssh-keyscan -p ${{ vars.SERVER_PORT }} ${{ vars.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
           lftp -e "rm -rf ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/; exit" \
             sftp://${{ vars.SERVER_USER }}:${{ secrets.SERVER_PASSWORD }}@${{ vars.SERVER_HOST }}:${{ vars.SERVER_PORT }}
+
+      - name: Deactivate GitHub deployments
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api "/repos/${{ github.repository }}/deployments" \
+            --jq ".[] | select(.environment == \"preview/${{ steps.branch.outputs.name }}\") | .id" \
+          | while read -r ID; do
+            gh api "/repos/${{ github.repository }}/deployments/$ID/statuses" \
+              --method POST -f state="inactive"
+          done
