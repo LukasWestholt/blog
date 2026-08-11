@@ -4,7 +4,7 @@ import BlogPost from '@/layouts/BlogPost'
 import { getRelatedPosts } from '@/utils'
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog')
+	const posts = (await getCollection('blog')).filter((post) => !post.data.draft)
 
 	return posts.map((post) => {
 		// Sprache erkennen und das "en/" aus dem Dateinamen (Slug) entfernen
