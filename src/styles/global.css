@@ -2,13 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 100 900;
+	font-display: swap;
+	src: url('/fonts/Inter-Variable.woff2') format('woff2');
+}
+
 @layer base {
 	/* body {
 		transition: background-color 0.5s ease;
 	} */
 
-	.prose code {
-		@apply text-base;
+	.prose code:not(pre code) {
+		@apply text-sm font-mono px-1.5 py-1 rounded leading-relaxed
+		       bg-violet-100 text-violet-800
+		       dark:bg-violet-900/40 dark:text-violet-300;
+	}
+
+	.prose code:not(pre code)::before,
+	.prose code:not(pre code)::after {
+		content: none;
+	}
+
+	.prose code:not(pre code):hover::before,
+	.prose code:not(pre code):hover::after {
+		content: '`';
+		@apply text-violet-400 dark:text-violet-500;
 	}
 
 	/* prose styles here */
