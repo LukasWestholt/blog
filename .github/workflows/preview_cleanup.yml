@@ -1,0 +1,32 @@
+# .github/workflows/preview_cleanup.yml
+#
+# Deletes the preview deployment when a PR is merged or closed.
+
+name: Preview Cleanup
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sanitize branch name
+        id: branch
+        run: |
+          SAFE=$(echo '${{ github.head_ref }}' | tr '/' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
+          echo "name=$SAFE" >> $GITHUB_OUTPUT
+
+      - name: Install lftp
+        run: sudo apt-get install -y lftp
+
+      - name: Remove preview directory via SFTP
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p ${{ vars.SERVER_PORT }} ${{ vars.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          lftp -e "rm -rf ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/; exit" \
+            sftp://${{ vars.SERVER_USER }}:${{ secrets.SERVER_PASSWORD }}@${{ vars.SERVER_HOST }}:${{ vars.SERVER_PORT }}

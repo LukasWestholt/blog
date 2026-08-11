@@ -16,8 +16,9 @@
 name: Preview Deploy
 
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
       - main
 
 env:
@@ -34,7 +35,7 @@ jobs:
       - name: Sanitize branch name
         id: branch
         run: |
-          SAFE=$(echo '${{ github.ref_name }}' | tr '/' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
+          SAFE=$(echo '${{ github.head_ref }}' | tr '/' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
           echo "name=$SAFE" >> $GITHUB_OUTPUT
 
       - name: Install pnpm
@@ -55,7 +56,7 @@ jobs:
         run: pnpm build:preview
         env:
           ASTRO_BASE: /preview/${{ steps.branch.outputs.name }}/
-          GITHUB_BRANCH: ${{ github.ref_name }}
+          GITHUB_BRANCH: ${{ github.head_ref }}
 
       - name: Validate required variables
         run: |
@@ -105,13 +106,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: ${{ steps.branch.outputs.name }}
-          REF: ${{ github.ref_name }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
-          PR_NUMBER=$(gh pr list --head "$REF" --json number --jq '.[0].number' 2>/dev/null)
-          if [ -z "$PR_NUMBER" ] || [ "$PR_NUMBER" = "null" ]; then
-            echo "No open PR found for branch $REF, skipping comment."
-            exit 0
-          fi
           PREVIEW_URL="https://2lukas.de/preview/$BRANCH/"
           RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           MARKER="<!-- preview-deploy-bot -->"
