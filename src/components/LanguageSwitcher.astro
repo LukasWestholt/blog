@@ -34,11 +34,12 @@ if (isPostPage) {
 	// Für alle anderen Seiten (Kategorien, Tags, Startseite) erlauben wir den Wechsel,
 	// da deine Post-Utils bei fehlenden Inhalten automatisch Fallbacks liefern!
 	const basePath = currentPath.replace(/^\/en/, '') || '/'
+	const normalizedPath = basePath.replace(/\/$/, '') || '/'
 
 	// Ausnahme: Seiten ohne Übersetzung (z.B. Impressum — deutsches Rechtsdokument)
 	const untranslatablePaths = ['/impress']
 
-	if (untranslatablePaths.includes(basePath)) {
+	if (untranslatablePaths.includes(normalizedPath)) {
 		hasTranslation = false
 		targetUrl = '#'
 	} else if (isEnglish) {

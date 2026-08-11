@@ -57,3 +57,7 @@ Ergebnis. Die größte Schwäche bleibt die unscharfe Behandlungsgrenze: Ich mes
 ab wann ein Projekt KI-Nutzung sichtbar macht, nicht ab wann es sie wirklich
 nutzt. Der nächste Schritt wäre, von der Projektebene auf die einzelnen
 KI-zugeschriebenen Änderungen herunterzugehen.
+
+---
+
+Die vollständige Seminararbeit gibt es hier als PDF: [Westholt-PARSE-prompt-engineering-final.pdf](/docs/Westholt-PARSE-prompt-engineering-final.pdf)
