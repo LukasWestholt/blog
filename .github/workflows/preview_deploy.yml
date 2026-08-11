@@ -56,6 +56,17 @@ jobs:
         env:
           ASTRO_BASE: /preview/${{ steps.branch.outputs.name }}/
 
+      - name: Validate required variables
+        run: |
+          if [ -z "${{ vars.SERVER_FS_ROOT }}" ]; then
+            echo "::error::SERVER_FS_ROOT variable is not set. Add it under Settings → Secrets and variables → Actions → Variables."
+            exit 1
+          fi
+          if [ -z "${{ secrets.PREVIEW_PASSWORD }}" ]; then
+            echo "::error::PREVIEW_PASSWORD secret is not set. Add it under Settings → Secrets and variables → Actions → Secrets."
+            exit 1
+          fi
+
       - name: Generate .htaccess (password + noindex)
         env:
           PREVIEW_PASSWORD: ${{ secrets.PREVIEW_PASSWORD }}
