@@ -33,5 +33,18 @@ const { title, description, image, articleDate } = Astro.props
 				margin-left: calc(100vw - 100%); /* prevent layout shift */
 			}
 		</style>
+		{import.meta.env.BASE_URL !== '/' && (
+			<script define:vars={{ base: import.meta.env.BASE_URL.replace(/\/$/, '') }}>
+				function rewriteLinks() {
+					document.querySelectorAll('a[href^="/"]').forEach((a) => {
+						const href = a.getAttribute('href')
+						if (href && !href.startsWith(base)) {
+							a.setAttribute('href', base + href)
+						}
+					})
+				}
+				document.addEventListener('astro:page-load', rewriteLinks)
+			</script>
+		)}
 	</body>
 </html>

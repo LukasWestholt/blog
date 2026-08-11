@@ -22,6 +22,7 @@
 	"scripts": {
 		"start": "astro dev",
 		"build": "astro build",
+		"build:preview": "astro build",
 		"sync": "astro sync",
 		"preview": "astro preview",
 		"postbuild": "pagefind --site dist",

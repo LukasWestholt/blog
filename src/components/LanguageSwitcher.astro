@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content'
 
-const currentPath = Astro.url.pathname
+const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
+const rawPath = Astro.url.pathname
+const currentPath = base && rawPath.startsWith(base) ? rawPath.slice(base.length) || '/' : rawPath
 
 const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
 

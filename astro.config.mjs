@@ -8,6 +8,7 @@ import { siteConfig } from './src/data/site.config'
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site,
+	base: process.env.ASTRO_BASE || '/',
 	i18n: {
 		defaultLocale: 'de',
 		locales: ['de', 'en'],
@@ -24,6 +25,7 @@ export default defineConfig({
 		}
 	},
 	integrations: [
+		...(process.env.ASTRO_BASE ? [] : [sitemap()]),
 		mdx({
 			syntaxHighlight: 'shiki',
 			shikiConfig: {
@@ -35,7 +37,6 @@ export default defineConfig({
 			},
 			drafts: true
 		}),
-		sitemap(),
 		tailwind()
 	]
 })

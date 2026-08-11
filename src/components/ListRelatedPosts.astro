@@ -15,6 +15,9 @@ const { posts } = Astro.props
 	{
 		posts.length > 0 ? (
 			posts.map((post) => {
+				const isEnglish = post.id.startsWith('en/')
+				const baseSlug = isEnglish ? post.slug.replace(/^en\//, '') : post.slug
+				const postUrl = isEnglish ? `/en/post/${baseSlug}/` : `/post/${baseSlug}/`
 				return (
 					<div class='flex flex-wrap gap-2'>
 						<div class='min-h-full'>
@@ -32,7 +35,7 @@ const { posts } = Astro.props
 						)}
 						</div>
 						<header class='flex justify-center items-center'>
-							<a class='font-medium  hover:underline' href={`/post/${post.slug}/`}>
+							<a class='font-medium hover:underline' href={postUrl}>
 								{post.data.title}
 							</a>
 						</header>

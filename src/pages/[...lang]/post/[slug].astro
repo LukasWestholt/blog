@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import BlogPost from '@/layouts/BlogPost'
+import { getRelatedPosts } from '@/utils'
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog')
@@ -34,8 +35,9 @@ function formatReadingTime(minutes: string | number | undefined, lang: string) {
 }
 
 const readTime = formatReadingTime(remarkPluginFrontmatter?.minutesRead, currentLang)
+const relatedPosts = await getRelatedPosts(post, currentLang)
 ---
 
-<BlogPost id={post.id} data={post.data} headings={headings} readTime={readTime}>
+<BlogPost id={post.id} data={post.data} headings={headings} readTime={readTime} relatedPosts={relatedPosts}>
 	<Content />
 </BlogPost>
