@@ -1,9 +1,9 @@
 ---
-import { cn } from '@/utils'
+import { cn, url, stripBase } from '@/utils'
 import { getCategoryTranslation } from '@/data/categories'
 
 const { name = 'View All', activeCategory } = Astro.props
-const currentPath = Astro.url.pathname
+const currentPath = stripBase(Astro.url.pathname)
 
 const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
 
@@ -18,7 +18,7 @@ const isActive =
 	(currentPath === '/en/' && name === 'View All')
 
 // Die korrekte URL aufbauen (mit oder ohne /en)
-const href =
+const href = url(
 	name === 'View All'
 		? isEnglish
 			? '/en/'
@@ -26,6 +26,7 @@ const href =
 		: isEnglish
 			? `/en/category/${categorySlug}/1`
 			: `/category/${categorySlug}/1`
+)
 ---
 
 <a

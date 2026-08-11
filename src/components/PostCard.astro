@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import FormattedDate from '@/components/FormattedDate'
 import ArrowUp from '@/components/icons/ArrowUp'
+import { url } from '@/utils'
 
 const {
 	id,
@@ -13,7 +14,7 @@ const {
 // Sprache anhand der ID erkennen und die URL korrekt zusammenbauen
 const isEnglishPost = id.startsWith('en/')
 const baseSlug = isEnglishPost ? slug.replace(/^en\//, '') : slug
-const postUrl = isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}/`
+const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}/`)
 ---
 
 <article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>

@@ -1,9 +1,8 @@
 ---
 import { getCollection } from 'astro:content'
+import { url, stripBase } from '@/utils'
 
-const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
-const rawPath = Astro.url.pathname
-const currentPath = base && rawPath.startsWith(base) ? rawPath.slice(base.length) || '/' : rawPath
+const currentPath = stripBase(Astro.url.pathname)
 
 const isEnglish = currentPath.startsWith('/en/') || currentPath === '/en'
 
@@ -55,7 +54,7 @@ if (isPostPage) {
 		<div class='flex justify-end w-full'>
 			{hasTranslation ? (
 				<a
-					href={targetUrl}
+					href={url(targetUrl)}
 					class='inline-flex items-center gap-2 px-4 py-2 text-sm font-medium border border-neutral-200 dark:border-neutral-700 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors'
 				>
 					{isEnglish ? '🇩🇪 Auf Deutsch lesen' : '🇬🇧 Read in English'}
