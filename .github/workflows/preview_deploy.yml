@@ -113,16 +113,9 @@ jobs:
             exit 0
           fi
           PREVIEW_URL="https://2lukas.de/preview/$BRANCH/"
+          RUN_URL="${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           MARKER="<!-- preview-deploy-bot -->"
-          BODY=$(cat <<EOF
-$MARKER
-🚀 **Preview deployed!**
-
-→ $PREVIEW_URL
-
-_Updated on $(date -u '+%Y-%m-%d %H:%M') UTC · [View run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})_
-EOF
-)
+          BODY="$MARKER"$'\n'"🚀 **Preview deployed!**"$'\n\n'"→ $PREVIEW_URL"$'\n\n'"_Updated on $(date -u '+%Y-%m-%d %H:%M') UTC · [View run]($RUN_URL)_"
           EXISTING=$(gh api "/repos/${{ github.repository }}/issues/$PR_NUMBER/comments" \
             --jq ".[] | select(.body | startswith(\"$MARKER\")) | .id" 2>/dev/null | head -1)
           if [ -n "$EXISTING" ]; then
