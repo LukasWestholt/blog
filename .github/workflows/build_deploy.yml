@@ -75,7 +75,7 @@ jobs:
     if: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.run_full_deploy == 'false' }} # Only run deploy if 'run_full_deploy' input is 'false'
     env:
       onlyNewer: 'true'
-      options: 'ignore-time verbose=3 delete'
+      options: 'ignore-time verbose=1 delete'
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v8
@@ -94,7 +94,7 @@ jobs:
           # lftp settings
           onlyNewer: ${{ env.onlyNewer }}
           restoreMTime: 'false'
-          parallel: '3'
+          parallel: '10'
           # Mirror command options
           localDir: './dist/'
           remoteDir: ${{ vars.SERVER_TARGET }}
@@ -107,7 +107,7 @@ jobs:
     if: ${{ github.event.inputs.run_full_deploy == 'true' }}  # Only run full-deploy if 'run_full_deploy' input is 'true'
     env:
       onlyNewer: 'false'
-      options: 'verbose=3 delete'
+      options: 'verbose=1 delete'
     steps:
       - name: Download build artifact
         uses: actions/download-artifact@v8
@@ -126,7 +126,7 @@ jobs:
           # lftp settings
           onlyNewer: ${{ env.onlyNewer }}
           restoreMTime: 'false'
-          parallel: '3'
+          parallel: '10'
           # Mirror command options
           localDir: './dist/'
           remoteDir: ${{ vars.SERVER_TARGET }}
