@@ -39,11 +39,6 @@ const readTime = formatReadingTime(remarkPluginFrontmatter?.minutesRead, current
 const relatedPosts = await getRelatedPosts(post, currentLang)
 ---
 
-<BlogPost
-	id={post.id}
-	data={post.data}
-	readTime={readTime}
-	relatedPosts={relatedPosts}
->
+<BlogPost id={post.id} data={post.data} readTime={readTime} relatedPosts={relatedPosts}>
 	<Content />
 </BlogPost>
