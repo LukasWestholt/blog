@@ -1,4 +1,3 @@
-// @ts-ignore
 import GithubIcon from '@/components/icons/GithubIcon'
 
 // ADD YOUR SOCIAL NETWORKS HERE

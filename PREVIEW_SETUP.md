@@ -7,8 +7,8 @@ Nach dem Merge dieser Änderungen werden alle Branches außer `main` automatisch
 
 Gehe zu: **github.com/LukasWestholt/blog → Settings → Secrets and variables → Actions → New repository secret**
 
-| Name | Wert |
-|---|---|
+| Name               | Wert                                             |
+| ------------------ | ------------------------------------------------ |
 | `PREVIEW_PASSWORD` | dein gewünschtes Passwort für den Passwortschutz |
 
 HTTP Basic Auth: Benutzername ist immer `preview`.
@@ -17,8 +17,8 @@ HTTP Basic Auth: Benutzername ist immer `preview`.
 
 Gehe zu: **github.com/LukasWestholt/blog → Settings → Secrets and variables → Actions → Variables → New repository variable**
 
-| Name | Wert |
-|---|---|
+| Name             | Wert                                             |
+| ---------------- | ------------------------------------------------ |
 | `SERVER_FS_ROOT` | absoluter Dateisystem-Pfad auf dem Strato-Server |
 
 Apache braucht diesen Pfad um die `.htpasswd`-Datei aufzulösen — der SFTP-Pfad (`SERVER_TARGET = "/"`) reicht dafür nicht.

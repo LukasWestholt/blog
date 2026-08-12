@@ -11,17 +11,18 @@ export async function getStaticPaths() {
 		const isEnglish = post.id.startsWith('en/')
 		const lang = isEnglish ? 'en' : undefined
 		const baseSlug = isEnglish ? post.slug.replace(/^en\//, '') : post.slug
+		const currentLang: 'de' | 'en' = isEnglish ? 'en' : 'de'
 
 		return {
 			// Baut die Pfade: "/en/post/calanyze" und "/post/fuechse-und-baby-boom"
 			params: { lang, slug: baseSlug },
-			props: { post, currentLang: isEnglish ? 'en' : 'de' }
+			props: { post, currentLang }
 		}
 	})
 }
 
 const { post, currentLang } = Astro.props
-const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const { Content, remarkPluginFrontmatter } = await post.render()
 
 // Lesezeit berechnen und perfekt formatieren
 function formatReadingTime(minutes: string | number | undefined, lang: string) {
@@ -38,6 +39,6 @@ const readTime = formatReadingTime(remarkPluginFrontmatter?.minutesRead, current
 const relatedPosts = await getRelatedPosts(post, currentLang)
 ---
 
-<BlogPost id={post.id} data={post.data} headings={headings} readTime={readTime} relatedPosts={relatedPosts}>
+<BlogPost id={post.id} data={post.data} readTime={readTime} relatedPosts={relatedPosts}>
 	<Content />
 </BlogPost>

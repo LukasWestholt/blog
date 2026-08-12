@@ -4,7 +4,7 @@ const CATEGORY_CONFIG = {
 	'Football Manager': { de: 'Football Manager', en: 'Football Manager' },
 	Thoughts: { de: 'Gedanken', en: 'Thoughts' },
 	Achievements: { de: 'Erfolge', en: 'Achievements' },
-	Research: { de: 'Research', en: 'Research' },
+	Research: { de: 'Research', en: 'Research' }
 } as const
 
 type CategoryKey = keyof typeof CATEGORY_CONFIG

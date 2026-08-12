@@ -12,8 +12,8 @@ import MoonIcon from '@/components/icons/MoonIcon'
 			if (button) {
 				button.addEventListener('click', (e) => {
 					if (e.currentTarget instanceof HTMLButtonElement) {
-						let isPressed = e.currentTarget.getAttribute('aria-pressed') === 'true'
-						let themeChangeEvent = new CustomEvent('theme-change', {
+						const isPressed = e.currentTarget.getAttribute('aria-pressed') === 'true'
+						const themeChangeEvent = new CustomEvent('theme-change', {
 							detail: {
 								theme: isPressed ? 'light' : 'dark'
 							}
