@@ -28,6 +28,30 @@
 	}
 }
 
+.prose .heading-anchor {
+	@apply absolute -left-6 w-6 text-center no-underline
+		opacity-0 text-zinc-400 dark:text-zinc-500
+		transition-opacity duration-150;
+}
+
+.prose h1:hover .heading-anchor,
+.prose h2:hover .heading-anchor,
+.prose h3:hover .heading-anchor,
+.prose h4:hover .heading-anchor,
+.prose h5:hover .heading-anchor,
+.prose h6:hover .heading-anchor {
+	@apply opacity-100;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+	@apply relative;
+}
+
 .glass {
 	background: rgba(57, 56, 56, 0.52);
 	backdrop-filter: blur(13px) saturate(150%);
