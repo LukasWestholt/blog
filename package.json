@@ -29,7 +29,7 @@
 		"format:check": "prettier --check .",
 		"format": "prettier --write .",
 		"lint": "eslint .",
-		"typecheck": "astro check --yes",
+		"typecheck": "astro sync && astro-check",
 		"test": "vitest run",
 		"pre-commit": "lint-staged",
 		"prepare": "husky"
