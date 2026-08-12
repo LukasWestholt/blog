@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { post, currentLang } = Astro.props
-const { Content, headings, remarkPluginFrontmatter } = await post.render()
+const { Content, remarkPluginFrontmatter } = await post.render()
 
 // Lesezeit berechnen und perfekt formatieren
 function formatReadingTime(minutes: string | number | undefined, lang: string) {
@@ -42,7 +42,6 @@ const relatedPosts = await getRelatedPosts(post, currentLang)
 <BlogPost
 	id={post.id}
 	data={post.data}
-	headings={headings}
 	readTime={readTime}
 	relatedPosts={relatedPosts}
 >

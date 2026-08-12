@@ -4,13 +4,11 @@ import FormattedDate from '@/components/FormattedDate'
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
 import ListRelatedPosts from '@/components/ListRelatedPosts'
-import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
 
 type Props = {
 	id: CollectionEntry<'blog'>['id']
 	data: CollectionEntry<'blog'>['data']
-	headings: MarkdownHeading[]
 	readTime: string
 	relatedPosts: CollectionEntry<'blog'>[]
 }
