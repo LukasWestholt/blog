@@ -16,6 +16,13 @@ module.exports = {
 			options: {
 				parser: 'astro'
 			}
+		},
+		{
+			files: 'src/content/blog/**/*.md',
+			options: {
+				printWidth: 120,
+				proseWrap: 'always'
+			}
 		}
 	]
 }
