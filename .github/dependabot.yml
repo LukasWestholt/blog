@@ -9,6 +9,7 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    open-pull-requests-limit: 10
     cooldown:
       default-days: 3
     groups:
@@ -25,6 +26,7 @@ updates:
           - "tailwindcss"
           - "@tailwindcss/*"
           - "tailwind-merge"
+          - "clsx"
         update-types:
           - "minor"
           - "patch"
@@ -33,7 +35,10 @@ updates:
           - "eslint*"
           - "@typescript-eslint/*"
           - "typescript-eslint"
+          - "typescript"
           - "prettier*"
+          - "husky"
+          - "lint-staged"
         update-types:
           - "minor"
           - "patch"
@@ -41,6 +46,13 @@ updates:
         patterns:
           - "vitest"
           - "@vitest/*"
+        update-types:
+          - "minor"
+          - "patch"
+      pagefind:
+        patterns:
+          - "pagefind"
+          - "@pagefind/*"
         update-types:
           - "minor"
           - "patch"
