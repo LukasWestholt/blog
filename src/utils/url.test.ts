@@ -43,8 +43,12 @@ describe('stripBase()', () => {
 			)
 		})
 
-		it('returns / when pathname equals base', () => {
+		it('returns / when pathname equals base with trailing slash', () => {
 			expect(stripBase('/preview/my-branch/', PREVIEW_BASE)).toBe('/')
+		})
+
+		it('returns / when pathname equals base without trailing slash', () => {
+			expect(stripBase('/preview/my-branch', PREVIEW_BASE)).toBe('/')
 		})
 
 		it('returns pathname unchanged when prefix does not match', () => {

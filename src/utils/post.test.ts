@@ -6,7 +6,14 @@ vi.mock('astro:content', () => ({
 }))
 
 import { getCollection } from 'astro:content'
-import { getPosts, getTags, getPostByTag, filterPostsByCategory, getRelatedPosts } from './post'
+import {
+	getPosts,
+	getTags,
+	getPostByTag,
+	filterPostsByCategory,
+	getRelatedPosts,
+	getCategories
+} from './post'
 
 const mockGetCollection = vi.mocked(getCollection)
 
@@ -123,6 +130,28 @@ describe('getPosts()', () => {
 			expect(posts).toHaveLength(2)
 			expect(posts[0].id).toBe('a.md')
 		})
+	})
+})
+
+describe('getCategories()', () => {
+	it('returns unique categories from published posts', async () => {
+		mockGetCollection.mockResolvedValue([
+			makePost('a.md', { category: 'IT' }),
+			makePost('b.md', { category: 'Projects' }),
+			makePost('c.md', { category: 'IT' })
+		])
+		const categories = await getCategories('all')
+		expect(categories).toEqual(['IT', 'Projects'])
+	})
+
+	it('sorts categories by CATEGORIES order, not appearance order', async () => {
+		mockGetCollection.mockResolvedValue([
+			makePost('a.md', { category: 'Research' }),
+			makePost('b.md', { category: 'IT' }),
+			makePost('c.md', { category: 'Projects' })
+		])
+		const categories = await getCategories('all')
+		expect(categories).toEqual(['IT', 'Projects', 'Research'])
 	})
 })
 

@@ -4,7 +4,7 @@ import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
 	{
-		ignores: ['dist', '.astro', 'node_modules', '.github', 'pnpm-lock.yaml']
+		ignores: ['dist', '.astro', 'node_modules', '.github', 'pnpm-lock.yaml', 'coverage']
 	},
 	...tseslint.configs.recommended,
 	...eslintPluginAstro.configs.recommended,
