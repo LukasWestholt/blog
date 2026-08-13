@@ -25,7 +25,42 @@ env:
   server_fingerprint: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAIEA2zJZx6VkSJC14SILqvzLiR3v8eS0D7Zs7C7771yDwa90UW8JkhK23dk/G8R74kdcWYEOn3kCSr/2rz+UtYThZeWUa5F6BcT/X5Gwh1RAlw5ESxnRr+hiZhYLI7BivVIo5EzecIs0KEojMRUkXI+ClHIcyXBY6grflQFgjZphFMs='
 
 jobs:
+  quality:
+    name: Quality gates
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Typecheck
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
   preview:
+    name: Build and deploy preview
     runs-on: ubuntu-latest
     if: github.actor != 'dependabot[bot]'
 
@@ -69,18 +104,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Check formatting
-        run: pnpm format:check
-
-      - name: Lint
-        run: pnpm lint
-
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Test
-        run: pnpm test
 
       - name: Build (no Pagefind, no Sitemap)
         run: pnpm build:preview
@@ -127,10 +150,10 @@ jobs:
           fingerprint: ${{ env.server_fingerprint }}
           onlyNewer: 'false'
           restoreMTime: 'false'
-          parallel: '3'
+          parallel: '10'
           localDir: './dist/'
           remoteDir: ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/
-          options: 'verbose=3 delete'
+          options: 'verbose=1 delete'
 
       - name: Set deployment status success
         if: success()
