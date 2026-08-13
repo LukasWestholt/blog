@@ -15,8 +15,8 @@ importers:
         specifier: 4.0.8
         version: 4.0.8(typescript@6.0.3)
       astro-font:
-        specifier: ^0.0.72
-        version: 0.0.72
+        specifier: ^1.2.0
+        version: 1.2.0
       sharp:
         specifier: ^0.34.5
         version: 0.34.5
@@ -1511,8 +1511,8 @@ packages:
     resolution: {integrity: sha512-idgbHE8cjEU9f4Ne46RiGgwEviXYarNVoQoTZr+H1j7mbNCKp8EGGov2bR64/cvMpfBsX3XNPu9+muxAhK84eg==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
 
-  astro-font@0.0.72:
-    resolution: {integrity: sha512-FUjIerovSg2lsfJfvvqY23hgvc++gHi69ikFkxm0mqO3MPFykK5ppeUuROUjhNbE6vwdD8MpiJOy1CR5S0g/lQ==}
+  astro-font@1.2.0:
+    resolution: {integrity: sha512-Jcgag+vUQQIlw/RBMrQ+lsDc+m0Weyjke3+ilK9lWIJVkTn24jUKBS0FE7Zi+ojDMVSyasJ8HEmHzKizJL3SkA==}
 
   astro@4.0.8:
     resolution: {integrity: sha512-LwbYUfdrfys5mtI6cA5V8UvPRUVVTRQ68uF1ylrEge6BkPcHHJ7qCYLNdjnNPxZDR9bWi1awILJESB6j+w0P4w==}
@@ -5334,7 +5334,7 @@ snapshots:
       - '@emnapi/runtime'
       - supports-color
 
-  astro-font@0.0.72: {}
+  astro-font@1.2.0: {}
 
   astro@4.0.8(typescript@6.0.3):
     dependencies:
