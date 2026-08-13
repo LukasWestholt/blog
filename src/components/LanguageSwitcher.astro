@@ -22,7 +22,7 @@ if (isPostPage) {
 
 	// Prüfen, ob das Gegenstück auch wirklich existiert
 	const allPosts = await getCollection('blog')
-	hasTranslation = allPosts.some((post) => post.slug === targetCollectionSlug)
+	hasTranslation = allPosts.some((post) => post.id === targetCollectionSlug)
 
 	// Neue URL bauen
 	if (hasTranslation) {
