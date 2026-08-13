@@ -1,0 +1,3 @@
+# Excluded from build_deploy.yml's mirror (upload and delete); preview/ is owned
+# by preview_deploy.yml and preview_cleanup.yml only.
+preview/
