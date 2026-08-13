@@ -7,13 +7,12 @@ import { url } from '@/utils'
 const {
 	id,
 	data: { title, description, pubDate, heroImage, category },
-	readTime,
-	slug
+	readTime
 } = Astro.props
 
 // Sprache anhand der ID erkennen und die URL korrekt zusammenbauen
 const isEnglishPost = id.startsWith('en/')
-const baseSlug = isEnglishPost ? slug.replace(/^en\//, '') : slug
+const baseSlug = isEnglishPost ? id.replace(/^en\//, '') : id
 const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}/`)
 ---
 

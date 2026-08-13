@@ -1,5 +1,6 @@
 ---
 import { getTags, getPostByTag } from '@/utils'
+import { render } from 'astro:content'
 import PostCard from '@/components/PostCard'
 
 import BaseLayout from '@/layouts/BaseLayout'
@@ -59,7 +60,7 @@ function formatReadingTime(minutes: string | number | undefined, lang: string) {
 		<section class='grid grid-cols-1 md:grid-cols-2 gap-8'>
 			{
 				posts.map(async (post) => {
-					const { remarkPluginFrontmatter } = await post.render()
+					const { remarkPluginFrontmatter } = await render(post)
 					const readTime = formatReadingTime(remarkPluginFrontmatter?.minutesRead, currentLang)
 					return <PostCard {...post} {readTime} />
 				})

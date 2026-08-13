@@ -1,12 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--color-white: #f8f9fa;
+	--font-family-body:
+		'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+	--grid-template-columns-list: repeat(auto-fill, minmax(400px, max-content));
+}
 
 @layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
-
 	.prose code {
 		@apply text-base;
 	}
@@ -18,13 +23,13 @@
 	h4,
 	h5,
 	h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
+		@apply !text-zinc-800 dark:!text-zinc-100;
 	}
 
 	html.dark .shiki,
 	html.dark .shiki span {
 		color: var(--shiki-dark) !important;
-		background-color: theme(colors.gray.900) !important;
+		background-color: var(--color-gray-900) !important;
 	}
 }
 
