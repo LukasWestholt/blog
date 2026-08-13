@@ -1,10 +1,10 @@
-export function url(path: string): string {
+export function url(path: string, base = import.meta.env.BASE_URL): string {
 	if (path === '#') return '#'
-	const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
-	return base + path
+	const b = base === '/' ? '' : base.replace(/\/$/, '')
+	return b + path
 }
 
-export function stripBase(pathname: string): string {
-	const base = import.meta.env.BASE_URL === '/' ? '' : import.meta.env.BASE_URL.replace(/\/$/, '')
-	return base && pathname.startsWith(base) ? pathname.slice(base.length) || '/' : pathname
+export function stripBase(pathname: string, base = import.meta.env.BASE_URL): string {
+	const b = base === '/' ? '' : base.replace(/\/$/, '')
+	return b && pathname.startsWith(b) ? pathname.slice(b.length) || '/' : pathname
 }
