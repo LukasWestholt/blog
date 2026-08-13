@@ -25,11 +25,14 @@ trap 'rm -rf "$work_dir"' EXIT
 # 1. Manifest of the freshly built dist/
 (cd "$DIST_DIR" && find . -type f | sort | xargs -r sha256sum) >"$work_dir/new-manifest.txt"
 
-# 2. Manifest of what's actually on the server right now (absent on the
-#    very first run under this scheme -- treat everything as new then)
-lftp -e "get '${MANIFEST_REMOTE}' -o '$work_dir/old-manifest.txt'; bye" "$SFTP_URL" \
-  || true
-touch "$work_dir/old-manifest.txt"
+# 2. Manifest of what's actually on the server right now (absent on a brand
+#    new preview path or the very first deploy under this scheme -- treat
+#    everything as new then). Truncate explicitly on failure rather than
+#    relying on the (possibly partial) file lftp's failed get may have left
+#    behind.
+if ! lftp -e "get '${MANIFEST_REMOTE}' -o '$work_dir/old-manifest.txt'; bye" "$SFTP_URL"; then
+  : >"$work_dir/old-manifest.txt"
+fi
 sort -o "$work_dir/old-manifest.txt" "$work_dir/old-manifest.txt"
 sort -o "$work_dir/new-manifest.txt" "$work_dir/new-manifest.txt"
 

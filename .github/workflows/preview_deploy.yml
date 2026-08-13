@@ -144,20 +144,22 @@ jobs:
           EOF
           echo "preview:$HASH" > dist/.htpasswd
 
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Add server fingerprint to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ vars.SERVER_HOST }} ${{ env.server_fingerprint }}" >> ~/.ssh/known_hosts
+
       - name: Deploy to preview path via SFTP
-        uses: pressidium/lftp-mirror-action@v1
-        with:
-          host: ${{ vars.SERVER_HOST }}
-          port: ${{ vars.SERVER_PORT }}
-          user: ${{ vars.SERVER_USER }}
-          pass: ${{ secrets.SERVER_PASSWORD }}
-          fingerprint: ${{ env.server_fingerprint }}
-          onlyNewer: 'false'
-          restoreMTime: 'false'
-          parallel: '10'
-          localDir: './dist/'
-          remoteDir: ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/
-          options: 'verbose=1 delete'
+        env:
+          SFTP_HOST: ${{ vars.SERVER_HOST }}
+          SFTP_PORT: ${{ vars.SERVER_PORT }}
+          SFTP_USER: ${{ vars.SERVER_USER }}
+          SFTP_PASS: ${{ secrets.SERVER_PASSWORD }}
+          REMOTE_ROOT: ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/
+        run: bash .github/scripts/deploy.sh
 
       - name: Set deployment status success
         if: success()
