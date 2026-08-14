@@ -12,10 +12,19 @@ set -euo pipefail
 # (stored on the server itself) and only transfers what actually changed.
 #
 # Required env: SFTP_HOST, SFTP_PORT, SFTP_USER, SFTP_PASS, REMOTE_ROOT
-# Optional env: DIST_DIR (default: dist)
+# Optional env: DIST_DIR (default: dist), FULL_SYNC (default: false)
+#
+# FULL_SYNC=true bypasses the manifest diff entirely and does an
+# unconditional `mirror --delete` of dist/ onto REMOTE_ROOT: every file is
+# re-uploaded, and anything remote that isn't in dist/ is removed,
+# regardless of what the manifest says. This is the only way to fix drift
+# the manifest doesn't know about (files changed or added outside of a
+# deploy), so it's meant as a deliberate disaster-recovery action, not the
+# routine deploy path.
 
 DIST_DIR="${DIST_DIR:-dist}"
 REMOTE_ROOT="${REMOTE_ROOT:?REMOTE_ROOT is required}"
+FULL_SYNC="${FULL_SYNC:-false}"
 
 # REMOTE_ROOT ends up embedded, single-quoted, inside lftp -e command
 # strings below. lftp's own quoting/escaping rules for its command
@@ -57,6 +66,26 @@ trap 'rm -rf "$work_dir"' EXIT
 if [[ ! -s "$work_dir/new-manifest.txt" ]]; then
   echo "$DIST_DIR contains no files; refusing to deploy (this would delete everything remote)" >&2
   exit 1
+fi
+
+if [[ "$FULL_SYNC" == "true" ]]; then
+  # .lftp_ignore holds paths this script must never touch even in a full
+  # sync -- notably preview/, which is owned exclusively by
+  # preview_deploy.yml/preview_cleanup.yml. Without this, a production
+  # full sync (dist/ never contains a preview/ dir) would delete every
+  # open PR's preview, the exact bug this manifest scheme replaced.
+  exclude_flags=""
+  if [[ -f ".lftp_ignore" ]]; then
+    while IFS= read -r pattern; do
+      [[ -z "$pattern" || "$pattern" == \#* ]] && continue
+      exclude_flags+=" -X '$pattern'"
+    done <".lftp_ignore"
+  fi
+
+  lftp "${lftp_conn[@]}" -e "mirror --reverse --delete --parallel=10 --verbose=1 ${exclude_flags} '$DIST_DIR/' '$REMOTE_ROOT'; bye"
+  lftp "${lftp_conn[@]}" -e "put '$work_dir/new-manifest.txt' -o '${MANIFEST_REMOTE}'; bye"
+  echo "Full sync complete."
+  exit 0
 fi
 
 # 2. Manifest of what's actually on the server right now (absent on a brand

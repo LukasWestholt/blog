@@ -132,38 +132,30 @@ jobs:
     runs-on: ubuntu-latest
     needs: [quality, build]
     if: ${{ github.event.inputs.run_full_deploy == 'true' }}  # Only run full-deploy if 'run_full_deploy' input is 'true'
-    env:
-      onlyNewer: 'false'
-      options: 'verbose=1 delete'
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
       - name: Download build artifact
         uses: actions/download-artifact@v8
         with:
           name: build-artifact
           path: dist/
-      - name: Deploy static files via SFTP
-        uses: pressidium/lftp-mirror-action@v1
-        with:
-          # SFTP credentials
-          host: ${{ vars.SERVER_HOST }}
-          port: ${{ vars.SERVER_PORT }}
-          user: ${{ vars.SERVER_USER }}
-          pass: ${{ secrets.SERVER_PASSWORD }}
-          fingerprint: ${{ env.server_fingerprint }}
-          # lftp settings
-          onlyNewer: ${{ env.onlyNewer }}
-          restoreMTime: 'false'
-          parallel: '10'
-          # Mirror command options
-          localDir: './dist/'
-          remoteDir: ${{ vars.SERVER_TARGET }}
-          options: ${{ env.options }}
 
-      - name: Publish manifest to match this full deploy
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Add server fingerprint to known_hosts
         run: |
-          sudo apt-get update && sudo apt-get install -y lftp
           mkdir -p ~/.ssh
           echo "${{ vars.SERVER_HOST }} ${{ env.server_fingerprint }}" >> ~/.ssh/known_hosts
-          (cd dist && find . -type f | sort | xargs -r sha256sum) > manifest.txt
-          lftp -e "put manifest.txt -o '${{ vars.SERVER_TARGET }}/.deploy-manifest.txt'; bye" \
-            "sftp://${{ vars.SERVER_USER }}:${{ secrets.SERVER_PASSWORD }}@${{ vars.SERVER_HOST }}:${{ vars.SERVER_PORT }}"
+
+      - name: Full resync via SFTP
+        env:
+          SFTP_HOST: ${{ vars.SERVER_HOST }}
+          SFTP_PORT: ${{ vars.SERVER_PORT }}
+          SFTP_USER: ${{ vars.SERVER_USER }}
+          SFTP_PASS: ${{ secrets.SERVER_PASSWORD }}
+          REMOTE_ROOT: ${{ vars.SERVER_TARGET }}
+          FULL_SYNC: 'true'
+        run: bash .github/scripts/deploy.sh
