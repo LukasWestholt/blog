@@ -19,11 +19,11 @@ export const getPosts = async (max?: number, lang: 'de' | 'en' | 'all' = 'de') =
 			if (lang === 'all') return true
 
 			const isEnglish = post.id.startsWith('en/')
-			const slugWithoutLang = isEnglish ? post.slug.replace(/^en\//, '') : post.slug
+			const slugWithoutLang = isEnglish ? post.id.replace(/^en\//, '') : post.id
 
 			const hasEnglishVersion =
-				isEnglish || publishedPosts.some((p) => p.slug === `en/${slugWithoutLang}`)
-			const hasGermanVersion = !isEnglish || publishedPosts.some((p) => p.slug === slugWithoutLang)
+				isEnglish || publishedPosts.some((p) => p.id === `en/${slugWithoutLang}`)
+			const hasGermanVersion = !isEnglish || publishedPosts.some((p) => p.id === slugWithoutLang)
 
 			if (lang === 'de') {
 				if (!isEnglish) return true
