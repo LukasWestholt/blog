@@ -17,7 +17,7 @@ const { data, readTime, id, relatedPosts } = Astro.props
 
 const isEnglish = id.startsWith('en/')
 const githubBranch = import.meta.env.GITHUB_BRANCH || 'main'
-const githubEditUrl = `https://github.com/LukasWestholt/blog/edit/${githubBranch}/src/content/blog/${id}`
+const githubEditUrl = `https://github.com/LukasWestholt/blog/edit/${githubBranch}/src/content/blog/${id}.md`
 const editLabel = isEnglish
 	? 'Spotted a typo or error? You can edit this article directly on GitHub.'
 	: 'Tippfehler oder Fehler entdeckt? Du kannst den Artikel direkt auf GitHub bearbeiten.'

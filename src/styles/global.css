@@ -28,7 +28,11 @@
 	.prose code:not(pre code) {
 		@apply text-sm font-mono px-1.5 py-1 rounded leading-relaxed
 		       bg-violet-100 text-violet-800
-		       dark:bg-violet-900/40 dark:text-violet-300;
+		       dark:text-violet-300;
+	}
+
+	html.dark .prose code:not(pre code) {
+		@apply bg-violet-900/40;
 	}
 
 	.prose code:not(pre code)::before,
