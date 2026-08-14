@@ -40,7 +40,7 @@
 		"@astrojs/rss": "4.0.19",
 		"astro": "7.2.1",
 		"astro-font": "^1.2.0",
-		"sharp": "^0.34.5"
+		"sharp": "^0.35.3"
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.10",
