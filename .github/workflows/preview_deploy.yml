@@ -87,6 +87,14 @@ jobs:
             | sed -E 's/-+/-/g; s/^-+//; s/-+$//')
           echo "name=$SAFE" >> $GITHUB_OUTPUT
 
+          # SERVER_TARGET is already an absolute, "/"-rooted path (commonly
+          # just "/"), so naively appending "/preview/$SAFE/" produces a
+          # double leading slash. Strip any trailing slash from
+          # SERVER_TARGET before joining so this works regardless of
+          # whether it ends in one.
+          TARGET="${{ vars.SERVER_TARGET }}"
+          echo "path=${TARGET%/}/preview/$SAFE/" >> $GITHUB_OUTPUT
+
       - name: Create GitHub deployment
         id: deployment
         env:
@@ -167,7 +175,7 @@ jobs:
           SFTP_PORT: ${{ vars.SERVER_PORT }}
           SFTP_USER: ${{ vars.SERVER_USER }}
           SFTP_PASS: ${{ secrets.SERVER_PASSWORD }}
-          REMOTE_ROOT: ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/
+          REMOTE_ROOT: ${{ steps.branch.outputs.path }}
         run: bash .github/scripts/deploy.sh
 
       - name: Set deployment status success

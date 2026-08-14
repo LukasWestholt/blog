@@ -32,6 +32,14 @@ jobs:
             | sed -E 's/-+/-/g; s/^-+//; s/-+$//')
           echo "name=$SAFE" >> $GITHUB_OUTPUT
 
+          # SERVER_TARGET is already an absolute, "/"-rooted path (commonly
+          # just "/"), so naively appending "/preview/$SAFE/" produces a
+          # double leading slash. Strip any trailing slash from
+          # SERVER_TARGET before joining so this works regardless of
+          # whether it ends in one. Must match preview_deploy.yml's join.
+          TARGET="${{ vars.SERVER_TARGET }}"
+          echo "path=${TARGET%/}/preview/$SAFE/" >> $GITHUB_OUTPUT
+
       - name: Install lftp
         run: sudo apt-get install -y lftp
 
@@ -39,8 +47,8 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -p ${{ vars.SERVER_PORT }} ${{ vars.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
-          lftp -e "rm -rf ${{ vars.SERVER_TARGET }}/preview/${{ steps.branch.outputs.name }}/; exit" \
-            sftp://${{ vars.SERVER_USER }}:${{ secrets.SERVER_PASSWORD }}@${{ vars.SERVER_HOST }}:${{ vars.SERVER_PORT }}
+          lftp -u "${{ vars.SERVER_USER }},${{ secrets.SERVER_PASSWORD }}" -p ${{ vars.SERVER_PORT }} "sftp://${{ vars.SERVER_HOST }}" \
+            -e "rm -rf '${{ steps.branch.outputs.path }}'; exit"
 
       - name: Deactivate GitHub deployments
         env:

@@ -29,6 +29,12 @@ if [[ "$REMOTE_ROOT" == *"'"* ]]; then
   exit 1
 fi
 
+# Collapse any run of repeated slashes into one. A caller joining an
+# already "/"-rooted value (e.g. SERVER_TARGET=/) with "/preview/<branch>/"
+# produces a literal "//preview/...", which is well-defined behavior on
+# some systems but not something to depend on.
+REMOTE_ROOT=$(printf '%s' "$REMOTE_ROOT" | sed -E 's#/+#/#g')
+
 MANIFEST_REMOTE="${REMOTE_ROOT%/}/.deploy-manifest.txt"
 
 # Credentials via -u/-p rather than embedded in an sftp:// URL: SFTP_PASS
