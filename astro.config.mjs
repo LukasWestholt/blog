@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
 import tailwindcss from '@tailwindcss/vite'
+import { unified } from '@astrojs/markdown-remark'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { remarkReadingTime } from './src/utils/readTime.ts'
@@ -19,7 +20,7 @@ export default defineConfig({
 		}
 	},
 	markdown: {
-		remarkPlugins: [remarkReadingTime],
+		processor: unified({ remarkPlugins: [remarkReadingTime] }),
 		rehypePlugins: [
 			rehypeSlug,
 			[
