@@ -94,8 +94,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       slugify:
-        specifier: ^1.6.6
-        version: 1.6.6
+        specifier: ^1.6.9
+        version: 1.6.9
       tailwind-merge:
         specifier: 2.0.0
         version: 2.0.0
@@ -2955,8 +2955,8 @@ packages:
     engines: {node: '>=20.19.5', npm: '>=10.8.2'}
     hasBin: true
 
-  slugify@1.6.6:
-    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+  slugify@1.6.9:
+    resolution: {integrity: sha512-vZ7rfeehZui7wQs438JXBckYLkIIdfHOXsaVEUMyS5fHo1483l1bMdo0EDSWYclY0yZKFOipDy4KHuKs6ssvdg==}
     engines: {node: '>=8.0.0'}
 
   smol-toml@1.8.0:
@@ -7010,7 +7010,7 @@ snapshots:
       arg: 5.0.2
       sax: 1.4.1
 
-  slugify@1.6.6: {}
+  slugify@1.6.9: {}
 
   smol-toml@1.8.0: {}
 
