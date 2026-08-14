@@ -157,3 +157,35 @@ const articleDate = pubDate.toISOString()
 	}
 	document.addEventListener('astro:page-load', fnObserver)
 </script>
+
+<script>
+	function initInlineCodeCopy() {
+		document.querySelectorAll('.prose code:not(pre code)').forEach((code) => {
+			if (code.parentElement?.classList.contains('inline-code-wrapper')) return
+
+			const wrapper = document.createElement('span')
+			wrapper.className = 'inline-code-wrapper relative inline-block group/code'
+			code.parentNode!.insertBefore(wrapper, code)
+			wrapper.appendChild(code)
+
+			const btn = document.createElement('button')
+			btn.className =
+				'absolute -top-7 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded text-xs ' +
+				'bg-gray-800 text-white opacity-0 group-hover/code:opacity-100 ' +
+				'transition-opacity duration-150 pointer-events-none whitespace-nowrap z-10'
+			btn.textContent = 'Copy'
+			btn.setAttribute('aria-label', 'Copy code')
+			wrapper.appendChild(btn)
+
+			wrapper.addEventListener('click', async () => {
+				await navigator.clipboard.writeText(code.textContent ?? '')
+				btn.textContent = '✓ Copied'
+				setTimeout(() => {
+					btn.textContent = 'Copy'
+				}, 1500)
+			})
+		})
+	}
+
+	document.addEventListener('astro:page-load', initInlineCodeCopy)
+</script>

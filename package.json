@@ -29,6 +29,7 @@
 		"format:check": "prettier --check .",
 		"format": "prettier --write .",
 		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
 		"typecheck": "astro sync && astro-check",
 		"test": "vitest run",
 		"test:coverage": "vitest run --coverage",
@@ -63,6 +64,8 @@
 		"prettier-config-standard": "^7.0.0",
 		"prettier-plugin-astro": "^0.14.1",
 		"reading-time": "^1.5.0",
+		"rehype-autolink-headings": "^7.1.0",
+		"rehype-slug": "^6.0.0",
 		"slugify": "^1.6.6",
 		"tailwind-merge": "2.0.0",
 		"tailwindcss": "3.3.5",
@@ -71,11 +74,12 @@
 		"vitest": "^3.2.7"
 	},
 	"lint-staged": {
-		"*.{astro,js,jsx,ts,tsx,md,mdx,json}": [
+		"*.{astro,js,jsx,mjs,cjs,ts,tsx}": [
+			"eslint --fix",
 			"prettier --write"
 		],
-		"*.{astro,js,jsx,ts,tsx}": [
-			"eslint --fix"
+		"*.{md,mdx,json,yml,yaml,css}": [
+			"prettier --write"
 		]
 	},
 	"packageManager": "pnpm@11.5.0+sha512.dbfcc4f81cf48597afd4bc391ffdf12c11f1a9fb83a395bfa6b0a2d9cc2fd8ffebafdb1ccbd529632153f793904c2615b7f09fe1a345473fd1c35845172a8eb1"

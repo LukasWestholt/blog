@@ -126,7 +126,7 @@ if [[ -s "$work_dir/to_upload.txt" ]]; then
     cp "$DIST_DIR/$rel" "$upload_dir/$rel"
   done <"$work_dir/to_upload.txt"
 
-  lftp "${lftp_conn[@]}" -e "mirror --reverse --parallel=3 --verbose=3 '$upload_dir/' '$REMOTE_ROOT'; bye"
+  lftp "${lftp_conn[@]}" -e "mirror --reverse --parallel=10 --verbose=1 '$upload_dir/' '$REMOTE_ROOT'; bye"
 fi
 
 # 6. Publish the new manifest so the next deploy diffs against reality

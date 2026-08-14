@@ -8,6 +8,7 @@ export default tseslint.config(
 	},
 	...tseslint.configs.recommended,
 	...eslintPluginAstro.configs.recommended,
+	...eslintPluginAstro.configs['jsx-a11y-recommended'],
 	{
 		files: ['**/*.astro'],
 		rules: {
