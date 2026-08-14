@@ -20,18 +20,20 @@ export default defineConfig({
 		}
 	},
 	markdown: {
-		processor: unified({ remarkPlugins: [remarkReadingTime] }),
-		rehypePlugins: [
-			rehypeSlug,
-			[
-				rehypeAutolinkHeadings,
-				{
-					behavior: 'prepend',
-					properties: { class: 'heading-anchor', ariaHidden: 'true', tabIndex: -1 },
-					content: { type: 'text', value: '#' }
-				}
+		processor: unified({
+			remarkPlugins: [remarkReadingTime],
+			rehypePlugins: [
+				rehypeSlug,
+				[
+					rehypeAutolinkHeadings,
+					{
+						behavior: 'prepend',
+						properties: { class: 'heading-anchor', ariaHidden: 'true', tabIndex: -1 },
+						content: { type: 'text', value: '#' }
+					}
+				]
 			]
-		],
+		}),
 		shikiConfig: {
 			theme: 'material-theme-palenight',
 			wrap: true
@@ -47,17 +49,7 @@ export default defineConfig({
 					dark: 'material-theme-palenight'
 				},
 				wrap: true
-			},
-			rehypePlugins: [
-				rehypeSlug,
-				[
-					rehypeAutolinkHeadings,
-					{
-						behavior: 'prepend',
-						properties: { class: 'heading-anchor', ariaHidden: 'true', tabIndex: -1 }
-					}
-				]
-			]
+			}
 		})
 	],
 	vite: {
