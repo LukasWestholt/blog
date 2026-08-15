@@ -76,11 +76,11 @@ jobs:
         id: branch
         run: |
           # Allowlist to [a-z0-9-]: this becomes both a remote path segment
-          # and, in deploy.sh, gets embedded into lftp command strings. Git
-          # ref names permit characters (quotes, etc.) that aren't safe in
-          # either context, so strip anything outside the allowlist rather
-          # than just swapping out the two characters (/, _) branch names
-          # are expected to commonly contain.
+          # and part of the public preview URL. Git ref names permit
+          # characters that aren't safe in either context, so strip
+          # anything outside the allowlist rather than just swapping out
+          # the two characters (/, _) branch names are expected to
+          # commonly contain.
           SAFE=$(echo '${{ github.head_ref }}' \
             | tr '[:upper:]' '[:lower:]' \
             | tr -c 'a-z0-9' '-' \
@@ -161,22 +161,15 @@ jobs:
           EOF
           echo "preview:$HASH" > dist/.htpasswd
 
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Add server fingerprint to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ vars.SERVER_HOST }} ${{ env.server_fingerprint }}" >> ~/.ssh/known_hosts
-
       - name: Deploy to preview path via SFTP
         env:
           SFTP_HOST: ${{ vars.SERVER_HOST }}
           SFTP_PORT: ${{ vars.SERVER_PORT }}
           SFTP_USER: ${{ vars.SERVER_USER }}
           SFTP_PASS: ${{ secrets.SERVER_PASSWORD }}
+          SFTP_HOST_FINGERPRINT: ${{ env.server_fingerprint }}
           REMOTE_ROOT: ${{ steps.branch.outputs.path }}
-        run: bash .github/scripts/deploy.sh
+        run: pnpm deploy
 
       - name: Set deployment status success
         if: success()
