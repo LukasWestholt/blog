@@ -18,6 +18,7 @@ updates:
           - "astro"
           - "@astrojs/*"
           - "astro-font"
+          - "sharp"
         update-types:
           - "minor"
           - "patch"
