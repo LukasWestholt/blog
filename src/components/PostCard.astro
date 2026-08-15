@@ -7,13 +7,12 @@ import { url } from '@/utils'
 const {
 	id,
 	data: { title, description, pubDate, heroImage, category },
-	readTime,
-	slug
+	readTime
 } = Astro.props
 
 // Sprache anhand der ID erkennen und die URL korrekt zusammenbauen
 const isEnglishPost = id.startsWith('en/')
-const baseSlug = isEnglishPost ? slug.replace(/^en\//, '') : slug
+const baseSlug = isEnglishPost ? id.replace(/^en\//, '') : id
 const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}/`)
 ---
 
@@ -50,13 +49,13 @@ const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}
 	<div class='flex justify-between flex-col gap-4 md:gap-0 py-6 pl-1'>
 		<div class='flex flex-col gap-3'>
 			<div class='flex flex-col gap-2'>
-				<a class='text-2xl font-semibold -tracking-wider' href={postUrl}>
+				<a class='text-2xl font-semibold tracking-tighter' href={postUrl}>
 					{title}
 				</a>
 			</div>
 
 			<p
-				class='overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-[400] md:pr-[15%]'
+				class='overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-5 font-normal md:pr-[15%]'
 			>
 				{description}
 			</p>
@@ -69,7 +68,7 @@ const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}
 				aria-label={`go to ${title}`}
 			>
 				Read Post <span
-					class='mt-[1px] group-hover:rotate-45 transition-transform duration-250 ease-in-out'
+					class='mt-px group-hover:rotate-45 transition-transform duration-250 ease-in-out'
 					><ArrowUp width='18' height='18' /></span
 				>
 			</a>
@@ -95,7 +94,7 @@ const postUrl = url(isEnglishPost ? `/en/post/${baseSlug}/` : `/post/${baseSlug}
 							opacity: [0, 1],
 							clipPath: ['circle(0% at 0% 0%)', 'circle(100% at 50% 50%)']
 						},
-						{ duration: 2, easing: 'ease' }
+						{ duration: 2, ease: 'easeOut' }
 					)
 				}
 			} catch {

@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
+import { unified } from '@astrojs/markdown-remark'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import { remarkReadingTime } from './src/utils/readTime.ts'
@@ -19,19 +20,20 @@ export default defineConfig({
 		}
 	},
 	markdown: {
-		remarkPlugins: [remarkReadingTime],
-		rehypePlugins: [
-			rehypeSlug,
-			[
-				rehypeAutolinkHeadings,
-				{
-					behavior: 'prepend',
-					properties: { class: 'heading-anchor', ariaHidden: 'true', tabIndex: -1 },
-					content: { type: 'text', value: '#' }
-				}
+		processor: unified({
+			remarkPlugins: [remarkReadingTime],
+			rehypePlugins: [
+				rehypeSlug,
+				[
+					rehypeAutolinkHeadings,
+					{
+						behavior: 'prepend',
+						properties: { class: 'heading-anchor', ariaHidden: 'true', tabIndex: -1 },
+						content: { type: 'text', value: '#' }
+					}
+				]
 			]
-		],
-		drafts: true,
+		}),
 		shikiConfig: {
 			theme: 'material-theme-palenight',
 			wrap: true
@@ -42,24 +44,15 @@ export default defineConfig({
 		mdx({
 			syntaxHighlight: 'shiki',
 			shikiConfig: {
-				experimentalThemes: {
+				themes: {
 					light: 'vitesse-light',
 					dark: 'material-theme-palenight'
 				},
 				wrap: true
-			},
-			rehypePlugins: [
-				rehypeSlug,
-				[
-					rehypeAutolinkHeadings,
-					{
-						behavior: 'prepend',
-						properties: { class: 'heading-anchor', ariaHidden: 'true', tabIndex: -1 }
-					}
-				]
-			],
-			drafts: true
-		}),
-		tailwind()
-	]
+			}
+		})
+	],
+	vite: {
+		plugins: [tailwindcss()]
+	}
 })

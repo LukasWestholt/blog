@@ -10,7 +10,6 @@ export default getViteConfig({
 				'**/*.astro',
 				'src/content/**',
 				'astro.config.mjs',
-				'tailwind.config.cjs',
 				// static config objects, no logic to cover
 				'src/data/site.config.ts',
 				'src/data/disqus.config.ts',
@@ -18,4 +17,4 @@ export default getViteConfig({
 			]
 		}
 	}
-})
+} as Parameters<typeof getViteConfig>[0])

@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 import BlogPost from '@/layouts/BlogPost'
 import { getRelatedPosts } from '@/utils'
 
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 		// Sprache erkennen und das "en/" aus dem Dateinamen (Slug) entfernen
 		const isEnglish = post.id.startsWith('en/')
 		const lang = isEnglish ? 'en' : undefined
-		const baseSlug = isEnglish ? post.slug.replace(/^en\//, '') : post.slug
+		const baseSlug = isEnglish ? post.id.replace(/^en\//, '') : post.id
 		const currentLang: 'de' | 'en' = isEnglish ? 'en' : 'de'
 
 		return {
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 }
 
 const { post, currentLang } = Astro.props
-const { Content, remarkPluginFrontmatter } = await post.render()
+const { Content, remarkPluginFrontmatter } = await render(post)
 
 // Lesezeit berechnen und perfekt formatieren
 function formatReadingTime(minutes: string | number | undefined, lang: string) {

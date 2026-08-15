@@ -13,5 +13,5 @@
 			"@/styles": ["src/styles/"]
 		}
 	},
-	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist", ".github"]
+	"exclude": ["node_modules", "**/node_modules/*", ".vscode", "dist", ".github", "coverage"]
 }

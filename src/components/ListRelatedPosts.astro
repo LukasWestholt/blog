@@ -16,7 +16,7 @@ const { posts } = Astro.props
 		posts.length > 0 ? (
 			posts.map((post) => {
 				const isEnglish = post.id.startsWith('en/')
-				const baseSlug = isEnglish ? post.slug.replace(/^en\//, '') : post.slug
+				const baseSlug = isEnglish ? post.id.replace(/^en\//, '') : post.id
 				const postUrl = url(isEnglish ? `/en/post/${baseSlug}/` : `/post/${baseSlug}/`)
 				return (
 					<div class='flex flex-wrap gap-2'>

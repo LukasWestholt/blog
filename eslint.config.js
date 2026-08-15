@@ -1,14 +1,15 @@
 // @ts-check
 import eslintPluginAstro from 'eslint-plugin-astro'
 import tseslint from 'typescript-eslint'
+import { defineConfig } from 'eslint/config'
 
-export default tseslint.config(
+export default defineConfig(
 	{
 		ignores: ['dist', '.astro', 'node_modules', 'pnpm-lock.yaml', 'coverage']
 	},
-	...tseslint.configs.recommended,
-	...eslintPluginAstro.configs.recommended,
-	...eslintPluginAstro.configs['jsx-a11y-recommended'],
+	tseslint.configs.recommended,
+	eslintPluginAstro.configs.recommended,
+	eslintPluginAstro.configs['jsx-a11y-recommended'],
 	{
 		files: ['**/*.astro'],
 		rules: {

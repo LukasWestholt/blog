@@ -1,13 +1,13 @@
 import { defineCollection, z } from 'astro:content'
+import { glob } from 'astro/loaders'
 import { CATEGORIES } from '@/data/categories'
 
 const blog = defineCollection({
-	// Type-check frontmatter using a schema
+	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
 	schema: ({ image }) =>
 		z.object({
 			title: z.string().max(80),
 			description: z.string(),
-			// Transform string to Date object
 			pubDate: z
 				.string()
 				.or(z.date())
