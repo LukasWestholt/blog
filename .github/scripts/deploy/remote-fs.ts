@@ -25,10 +25,16 @@ export async function connect(config: SftpCredentials): Promise<SftpClient> {
 		port: config.sftpPort,
 		username: config.sftpUser,
 		password: config.sftpPass,
-		// Force the key type the pinned fingerprint was captured for -- ssh2
-		// prefers ed25519/ecdsa by default, which would mean the pinned RSA
-		// key is never even presented to hostVerifier to compare against.
-		algorithms: { serverHostKey: ['ssh-rsa'] },
+		// Restrict to the RSA family the pinned fingerprint was captured for
+		// -- ssh2 prefers ed25519/ecdsa by default, which would mean the
+		// pinned RSA key is never even presented to hostVerifier to compare
+		// against. All three identifiers below can name the *same* RSA key
+		// (they differ only in signature hash algorithm, not key type), so
+		// restricting to just 'ssh-rsa' can fail the handshake entirely
+		// against a server that offers only the newer SHA-2 variants for it
+		// -- confirmed against the real server, which doesn't offer the
+		// legacy 'ssh-rsa' (SHA-1) identifier at all.
+		algorithms: { serverHostKey: ['rsa-sha2-512', 'rsa-sha2-256', 'ssh-rsa'] },
 		hostVerifier: (key: Buffer) => verifyHostKey(config.sftpHostKey, key)
 	})
 	return client
