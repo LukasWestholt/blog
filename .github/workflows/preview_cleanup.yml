@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Sanitize branch name
+      - name: Sanitize branch names
         id: branch
         run: |
           SAFE=$(echo '${{ github.head_ref }}' | tr '/' '-' | tr '_' '-' | tr '[:upper:]' '[:lower:]')
