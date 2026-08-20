@@ -5,7 +5,7 @@ import { defineConfig } from 'eslint/config'
 
 export default defineConfig(
 	{
-		ignores: ['dist', '.astro', 'node_modules', '.github', 'pnpm-lock.yaml', 'coverage']
+		ignores: ['dist', '.astro', 'node_modules', 'pnpm-lock.yaml', 'coverage']
 	},
 	tseslint.configs.recommended,
 	eslintPluginAstro.configs.recommended,

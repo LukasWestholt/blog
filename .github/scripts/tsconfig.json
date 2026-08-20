@@ -1,0 +1,22 @@
+{
+	// "DOM" is only needed because the *.test.ts files import vitest, whose
+	// own types transitively reference Vite's, which assume a DOM-capable
+	// environment -- the actual deploy script code doesn't use any DOM APIs.
+	"compilerOptions": {
+		"target": "ES2023",
+		"lib": ["ES2023", "DOM"],
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"types": ["node"],
+		"strict": true,
+		"verbatimModuleSyntax": true,
+		"noUncheckedIndexedAccess": true,
+		"noEmit": true,
+		// Node runs .ts files directly (type-stripping); relative imports
+		// need a real extension, and this is what makes tsc accept ".ts"
+		// there instead of insisting on ".js" (the traditional
+		// compile-to-JS convention NodeNext otherwise assumes).
+		"allowImportingTsExtensions": true
+	},
+	"include": ["**/*.ts"]
+}

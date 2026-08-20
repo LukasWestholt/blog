@@ -3,7 +3,7 @@ import { coverageConfigDefaults } from 'vitest/config'
 
 export default getViteConfig({
 	test: {
-		include: ['src/**/*.test.ts'],
+		include: ['src/**/*.test.ts', '.github/scripts/**/*.test.ts'],
 		coverage: {
 			exclude: [
 				...coverageConfigDefaults.exclude,

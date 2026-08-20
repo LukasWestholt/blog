@@ -74,6 +74,11 @@ import { AstroFont } from 'astro-font'
 			display: 'swap',
 			name: 'JetBrains Mono',
 			fallback: 'sans-serif',
+			// Without this, astro-font generates a random name
+			// (Math.random() * Date.now()) on every build, making every page
+			// that renders this font hash-differ from the previous deploy
+			// even when nothing actually changed.
+			fallbackName: 'jetbrains-mono-fallback',
 			src: [
 				{
 					weight: '400',

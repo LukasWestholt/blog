@@ -2,5 +2,7 @@ test/fixtures/**/*.md
 test/fixtures/**/*.astro
 **/dist
 pnpm-lock.yaml
-.github
+.github/workflows
+.github/dependabot.yml
+.github/FUNDING.yml
 .changeset
