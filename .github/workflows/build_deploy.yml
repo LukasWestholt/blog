@@ -110,13 +110,19 @@ jobs:
           name: build-artifact
           path: dist/
 
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Install pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
 
-      - name: Add server fingerprint to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ vars.SERVER_HOST }} ${{ env.server_fingerprint }}" >> ~/.ssh/known_hosts
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Deploy changed files via SFTP
         env:
@@ -124,8 +130,9 @@ jobs:
           SFTP_PORT: ${{ vars.SERVER_PORT }}
           SFTP_USER: ${{ vars.SERVER_USER }}
           SFTP_PASS: ${{ secrets.SERVER_PASSWORD }}
+          SFTP_HOST_FINGERPRINT: ${{ env.server_fingerprint }}
           REMOTE_ROOT: ${{ vars.SERVER_TARGET }}
-        run: bash .github/scripts/deploy.sh
+        run: pnpm deploy
 
   full-deploy:
     name: Deploy all static files via SFTP
