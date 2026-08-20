@@ -87,7 +87,7 @@ const articleDate = pubDate.toISOString()
 				href={githubEditUrl}
 				target='_blank'
 				rel='noopener noreferrer'
-				class='text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors'
+				class='text-sm text-neutral-500 dark:text-neutral-400 hover:text-neutral-800 dark:hover:text-neutral-200 transition-colors'
 			>
 				{editLabel} ↗
 			</a>
@@ -113,21 +113,21 @@ const articleDate = pubDate.toISOString()
 					const index = document.querySelector(`aside a[href="#${CSS.escape(entry.target.id)}"]`)
 
 					if (entry.isIntersecting) {
-						index?.classList.remove('bg-slate-200', 'dark:bg-slate-800') // remove bg
+						index?.classList.remove('bg-neutral-200', 'dark:bg-neutral-800') // remove bg
 						index?.classList.add(
-							'bg-indigo-600',
-							'dark:bg-indigo-700',
-							'text-white',
+							'bg-primary-600',
+							'dark:bg-primary-700',
+							'text-secondary-dark',
 							'font-bold',
 							'transition-colors',
 							'duration-200'
 						)
 					} else {
-						index?.classList.add('bg-slate-200', 'dark:bg-slate-800') // add bg
+						index?.classList.add('bg-neutral-200', 'dark:bg-neutral-800') // add bg
 						index?.classList.remove(
-							'bg-indigo-600',
-							'dark:bg-indigo-700',
-							'text-white',
+							'bg-primary-600',
+							'dark:bg-primary-700',
+							'text-secondary-dark',
 							'font-bold',
 							'transition-colors',
 							'duration-200'
@@ -171,7 +171,7 @@ const articleDate = pubDate.toISOString()
 			const btn = document.createElement('button')
 			btn.className =
 				'absolute -top-7 left-1/2 -translate-x-1/2 px-1.5 py-0.5 rounded text-xs ' +
-				'bg-gray-800 text-white opacity-0 group-hover/code:opacity-100 ' +
+				'bg-neutral-800 text-secondary-dark opacity-0 group-hover/code:opacity-100 ' +
 				'transition-opacity duration-150 pointer-events-none whitespace-nowrap z-10'
 			btn.textContent = 'Copy'
 			btn.setAttribute('aria-label', 'Copy code')
