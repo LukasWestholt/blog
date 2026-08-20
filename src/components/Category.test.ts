@@ -47,4 +47,18 @@ describe('Category', () => {
 
 		expect(classesOf(html)).toContain('border-black')
 	})
+
+	it('keeps hover text readable in dark mode', async () => {
+		const container = await AstroContainer.create()
+
+		const classes = classesOf(
+			await container.renderToString(Category, {
+				props: { name: 'Projects', activeCategory: 'football-manager' }
+			})
+		)
+
+		// hover:text-gray-800 with no dark: variant made hover text nearly
+		// black-on-black in dark mode; dark:hover:text-white must be present
+		expect(classes).toContain('dark:hover:text-white')
+	})
 })
