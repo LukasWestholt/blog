@@ -68,7 +68,7 @@ jobs:
         with:
           name: build-artifact
           path: dist/
-      - name: Deploy static files via SFTP
+      - name: Deploy static files via SFTPs
         uses: pressidium/lftp-mirror-action@v1
         with:
           # SFTP credentials
