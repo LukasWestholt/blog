@@ -64,11 +64,14 @@
 	src: url('/fonts/Inter-Variable.woff2') format('woff2');
 }
 
-@layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
-
+/*
+ * Tailwind Typography's own .prose rules for these same elements live in
+ * @layer utilities. Cascade layers resolve by layer order before
+ * specificity, so an override here needs to be in utilities too (or use
+ * !important, like the h1-h6/shiki rules below) or it silently loses even
+ * though it out-specifies Typography's :where()-wrapped selectors.
+ */
+@layer utilities {
 	.prose code:not(pre code) {
 		@apply text-sm font-mono px-1.5 py-1 rounded leading-relaxed
 		       bg-accent-100 text-accent-800
@@ -89,6 +92,12 @@
 		content: '`';
 		@apply text-accent-400 dark:text-accent-500;
 	}
+}
+
+@layer base {
+	/* body {
+		transition: background-color 0.5s ease;
+	} */
 
 	/* prose styles here */
 	.prose h1,
