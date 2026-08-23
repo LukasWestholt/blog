@@ -5,6 +5,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+	/*
+	 * Base off-white primitive, independent of the secondary/secondary-dark
+	 * pair below. Some surfaces (Header drawer, Search dialog, BaseLayout
+	 * body) pair a plain light background with a bespoke dark-mode hex
+	 * rather than a real light/dark ink switch, so they use this directly
+	 * instead of secondary-dark — same value, different intent: this is
+	 * "the site's off-white", not "the dark-mode value of an adaptive pair".
+	 */
 	--color-white: #f8f9fa;
 
 	/*
@@ -16,7 +24,10 @@
 	 * indigo/violet shades already in use) because they're used at several
 	 * intensities. secondary is flat since black/white never had shades.
 	 * neutral consolidates five previously-interchangeable gray families
-	 * onto Tailwind's gray scale.
+	 * onto Tailwind's native (achromatic) neutral scale — chosen, rather
+	 * than gray's, specifically so pre-existing neutral-* usage elsewhere
+	 * in the codebase (predating this schema) keeps rendering identically
+	 * instead of being silently reinterpreted.
 	 */
 
 	/* primary = indigo */
@@ -39,16 +50,17 @@
 	--color-accent-800: oklch(43.2% 0.232 292.759);
 	--color-accent-900: oklch(38% 0.189 293.745);
 
-	/* neutral = consolidated gray/slate/zinc/neutral/stone, on gray's scale */
-	--color-neutral-100: oklch(96.7% 0.003 264.542);
-	--color-neutral-200: oklch(92.8% 0.006 264.531);
-	--color-neutral-300: oklch(87.2% 0.01 258.338);
-	--color-neutral-400: oklch(70.7% 0.022 261.325);
-	--color-neutral-500: oklch(55.1% 0.027 264.364);
-	--color-neutral-600: oklch(44.6% 0.03 256.802);
-	--color-neutral-700: oklch(37.3% 0.034 259.733);
-	--color-neutral-800: oklch(27.8% 0.033 256.848);
-	--color-neutral-950: oklch(13% 0.028 261.692);
+	/* neutral = consolidated gray/slate/zinc/neutral/stone, on native neutral's scale */
+	--color-neutral-100: oklch(97% 0 none);
+	--color-neutral-200: oklch(92.2% 0 none);
+	--color-neutral-300: oklch(87% 0 none);
+	--color-neutral-400: oklch(70.8% 0 none);
+	--color-neutral-500: oklch(55.6% 0 none);
+	--color-neutral-600: oklch(43.9% 0 none);
+	--color-neutral-700: oklch(37.1% 0 none);
+	--color-neutral-800: oklch(26.9% 0 none);
+	--color-neutral-900: oklch(20.5% 0 none);
+	--color-neutral-950: oklch(14.5% 0 none);
 
 	--font-family-body:
 		'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
@@ -66,10 +78,14 @@
 
 /*
  * Tailwind Typography's own .prose rules for these same elements live in
- * @layer utilities. Cascade layers resolve by layer order before
- * specificity, so an override here needs to be in utilities too (or use
- * !important, like the h1-h6/shiki rules below) or it silently loses even
- * though it out-specifies Typography's :where()-wrapped selectors.
+ * @layer utilities (registered via addComponents(), which Tailwind v4's
+ * plugin-compat shim aliases to addUtilities()). Cascade layers resolve by
+ * layer order before specificity, so an override here needs to be in
+ * utilities too, or it silently loses even though it out-specifies
+ * Typography's :where()-wrapped selectors — this is why the h1-h6 rule
+ * below lives here instead of in @layer base. The shiki dark-mode rule in
+ * @layer base further down is a different problem (beating an inline
+ * style attribute) and still needs !important for that.
  */
 @layer utilities {
 	.prose code:not(pre code) {
@@ -119,7 +135,7 @@
 	html.dark .astro-code,
 	html.dark .astro-code span {
 		color: var(--shiki-dark) !important;
-		background-color: var(--color-gray-900) !important;
+		background-color: var(--color-neutral-900) !important;
 	}
 }
 
