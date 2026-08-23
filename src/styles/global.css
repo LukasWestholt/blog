@@ -62,6 +62,31 @@
 	--color-neutral-900: oklch(20.5% 0 none);
 	--color-neutral-950: oklch(14.5% 0 none);
 
+	/*
+	 * info/success are semantic status colors, not brand colors — a
+	 * different category from primary/secondary/accent/neutral above.
+	 * They don't replace drifted usages of the same concept like the brand
+	 * tokens do; they're a home for the handful of real semantic blue/green
+	 * usages (Blockquote's informational callout, the copy-button's
+	 * success checkmark), so those aren't left as unlabeled raw color with
+	 * no indication they're meaningful rather than arbitrary. Purely
+	 * decorative or arbitrary uses of color (e.g. TwSizeIndicator's
+	 * per-breakpoint rainbow, or a generic red/blue pair in a unit test)
+	 * are correctly NOT migrated here — they don't mean "informational" or
+	 * "success", so tokenizing them would misrepresent intent rather than
+	 * clarify it.
+	 */
+
+	/* info = blue */
+	--color-info-50: oklch(97% 0.014 254.604);
+	--color-info-400: oklch(70.7% 0.165 254.624);
+	--color-info-600: oklch(54.6% 0.245 262.881);
+	--color-info-900: oklch(37.9% 0.146 265.522);
+
+	/* success = green */
+	--color-success-400: oklch(79.2% 0.209 151.711);
+	--color-success-600: oklch(62.7% 0.194 149.214);
+
 	--font-family-body:
 		'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 		'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
