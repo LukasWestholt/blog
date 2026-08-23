@@ -1,0 +1,55 @@
+---
+title: 'Review: Neues Farbschema (primary/secondary/accent/neutral/info/success)'
+description:
+  'Testartikel für PR #75 — zeigt jedes neue Farb-Token in echten Seitenelementen: Kategorie-Menü, Tags, Code-Blöcke,
+  Blockquote und Button.'
+pubDate: 'Aug 23 2026'
+author: 'Lukas Westholt'
+heroImage: '../../assets/images/placeholder-hero.jpg'
+category: 'IT'
+tags: ['Farbschema Review']
+---
+
+import Blockquote from '../../components/mdx/Blockquote.astro'
+import SButton from '../../components/mdx/SButton.astro'
+
+Dieser Artikel existiert nur zum Review von PR #75 und sollte nach dem Merge wieder gelöscht werden. Dieser
+Absatztext selbst prüft schon die Basis: **neutral-950** im Light Mode, **secondary-dark** im Dark Mode.
+
+## Inline-Code (accent)
+
+Ein Beispiel für Inline-Code: `pnpm build` sollte einen leicht getönten Hintergrund haben
+(`accent-100`/`dark:accent-900/40`) und farbigen Text (`accent-800`/`dark:accent-300`). Fahr mit der Maus über den
+Code — die Backticks sollten erst beim Hover erscheinen, in `accent-400`/`dark:accent-500`.
+
+## Codeblock (Shiki Dual-Theme + primary + success)
+
+Der Copy-Button unten sollte im Hover `primary-500`/`dark:primary-400` zeigen. Nach dem Klick erscheint ein grüner
+Haken in `success-600`/`dark:success-400`. Der Codeblock selbst sollte im Light Mode hell und im Dark Mode dunkel
+sein (nicht in beiden Modi gleich dunkel).
+
+```ts
+function greet(name: string): string {
+	return `Hallo, ${name}!`
+}
+```
+
+### Blockquote (info)
+
+<Blockquote>
+	Dies ist ein Info-Callout mit dem neuen `info`-Token — `info-50`/`dark:info-900/40` als
+	Hintergrund, `info-600`/`dark:info-400` für das große Anführungszeichen.
+</Blockquote>
+
+### Button (accent)
+
+Der Button unten sollte jetzt `accent-800` als Hintergrund haben (vorher ein unabgestimmtes Lila):
+
+<SButton>Beispiel-Button</SButton>
+
+## Kategorie- und Tag-Test
+
+Dieser Artikel läuft unter der Kategorie **IT**, die vorher keine Posts hatte und daher im Menü gar nicht auftauchte
+— sie sollte jetzt sichtbar sein, mit korrektem Underline-Verhalten beim Anklicken (siehe die ursprüngliche
+Unterstrich-Untersuchung dieser PR). Der Tag oben führt zu einer eigenen Tag-Seite, deren Hashtag jetzt
+`primary-500` statt eines unabgestimmten Blaus verwendet.
