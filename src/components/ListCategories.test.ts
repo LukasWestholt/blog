@@ -40,9 +40,9 @@ describe('ListCategories', () => {
 
 		// a border-b-2 with no light-mode color class falls back to
 		// currentColor (effectively black), which is indistinguishable
-		// from the active category's own border-black — swallowing the
+		// from the active category's own border-secondary — swallowing the
 		// active-category indicator in light mode
-		expect(dividerClasses.some((c) => /^border-gray-\d+$/.test(c))).toBe(true)
-		expect(dividerClasses.some((c) => /^dark:border-gray-\d+$/.test(c))).toBe(true)
+		expect(dividerClasses.some((c) => /^border-neutral-\d+$/.test(c))).toBe(true)
+		expect(dividerClasses.some((c) => /^dark:border-neutral-\d+$/.test(c))).toBe(true)
 	})
 })

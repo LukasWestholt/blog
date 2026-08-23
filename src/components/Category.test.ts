@@ -24,12 +24,12 @@ describe('Category', () => {
 		)
 
 		// active link: solid border, no leftover transparent override
-		expect(activeClasses).toContain('border-black')
+		expect(activeClasses).toContain('border-secondary')
 		expect(activeClasses).not.toContain('border-transparent')
 
-		// inactive link: border hidden until hover, never plain border-black
+		// inactive link: border hidden until hover, never plain border-secondary
 		expect(inactiveClasses).toContain('border-transparent')
-		expect(inactiveClasses).not.toContain('border-black')
+		expect(inactiveClasses).not.toContain('border-secondary')
 
 		// the two states must not render identically (this is what the
 		// tailwind-merge v3 upgrade broke: both ended up with the same
@@ -45,7 +45,7 @@ describe('Category', () => {
 			request: new Request('https://2lukas.de/')
 		})
 
-		expect(classesOf(html)).toContain('border-black')
+		expect(classesOf(html)).toContain('border-secondary')
 	})
 
 	it('keeps hover text readable in dark mode', async () => {
@@ -57,8 +57,8 @@ describe('Category', () => {
 			})
 		)
 
-		// hover:text-gray-800 with no dark: variant made hover text nearly
-		// black-on-black in dark mode; dark:hover:text-white must be present
-		expect(classes).toContain('dark:hover:text-white')
+		// hover:text-neutral-800 with no dark: variant made hover text nearly
+		// black-on-black in dark mode; dark:hover:text-secondary-dark must be present
+		expect(classes).toContain('dark:hover:text-secondary-dark')
 	})
 })

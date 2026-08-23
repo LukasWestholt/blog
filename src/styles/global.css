@@ -5,7 +5,88 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+	/*
+	 * Base off-white primitive, independent of the secondary/secondary-dark
+	 * pair below. Some surfaces (Header drawer, Search dialog, BaseLayout
+	 * body) pair a plain light background with a bespoke dark-mode hex
+	 * rather than a real light/dark ink switch, so they use this directly
+	 * instead of secondary-dark — same value, different intent: this is
+	 * "the site's off-white", not "the dark-mode value of an adaptive pair".
+	 */
 	--color-white: #f8f9fa;
+
+	/*
+	 * Semantic color schema — use these instead of raw Tailwind color names
+	 * (indigo, violet, gray/slate/zinc/neutral/stone, black/white) so brand
+	 * intent is grep-able and shade drift is visible in review.
+	 *
+	 * primary/accent keep a full shade scale (values copied 1:1 from the
+	 * indigo/violet shades already in use) because they're used at several
+	 * intensities. secondary is flat since black/white never had shades.
+	 * neutral consolidates five previously-interchangeable gray families
+	 * onto Tailwind's native (achromatic) neutral scale — chosen, rather
+	 * than gray's, specifically so pre-existing neutral-* usage elsewhere
+	 * in the codebase (predating this schema) keeps rendering identically
+	 * instead of being silently reinterpreted.
+	 */
+
+	/* primary = indigo */
+	--color-primary-300: oklch(78.5% 0.115 274.713);
+	--color-primary-400: oklch(67.3% 0.182 276.935);
+	--color-primary-500: oklch(58.5% 0.233 277.117);
+	--color-primary-600: oklch(51.1% 0.262 276.966);
+	--color-primary-700: oklch(45.7% 0.24 277.023);
+	--color-primary-900: oklch(35.9% 0.144 278.697);
+
+	/* secondary = black / white (this project's off-white) */
+	--color-secondary: #000;
+	--color-secondary-dark: #f8f9fa;
+
+	/* accent = violet */
+	--color-accent-100: oklch(94.3% 0.029 294.588);
+	--color-accent-300: oklch(81.1% 0.111 293.571);
+	--color-accent-400: oklch(70.2% 0.183 293.541);
+	--color-accent-500: oklch(60.6% 0.25 292.717);
+	--color-accent-800: oklch(43.2% 0.232 292.759);
+	--color-accent-900: oklch(38% 0.189 293.745);
+
+	/* neutral = consolidated gray/slate/zinc/neutral/stone, on native neutral's scale */
+	--color-neutral-100: oklch(97% 0 none);
+	--color-neutral-200: oklch(92.2% 0 none);
+	--color-neutral-300: oklch(87% 0 none);
+	--color-neutral-400: oklch(70.8% 0 none);
+	--color-neutral-500: oklch(55.6% 0 none);
+	--color-neutral-600: oklch(43.9% 0 none);
+	--color-neutral-700: oklch(37.1% 0 none);
+	--color-neutral-800: oklch(26.9% 0 none);
+	--color-neutral-900: oklch(20.5% 0 none);
+	--color-neutral-950: oklch(14.5% 0 none);
+
+	/*
+	 * info/success are semantic status colors, not brand colors — a
+	 * different category from primary/secondary/accent/neutral above.
+	 * They don't replace drifted usages of the same concept like the brand
+	 * tokens do; they're a home for the handful of real semantic blue/green
+	 * usages (Blockquote's informational callout, the copy-button's
+	 * success checkmark), so those aren't left as unlabeled raw color with
+	 * no indication they're meaningful rather than arbitrary. Purely
+	 * decorative or arbitrary uses of color (e.g. TwSizeIndicator's
+	 * per-breakpoint rainbow, or a generic red/blue pair in a unit test)
+	 * are correctly NOT migrated here — they don't mean "informational" or
+	 * "success", so tokenizing them would misrepresent intent rather than
+	 * clarify it.
+	 */
+
+	/* info = blue */
+	--color-info-50: oklch(97% 0.014 254.604);
+	--color-info-400: oklch(70.7% 0.165 254.624);
+	--color-info-600: oklch(54.6% 0.245 262.881);
+	--color-info-900: oklch(37.9% 0.146 265.522);
+
+	/* success = green */
+	--color-success-400: oklch(79.2% 0.209 151.711);
+	--color-success-600: oklch(62.7% 0.194 149.214);
+
 	--font-family-body:
 		'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 		'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
@@ -20,19 +101,26 @@
 	src: url('/fonts/Inter-Variable.woff2') format('woff2');
 }
 
-@layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
-
+/*
+ * Tailwind Typography's own .prose rules for these same elements live in
+ * @layer utilities (registered via addComponents(), which Tailwind v4's
+ * plugin-compat shim aliases to addUtilities()). Cascade layers resolve by
+ * layer order before specificity, so an override here needs to be in
+ * utilities too, or it silently loses even though it out-specifies
+ * Typography's :where()-wrapped selectors — this is why the h1-h6 rule
+ * below lives here instead of in @layer base. The shiki dark-mode rule in
+ * @layer base further down is a different problem (beating an inline
+ * style attribute) and still needs !important for that.
+ */
+@layer utilities {
 	.prose code:not(pre code) {
 		@apply text-sm font-mono px-1.5 py-1 rounded leading-relaxed
-		       bg-violet-100 text-violet-800
-		       dark:text-violet-300;
+		       bg-accent-100 text-accent-800
+		       dark:text-accent-300;
 	}
 
 	html.dark .prose code:not(pre code) {
-		@apply bg-violet-900/40;
+		@apply bg-accent-900/40;
 	}
 
 	.prose code:not(pre code)::before,
@@ -43,31 +131,42 @@
 	.prose code:not(pre code):hover::before,
 	.prose code:not(pre code):hover::after {
 		content: '`';
-		@apply text-violet-400 dark:text-violet-500;
+		@apply text-accent-400 dark:text-accent-500;
 	}
 
-	/* prose styles here */
+	/*
+	 * Each selector must repeat .prose: an unscoped h2-h6 (as this used to
+	 * be written) matches every h2-h6 on the page, not just headings inside
+	 * prose content — it was overpainting BlogPost.astro's "related posts"
+	 * <h2>, which lives outside .prose, via !important.
+	 */
 	.prose h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply text-zinc-800! dark:text-zinc-100!;
+	.prose h2,
+	.prose h3,
+	.prose h4,
+	.prose h5,
+	.prose h6 {
+		@apply text-neutral-800 dark:text-neutral-100;
 	}
+}
+
+@layer base {
+	/* body {
+		transition: background-color 0.5s ease;
+	} */
 
 	html.dark .shiki,
 	html.dark .shiki span,
 	html.dark .astro-code,
 	html.dark .astro-code span {
 		color: var(--shiki-dark) !important;
-		background-color: var(--color-gray-900) !important;
+		background-color: var(--color-neutral-900) !important;
 	}
 }
 
 .prose .heading-anchor {
 	@apply absolute -left-6 w-6 text-center no-underline
-		opacity-0 text-zinc-400 dark:text-zinc-500
+		opacity-0 text-neutral-400 dark:text-neutral-500
 		transition-opacity duration-150;
 }
 
