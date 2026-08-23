@@ -92,22 +92,27 @@
 		content: '`';
 		@apply text-accent-400 dark:text-accent-500;
 	}
+
+	/*
+	 * Each selector must repeat .prose: an unscoped h2-h6 (as this used to
+	 * be written) matches every h2-h6 on the page, not just headings inside
+	 * prose content — it was overpainting BlogPost.astro's "related posts"
+	 * <h2>, which lives outside .prose, via !important.
+	 */
+	.prose h1,
+	.prose h2,
+	.prose h3,
+	.prose h4,
+	.prose h5,
+	.prose h6 {
+		@apply text-neutral-800 dark:text-neutral-100;
+	}
 }
 
 @layer base {
 	/* body {
 		transition: background-color 0.5s ease;
 	} */
-
-	/* prose styles here */
-	.prose h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply text-neutral-800! dark:text-neutral-100!;
-	}
 
 	html.dark .shiki,
 	html.dark .shiki span,
