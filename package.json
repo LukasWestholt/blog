@@ -51,7 +51,7 @@
 		"@pagefind/default-ui": "^1.5.2",
 		"@tailwindcss/typography": "0.5.20",
 		"@tailwindcss/vite": "4.3.3",
-		"@types/node": "^26.2.0",
+		"@types/node": "^26.4.1",
 		"@types/ssh2-sftp-client": "^9.0.6",
 		"@typescript-eslint/parser": "^8.67.0",
 		"@vitest/coverage-v8": "4.1.10",
